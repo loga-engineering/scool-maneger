@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(value = "*")
 @RestController
 @RequestMapping("/school-management")
 public class EleveController {
@@ -16,7 +16,7 @@ public class EleveController {
     @Autowired
     private EleveService eleveService;
 
-    @PostMapping
+    @PostMapping("/eleves")
     public ResponseEntity<EleveDTO> createEleve(@RequestBody EleveDTO eleveDTO) {
         EleveDTO newEleveDTO = eleveService.createEleve(eleveDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(newEleveDTO);
