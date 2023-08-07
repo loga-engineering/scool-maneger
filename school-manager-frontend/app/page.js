@@ -1,18 +1,44 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
-import EleveList from './(Eleves)/EleveList/page';
+import Link from 'next/link';
+import {Box, Card, CardContent, Container, Grid, Typography} from "@mui/material";
+
+
+const modules = [
+    {
+        label: "Gestion année scolaire",
+        href: "/annee-scolaires"
+    },
+    {
+        label: "Gestion élèves",
+        href: "/eleves"
+    }
+]
 
 export default function Home() {
-  return (
-    <main>
-        <h1>School Management</h1>
-        <EleveList />
+    return (
+        <Container component={"main"} maxWidth={"lg"}>
+            <Box mt={5}>
+                <Typography variant={"h2"} gutterBottom>
+                    {"Gestion d'établissement Scolaire"}
+                </Typography>
+            </Box>
 
-      
-    </main>
-    
-  )
+            <Grid container spacing={3}>
+                {modules.map(model => (
+                    <Grid key={model.href} item xs={4}>
+                        <Link href={model.href}>
+                            <Card>
+                                <CardContent>
+                                    <Typography>
+                                        {model.label}
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Link>
+                    </Grid>
+                ))}
+
+            </Grid>
+        </Container>
+    )
 }
