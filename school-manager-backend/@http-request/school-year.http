@@ -20,7 +20,6 @@ Content-Type: application/json
   "endDate": "2021-06-12"
 }
 
-
 ###
-DELETE {{urlBase}}/school-years/4
+
 

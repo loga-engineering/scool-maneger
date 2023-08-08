@@ -1,5 +1,4 @@
 "use client"
-
 import {useEffect, useState} from 'react'
 import {findAllStudents} from "../../features/students/student-services";
 import {Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography} from "@mui/material";

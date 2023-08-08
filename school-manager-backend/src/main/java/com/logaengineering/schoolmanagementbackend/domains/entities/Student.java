@@ -33,9 +33,8 @@ public class Student {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate enrollmentDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "classroom_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "classroom_id", referencedColumnName = "id")
     private Classroom classroom;
-
 
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-@CrossOrigin(value = "http://localhost:3000/*")
+@CrossOrigin(value = "*")
 @RestController
 @RequestMapping("exams")
 public class ExamController {

@@ -7,7 +7,7 @@ import {createStudent} from "../../../features/students/student-services";
 
 export default function NewStudentPage() {
 
-    const SCHOOL_MANAGER_API_BASE_URL = 'http://localhost:8080/school-management/eleves';
+    const SCHOOL_MANAGER_API_BASE_URL = 'http://localhost:9090/school-management/eleves';
 
     const [successMessage, setSuccessMessage] = useState('');
 

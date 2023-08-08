@@ -1,5 +1,9 @@
 ###
-GET {{urlBase}}/students/2
+GET {{urlBase}}/students
+Accept: application/json
+
+###
+GET {{urlBase}}/students
 Accept: application/json
 
 ###

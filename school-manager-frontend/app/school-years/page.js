@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function SchoolYearPage() {
     return (
-        <SchoolYearListView/>
+        <SchoolYearListView />
     );
 }
 
