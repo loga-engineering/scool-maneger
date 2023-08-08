@@ -1,6 +1,7 @@
 import './globals.css'
 import {Box, Link as MuiLink, Typography} from "@mui/material";
 import Link from "next/link";
+import SideBar from "../features/@home/compnents/side-bar";
 
 
 export const metadata = {
@@ -13,16 +14,16 @@ export default function RootLayout({children}) {
         <html lang="en">
         <body>
         <Box height={"100vh"} width={"100vw"} display={"flex"}>
-            <Box height={"100%"} width={300} bgcolor={"red"}>
-                <Link href={"/"}>
-                    <Typography>{"Home"}</Typography>
-                </Link>
-            </Box>
-            <Box>
+            <SideBar/>
+
+            <Box flexGrow={1} pt={5}>
                 {children}
             </Box>
+
         </Box>
         </body>
         </html>
     )
 }
+
+

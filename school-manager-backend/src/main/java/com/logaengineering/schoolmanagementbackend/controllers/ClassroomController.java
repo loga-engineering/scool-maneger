@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-@CrossOrigin(value = "http://localhost:3000/*")
+@CrossOrigin(value = "*")
 @RestController
 @RequestMapping("classrooms")
 public class ClassroomController {

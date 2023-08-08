@@ -4,16 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Organize project code">
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Fix relation bug between Classroom and School Year">
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/new/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/@home/compnents/side-bar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents/school-year-details.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents/school-year-new-form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-details-view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-new-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Classroom.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Exam.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/exam.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Grade.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/grade.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/SchoolYear.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Student.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/student.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Classroom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/ClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/ClassroomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/SchoolYearController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/SchoolYearController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,13 +54,16 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="18" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rest.client.default.execution.environment" value="dev" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/view" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -106,9 +115,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.school-year#2" />
         <item itemvalue="HTTP Request.classroom#1" />
         <item itemvalue="HTTP Request.classroom#2" />
-        <item itemvalue="HTTP Request.school-year#2" />
         <item itemvalue="HTTP Request.school-year#1" />
         <item itemvalue="HTTP Request.school-year#3" />
       </list>
@@ -124,7 +133,7 @@
       <updated>1691404769513</updated>
       <workItem from="1691404773768" duration="446000" />
       <workItem from="1691405471296" duration="5081000" />
-      <workItem from="1691493907381" duration="291000" />
+      <workItem from="1691493907381" duration="4304000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -140,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691410465759</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Fix relation bug between Classroom and School Year">
+      <created>1691494263687</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691494263687</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +176,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Organize project code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Organize project code" />
+    <MESSAGE value="Fix relation bug between Classroom and School Year" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix relation bug between Classroom and School Year" />
   </component>
 </project>
