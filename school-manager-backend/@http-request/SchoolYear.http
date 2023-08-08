@@ -1,0 +1,23 @@
+
+###
+GET {{urlBase}}/school-years/2
+Accept: application/json
+
+###
+GET {{urlBase}}/school-years/years/2020
+Accept: application/json
+
+###
+POST {{urlBase}}/school-years
+Content-Type: application/json
+
+{
+  "year": "2020",
+  "startDate": "2020-09-02",
+  "endDate": "2021-06-12"
+}
+
+
+###
+DELETE {{urlBase}}/school-years/4
+

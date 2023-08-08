@@ -1,0 +1,17 @@
+###
+GET {{urlBase}}/exams
+Accept: application/json
+
+###
+POST {{urlBase}}/exams
+Content-Type: application/json
+
+{
+  "examDate": "2023-08-15",
+  "subject": "Math",
+  "teacherName": "Ms. Johnson"
+}
+
+
+###
+
