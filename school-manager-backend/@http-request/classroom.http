@@ -11,7 +11,7 @@ Content-Type: application/json
   "level": "9eme Annee",
   "headTeacherName": "Mr. Smith",
   "schoolYear": {
-    "id": 2
+    "id": 1
   }
 }
 

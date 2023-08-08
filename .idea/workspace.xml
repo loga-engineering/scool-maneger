@@ -4,56 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http-request/annee-scolaires.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http-request/http-client.env.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/eleves/eleve-services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Controllers/AnneeScolaireController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/AnneeScolaireController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Controllers/ClasseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/ClasseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Controllers/DevoirController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/DevoirController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Controllers/EleveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/EleveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Controllers/NoteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/NoteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Models/DTO/EleveDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/dto/EleveDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Models/Entities/AnneeScolaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/AnneeScolaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Models/Entities/Classe.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Classe.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Models/Entities/Devoir.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Devoir.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Models/Entities/Eleve.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Eleve.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Models/Entities/Note.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Note.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Repositories/AnneeScolaireRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/repositories/AnneeScolaireRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Repositories/ClasseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/repositories/ClasseRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Repositories/DevoirRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/repositories/DevoirRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Repositories/EleveRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/repositories/EleveRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Repositories/NoteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/repositories/NoteRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/SchoolManageApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Services/AnneeScolaireService.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/AnneeScolaireService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Services/ClasseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/ClasseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Services/DevoirService.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/DevoirService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Services/EleveService.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/EleveService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/java/com/logaengineering/schoolmanagementbackend/Services/NoteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/NoteService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-management-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/(Eleves)/CreateEleve/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/eleves/new/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/(Eleves)/EditEleve/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/eleves/EditEleve/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/(Eleves)/Eleve/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/eleves/Eleve/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/(Eleves)/EleveList/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/eleves/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/next.config.js" afterDir="false" />
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Organize project code">
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Classroom.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Exam.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/exam.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Grade.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/grade.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/SchoolYear.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/@http-request/Student.http" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/@http-request/student.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Classroom.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/Classroom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,32 +54,28 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/eleves" />
     </key>
   </component>
   <component name="RunManager" selected="Spring Boot.SchoolManageApplication">
-    <configuration name="annee-scolaires#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http-request/annee-scolaires.http" runType="Run single request">
+    <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="annee-scolaires#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http-request/annee-scolaires.http" index="2" runType="Run single request">
+    <configuration name="classroom#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="annee-scolaires#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/http-request/annee-scolaires.http" index="3" runType="Run single request">
+    <configuration name="school-year#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="scool-manager-backend" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="school-year#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" index="2" runType="Run single request">
+      <method v="2" />
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="scool-manager-backend" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="school-year#3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" index="3" runType="Run single request">
+      <method v="2" />
     </configuration>
     <configuration name="SchoolManageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="scool-manager-backend" />
@@ -133,7 +89,7 @@
           <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
         </ENTRIES>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.logaengineering.schoolmanagementbackend.SchoolManageApplication" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.logaengineering.schoolmanagementbackend.SchoolManagerApplication" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="SHORTEN_COMMAND_LINE" value="NONE" />
       <method v="2">
@@ -142,15 +98,19 @@
     </configuration>
     <list>
       <item itemvalue="Spring Boot.SchoolManageApplication" />
-      <item itemvalue="HTTP Request.annee-scolaires#1" />
-      <item itemvalue="HTTP Request.annee-scolaires#2" />
-      <item itemvalue="HTTP Request.annee-scolaires#3" />
+      <item itemvalue="HTTP Request.classroom#1" />
+      <item itemvalue="HTTP Request.classroom#2" />
+      <item itemvalue="HTTP Request.school-year#3" />
+      <item itemvalue="HTTP Request.school-year#1" />
+      <item itemvalue="HTTP Request.school-year#2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.annee-scolaires#3" />
-        <item itemvalue="HTTP Request.annee-scolaires#1" />
-        <item itemvalue="HTTP Request.annee-scolaires#2" />
+        <item itemvalue="HTTP Request.classroom#1" />
+        <item itemvalue="HTTP Request.classroom#2" />
+        <item itemvalue="HTTP Request.school-year#2" />
+        <item itemvalue="HTTP Request.school-year#1" />
+        <item itemvalue="HTTP Request.school-year#3" />
       </list>
     </recent_temporary>
   </component>
@@ -163,8 +123,24 @@
       <option name="presentableId" value="Default" />
       <updated>1691404769513</updated>
       <workItem from="1691404773768" duration="446000" />
-      <workItem from="1691405471296" duration="4838000" />
+      <workItem from="1691405471296" duration="5081000" />
+      <workItem from="1691493907381" duration="291000" />
     </task>
+    <task id="LOCAL-00001" summary="Organize project code">
+      <created>1691410397277</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691410397277</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Organize project code">
+      <created>1691410465759</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691410465759</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,5 +156,10 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Organize project code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Organize project code" />
   </component>
 </project>

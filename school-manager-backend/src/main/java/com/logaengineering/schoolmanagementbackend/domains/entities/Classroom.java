@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Classroom {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,8 +25,8 @@ public class Classroom {
 //    @OneToMany(mappedBy = "classroom", cascade = CascadeType.ALL)
 //    private List<Student> students;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "school_year_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "school_year_id", referencedColumnName = "id")
     private SchoolYear schoolYear;
 
 //    public void addEleve(Student student) {

@@ -1,6 +1,9 @@
+###
+GET {{urlBase}}/school-years
+Accept: application/json
 
 ###
-GET {{urlBase}}/school-years/2
+GET {{urlBase}}/school-years/1
 Accept: application/json
 
 ###
