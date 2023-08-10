@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Fix relation bug between Classroom and School Year">
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/new/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/@home/compnents/side-bar.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents/school-year-details.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents/school-year-new-form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-details-view.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-new-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/ClassroomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/ClassroomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/SchoolYearController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/SchoolYearController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
-    </list>
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Add School year page, view and form" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,12 +90,12 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.SchoolManageApplication" />
       <item itemvalue="HTTP Request.classroom#1" />
       <item itemvalue="HTTP Request.classroom#2" />
       <item itemvalue="HTTP Request.school-year#3" />
       <item itemvalue="HTTP Request.school-year#1" />
       <item itemvalue="HTTP Request.school-year#2" />
+      <item itemvalue="Spring Boot.SchoolManageApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -133,7 +117,7 @@
       <updated>1691404769513</updated>
       <workItem from="1691404773768" duration="446000" />
       <workItem from="1691405471296" duration="5081000" />
-      <workItem from="1691493907381" duration="4304000" />
+      <workItem from="1691493907381" duration="4446000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -156,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691494263687</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Add School year page, view and form">
+      <created>1691498287400</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691498287400</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -177,6 +168,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Organize project code" />
     <MESSAGE value="Fix relation bug between Classroom and School Year" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix relation bug between Classroom and School Year" />
+    <MESSAGE value="Add School year page, view and form" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add School year page, view and form" />
   </component>
 </project>
