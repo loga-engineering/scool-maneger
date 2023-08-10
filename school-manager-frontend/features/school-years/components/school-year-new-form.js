@@ -45,6 +45,7 @@ export default function SchoolYearNewForm() {
                         <TextField
                             fullWidth
                             label="Année"
+                            variant={"outlined"}
                             {...formik.getFieldProps("year")}
                             error={!!formik.errors["year"]}
                             helperText={formik.errors["year"]}

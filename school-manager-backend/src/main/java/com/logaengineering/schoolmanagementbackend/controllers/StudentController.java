@@ -55,5 +55,16 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
+    @GetMapping("classroom/{id}")
+    public ResponseEntity<List<Student>> getStudentsByClassroomId(@PathVariable Long id) {
+        return ResponseEntity.ok(studentService.getStudentsByClassroomId(id));
+    }
+
+    @GetMapping("count/{classroomId}")
+    public ResponseEntity<Integer> countStudentsByClassroomId(@PathVariable Long classroomId) {
+        int count = studentService.getStudentCountByClassroomId(classroomId);
+        return ResponseEntity.ok(count);
+    }
+
 
 }

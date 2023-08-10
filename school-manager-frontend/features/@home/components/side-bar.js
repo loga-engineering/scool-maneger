@@ -3,8 +3,14 @@
 import React from 'react';
 import Link from "next/link";
 import {Box, ListItemButton, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
-import {Home, School, CalendarMonth} from "@mui/icons-material";
+import {Home, School, CalendarMonth, Person} from "@mui/icons-material";
 import {usePathname} from "next/navigation";
+import GroupsIcon from '@mui/icons-material/Groups';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import HistoryEduOutlinedIcon from '@mui/icons-material/HistoryEduOutlined';
+import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
+import GradingOutlinedIcon from '@mui/icons-material/GradingOutlined';
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 const menus = [
     {
@@ -16,6 +22,26 @@ const menus = [
         icon: <CalendarMonth/>,
         label: "Années scolaires",
         href: "/school-years"
+    },
+    {
+        icon: <SchoolOutlinedIcon/>,
+        label: "Classes",
+        href: "/classrooms"
+    },
+    {
+        icon: <GroupsIcon/>,
+        label: "Elèves",
+        href: "/students"
+    },
+    {
+        icon: <HistoryEduOutlinedIcon/>,
+        label: "Examens",
+        href: "/exams"
+    },
+    {
+        icon: <GradeOutlinedIcon/>,
+        label: "Notes",
+        href: "/grades"
     },
 ]
 

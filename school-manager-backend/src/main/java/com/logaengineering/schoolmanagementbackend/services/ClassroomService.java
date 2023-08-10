@@ -61,13 +61,6 @@ public class ClassroomService {
         }
     }
 
-
-    public List<Student> getStudentByClassroomName(String classroomName) {
-        Classroom classroom = classroomRepository.findClassroomByName(classroomName).orElseThrow(() -> new EntityNotFoundException("Classroom with name="+classroomName+" not found"));
-        List<Student> students = studentRepository.findByClassroomName(classroom.getName());
-        return students;
-    }
-
     public List<Classroom> getClassroomBySchoolYear(String year) {
         return classroomRepository.findBySchoolYearYear(year);
     }

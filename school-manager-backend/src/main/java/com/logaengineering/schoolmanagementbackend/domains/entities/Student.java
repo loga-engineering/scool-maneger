@@ -17,6 +17,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String registrationNumber; // matricule
     private String lastName;
     private String firstName;
