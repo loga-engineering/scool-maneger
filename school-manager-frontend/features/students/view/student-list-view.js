@@ -62,7 +62,9 @@ export default function StudentListView() {
                 </Typography>
 
                 <Link href={"students/new"}>
-                    <Button startIcon={<Add/>}>
+                    <Button startIcon={<Add/>} sx={{
+                        color: 'text.secondary',
+                    }}>
                         {"Ajouter"}
                     </Button>
                 </Link>

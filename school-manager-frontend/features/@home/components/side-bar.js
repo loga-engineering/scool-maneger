@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from "next/link";
-import {Box, ListItemButton, ListItemIcon, ListItemText, Stack, Typography} from "@mui/material";
+import {Box, ListItemButton, ListItemIcon, ListItemText, MenuItem, Stack, Typography} from "@mui/material";
 import {Home, School, CalendarMonth, Person} from "@mui/icons-material";
 import {usePathname} from "next/navigation";
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -20,7 +20,7 @@ const menus = [
     },
     {
         icon: <CalendarMonth/>,
-        label: "Années scolaires",
+        label: "Années scolaire",
         href: "/school-years"
     },
     {
@@ -58,14 +58,15 @@ export default function SideBar() {
             </Box>
 
             {menus.map(({label, href, icon}) => (
-                <Link key={href} href={href}>
+                <Link key={href} href={href}  underline="none">
                     <ListItemButton sx={{
                         backgroundColor: theme => (pathname === href) && theme.palette.primary.light,
+                        color: 'text.secondary',
                     }}>
                         <ListItemIcon>
                             {icon}
                         </ListItemIcon>
-                        <ListItemText>{label}</ListItemText>
+                        <ListItemText sx={{ textDecorationLine: 'none' }}>{label}</ListItemText>
                     </ListItemButton>
                 </Link>
             ))}

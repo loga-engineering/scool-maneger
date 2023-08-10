@@ -59,7 +59,9 @@ export default function ClassroomListView() {
                 </Typography>
 
                 <Link href={"classrooms/new"}>
-                    <Button startIcon={<Add/>}>
+                    <Button startIcon={<Add/>} sx={{
+                        color: 'text.secondary',
+                    }}>
                         {"Ajouter"}
                     </Button>
                 </Link>

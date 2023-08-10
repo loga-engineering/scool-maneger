@@ -59,7 +59,9 @@ export default function ExamListView() {
                 </Typography>
 
                 <Link href={"exams/new"}>
-                    <Button startIcon={<Add/>}>
+                    <Button startIcon={<Add/>}sx={{
+                        color: 'text.secondary',
+                    }}>
                         {"Ajouter"}
                     </Button>
                 </Link>

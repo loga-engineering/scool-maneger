@@ -59,7 +59,9 @@ export default function GradeListView() {
                 </Typography>
 
                 <Link href={"grades/new"}>
-                    <Button startIcon={<Add/>}>
+                    <Button startIcon={<Add/>} sx={{
+                        color: 'text.secondary',
+                    }}>
                         {"Ajouter"}
                     </Button>
                 </Link>

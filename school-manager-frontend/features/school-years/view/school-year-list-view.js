@@ -59,7 +59,9 @@ export default function SchoolYearListView() {
                 </Typography>
 
                 <Link href={"school-years/new"}>
-                    <Button startIcon={<Add/>}>
+                    <Button startIcon={<Add/>} sx={{
+                        color: 'text.secondary',
+                    }}>
                         {"Ajouter"}
                     </Button>
                 </Link>
