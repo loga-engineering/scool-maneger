@@ -2,7 +2,7 @@
 
 import React, {useEffect, useState} from "react";
 import {Box, LinearProgress, Stack, Typography} from "@mui/material";
-import SchoolYearDetails from "../compoents/school-year-details";
+import SchoolYearDetails from "../components/school-year-details";
 import {findSchoolYearById} from "../school-year-services";
 
 export default function SchoolYearDetailsView({id}) {

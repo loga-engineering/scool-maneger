@@ -41,6 +41,11 @@ public class StudentService {
         return student;
     }
 
+    public List<Student> getStudentsByClassroomId(Long classroomId) {
+        List<Student> students = studentRepository.findByClassroomId(classroomId);
+        return students;
+    }
+
     public Student updateStudent(Long id, Student newStudent) {
         Student student = studentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Student not found !"));
         student.setRegistrationNumber(newStudent.getRegistrationNumber());
@@ -66,5 +71,9 @@ public class StudentService {
             return false;
         }
 
+    }
+
+    public int getStudentCountByClassroomId(Long classroomId) {
+        return studentRepository.countStudentByClassroomId(classroomId);
     }
 }

@@ -2,18 +2,20 @@ import React from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
 import {Button, Card, Stack, TextField} from "@mui/material";
-import {createSchoolYear} from "../school-year-services";
+import {updateSchoolYearById} from "../school-year-services";
 import {useRouter} from "next/navigation";
 
-export default function SchoolYearNewForm() {
+export default function SchoolYearEditForm({currentValue}) {
 
     const router = useRouter();
 
     const initialValues = {
-        year: '',
-        startDate: Date.now(),
-        endDate: Date.now(),
+        year: currentValue.year,
+        startDate: currentValue.startDate,
+        endDate: currentValue.endDate,
     };
+
+    console.log(initialValues);
 
     const validationSchema = Yup.object().shape({
         year: Yup.string().required("L'année est obligatoire"),
@@ -27,9 +29,9 @@ export default function SchoolYearNewForm() {
             try {
                 console.log("===>: ", values);
 
-                const created = await createSchoolYear(values);
+                const updated = await updateSchoolYearById(currentValue.id, values);
 
-                router.push("/school-years/" + created.id);
+                router.push("/school-years/" + updated.id);
 
             } catch (error) {
                 console.error(error);
@@ -45,6 +47,7 @@ export default function SchoolYearNewForm() {
                         <TextField
                             fullWidth
                             label="Année"
+                            variant={"outlined"}
                             {...formik.getFieldProps("year")}
                             error={!!formik.errors["year"]}
                             helperText={formik.errors["year"]}
@@ -74,7 +77,7 @@ export default function SchoolYearNewForm() {
                             </Button>
 
                             <Button type={"submit"} variant={"outlined"}>
-                                {"Céer"}
+                                {"Modifier"}
                             </Button>
                         </Stack>
 

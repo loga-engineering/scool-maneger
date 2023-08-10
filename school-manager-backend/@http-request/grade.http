@@ -1,5 +1,9 @@
 ###
-GET {{urlBase}}/grades/1
+GET {{urlBase}}/grades
+Accept: application/json
+
+###
+GET {{urlBase}}/grades/2
 Accept: application/json
 
 ###

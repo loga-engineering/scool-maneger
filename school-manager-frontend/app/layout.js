@@ -1,8 +1,6 @@
 import './globals.css'
 import {Box, Link as MuiLink, Typography} from "@mui/material";
-import Link from "next/link";
-import SideBar from "../features/@home/compnents/side-bar";
-
+import SideBar from "../features/@home/components/side-bar";
 
 export const metadata = {
     title: 'School Manager',

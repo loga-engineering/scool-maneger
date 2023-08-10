@@ -17,6 +17,7 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false, unique = true)
     private String registrationNumber; // matricule
     private String lastName;
     private String firstName;
@@ -33,9 +34,8 @@ public class Student {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate enrollmentDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "classroom_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "classroom_id", referencedColumnName = "id")
     private Classroom classroom;
-
 
 }

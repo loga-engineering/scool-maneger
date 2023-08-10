@@ -3,6 +3,10 @@ GET {{urlBase}}/exams
 Accept: application/json
 
 ###
+GET {{urlBase}}/exams/1
+Accept: application/json
+
+###
 POST {{urlBase}}/exams
 Content-Type: application/json
 
