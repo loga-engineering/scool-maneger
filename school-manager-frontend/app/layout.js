@@ -1,6 +1,7 @@
 import './globals.css'
-import {Box, Link as MuiLink, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 import SideBar from "../features/@home/components/side-bar";
+import ReactQueryProvider from "../shared/context/react-query-context";
 
 export const metadata = {
     title: 'School Manager',
@@ -11,14 +12,16 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <body>
-        <Box height={"100vh"} width={"100vw"} display={"flex"}>
-            <SideBar/>
+        <ReactQueryProvider>
+            <Box height={"100vh"} width={"100vw"} display={"flex"}>
+                <SideBar/>
 
-            <Box flexGrow={1} pt={5}>
-                {children}
+                <Box flexGrow={1} pt={5}>
+                    {children}
+                </Box>
+
             </Box>
-
-        </Box>
+        </ReactQueryProvider>
         </body>
         </html>
     )

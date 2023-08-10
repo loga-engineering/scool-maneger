@@ -24,6 +24,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Alert from "@mui/material/Alert";
 import * as React from "react";
+import ModuleName from "../../../shared/components/module-name";
 
 export default function StudentListView() {
 
@@ -55,6 +56,8 @@ export default function StudentListView() {
 
     return (
         <Box>
+            <ModuleName/>
+
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
 
                 <Typography variant={"h3"} p={3}>

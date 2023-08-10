@@ -4,6 +4,7 @@ import {Form, FormikProvider, useFormik} from "formik";
 import {Button, Card, Stack, TextField} from "@mui/material";
 import {createSchoolYear} from "../school-year-services";
 import {useRouter} from "next/navigation";
+import FormikTextField from "../../../shared/forms/formik-text-field";
 
 export default function SchoolYearNewForm() {
 
@@ -42,14 +43,7 @@ export default function SchoolYearNewForm() {
             <Form onSubmit={formik.handleSubmit}>
                 <Card>
                     <Stack spacing={3} p={3}>
-                        <TextField
-                            fullWidth
-                            label="Année"
-                            variant={"outlined"}
-                            {...formik.getFieldProps("year")}
-                            error={!!formik.errors["year"]}
-                            helperText={formik.errors["year"]}
-                        />
+                        <FormikTextField name={"year"} label={"Année"}/>/>
 
                         <TextField
                             fullWidth

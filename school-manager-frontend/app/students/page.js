@@ -1,5 +1,5 @@
-import SchoolYearListView from "@/features/school-years/view/school-year-list-view";
 import StudentListView from "@/features/students/view/student-list-view";
+import {ModuleProvider} from "../../shared/context/module-context";
 
 export const metadata = {
     title: "Gestion des élèves",
@@ -7,6 +7,8 @@ export const metadata = {
 
 export default function StudentPage() {
     return (
-        <StudentListView />
+        <ModuleProvider name={"students"} urlBase={"/students"}>
+            <StudentListView/>
+        </ModuleProvider>
     );
 }

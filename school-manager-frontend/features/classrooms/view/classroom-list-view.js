@@ -1,6 +1,6 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Add} from "@mui/icons-material";
 import {
     Box,
@@ -22,6 +22,8 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Alert from '@mui/material/Alert';
+import {ModuleContext, useModule} from "../../../shared/context/module-context";
+import ModuleName from "../../../shared/components/module-name";
 
 export default function ClassroomListView() {
 
@@ -53,7 +55,11 @@ export default function ClassroomListView() {
 
     return (
         <Box>
+
+            <ModuleName/>
+
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
+
                 <Typography variant="h3" p={3}>
                     {"Liste des salles de classe"}
                 </Typography>

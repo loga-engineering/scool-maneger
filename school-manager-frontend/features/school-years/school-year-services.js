@@ -1,10 +1,11 @@
 import axios from "axios";
+import {useQuery} from "@tanstack/react-query";
 
 const urlBase = process.env.BACKEND_URL + "school-years";
 
-export const findAllSchoolYears = async () => {
+export const findAllSchoolYears = async ({query}) => {
     try {
-        const {data} = await axios.get(urlBase);
+        const {data} = await axios.get(urlBase, {params: {query}});
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -19,7 +20,7 @@ export const findAllSchoolYearNames = async () => {
         const schoolYears = [];
 
         data.map((schoolYear) => {
-            const temp = {id : schoolYear.id, year : schoolYear.year };
+            const temp = {id: schoolYear.id, year: schoolYear.year};
             schoolYears.push(temp);
         });
         console.log("=====>", schoolYears);
@@ -58,7 +59,7 @@ export const deleteSchoolYearById = async (id) => {
         // Vérifier si le statut de la réponse est "no_content" (204)
 
         if (response.status === 204) {
-            return { success: true, message: "Deleted successfully" };
+            return {success: true, message: "Deleted successfully"};
         } else {
             throw new Error("Delete operation did not return a 'no_content' response.");
         }
@@ -80,3 +81,14 @@ export const updateSchoolYearById = async (id, schoolYear) => {
     }
 
 };
+
+
+////////////
+
+export const useSearchSchoolYears = ({query}) => {
+
+    const queryKey = ["school-year", "all", query];
+    const queryFn = () => findAllSchoolYears({query});
+
+    return useQuery({queryKey, queryFn});
+}
