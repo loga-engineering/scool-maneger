@@ -5,7 +5,7 @@ import {Box, Card, CardContent, Container, Grid, Typography} from "@mui/material
 
 const modules = [
     {
-        label: "Gestion années scolaires",
+        label: "Gestion années scolaire",
         href: "/school-years"
     },
     {

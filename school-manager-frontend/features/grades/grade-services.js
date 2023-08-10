@@ -13,23 +13,6 @@ export const findAllGrades = async () => {
 
 };
 
-// export const findAllGradeNames = async () => {
-//     try {
-//         const {data} = await axios.get(urlBase);
-//         const grades = [];
-//
-//         data.map((grade) => {
-//             const temp = {id : grade.id, name : grade.name};
-//             grades.push(temp);
-//         });
-//         console.log("=====>", grades);
-//         return grades;
-//     } catch (error) {
-//         console.error("===> ", error);
-//         throw error;
-//     }
-// };
-
 export const findGradeById = async (id) => {
     try {
         const url = urlBase + "/" + id;

@@ -2,7 +2,21 @@
 
 import {useEffect, useState} from "react";
 import {Add} from "@mui/icons-material";
-import {Box, Button, Link, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,LinearProgress } from "@mui/material";
+import {
+    Box,
+    Button,
+    Link,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+    LinearProgress,
+    IconButton, Tooltip
+} from "@mui/material";
 import {deleteGradeById, findAllGrades} from "../grade-services";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
@@ -63,7 +77,7 @@ export default function GradeListView() {
                                 <TableCell>{"Prénom"}</TableCell>
                                 <TableCell>{"Note"}</TableCell>
                                 <TableCell>{"Classe"}</TableCell>
-                                <TableCell align={"center"}>{"Action"}</TableCell>
+                                <TableCell>{"Action"}</TableCell>
                             </TableRow>
                         </TableHead>
                         {isLoading && <LinearProgress/>}
@@ -78,18 +92,23 @@ export default function GradeListView() {
                                         <TableCell>{value.value}</TableCell>
                                         <TableCell>{value.student.classroom.name}</TableCell>
                                         <TableCell>
-                                            <Stack direction={"row"} spacing={0} justifyContent={"center"}>
+                                            <Stack direction={"row"} spacing={0}>
                                                 <Link href={"grades/"+value.id}>
-                                                    <Button startIcon={<VisibilityIcon/>}>
-                                                    </Button>
+                                                    <Tooltip title="Détails">
+                                                        <IconButton><VisibilityIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </Link>
-                                                <Link href={"/grades/edit/"+value.id}>
-                                                    <Button startIcon={<EditIcon/>}>
-                                                    </Button>
+                                                <Link href={"grades/edit/"+value.id}>
+                                                    <Tooltip title="Modifier">
+                                                        <IconButton><EditIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </Link>
-                                                <Button onClick={() => handleDelete(value.id)} startIcon={<DeleteIcon />}>
-                                                </Button>
-
+                                                <Tooltip title="Supprimer">
+                                                    <IconButton onClick={() => handleDelete(value.id)}><DeleteIcon />
+                                                    </IconButton>
+                                                </Tooltip>
                                             </Stack>
                                         </TableCell>
                                     </TableRow>
@@ -102,7 +121,7 @@ export default function GradeListView() {
                 </TableContainer>
             </Box>
             {
-                deleted && (<Alert severity="success" justifyContent={"end"} onClose={() => {setDeleted(false)}}>Classe supprimé avec succès !</Alert>)
+                deleted && (<Alert severity="success" justifyContent={"end"} onClose={() => {setDeleted(false)}}>Note supprimé avec succès !</Alert>)
             }
         </Box>
     );

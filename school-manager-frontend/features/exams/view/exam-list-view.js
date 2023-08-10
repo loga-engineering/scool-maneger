@@ -1,8 +1,22 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Add} from "@mui/icons-material";
-import {Box, Button, Link, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,LinearProgress } from "@mui/material";
+import {
+    Box,
+    Button,
+    Link,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+    LinearProgress,
+    IconButton, Tooltip
+} from "@mui/material";
 import {deleteExamById, findAllExams} from "../exam-services";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
@@ -61,7 +75,7 @@ export default function ExamListView() {
                                 <TableCell>{"Matière"}</TableCell>
                                 <TableCell>{"Nom prof."}</TableCell>
                                 <TableCell>{"Date d'examen"}</TableCell>
-                                <TableCell align={"center"}>{"Action"}</TableCell>
+                                <TableCell>{"Action"}</TableCell>
                             </TableRow>
                         </TableHead>
                         {isLoading && <LinearProgress/>}
@@ -74,18 +88,23 @@ export default function ExamListView() {
                                         <TableCell>{value.teacherName}</TableCell>
                                         <TableCell>{value.examDate}</TableCell>
                                         <TableCell>
-                                            <Stack direction={"row"} spacing={0} justifyContent={"center"}>
+                                            <Stack direction={"row"} spacing={0}>
                                                 <Link href={"exams/"+value.id}>
-                                                    <Button startIcon={<VisibilityIcon/>}>
-                                                    </Button>
+                                                    <Tooltip title="Détails">
+                                                        <IconButton><VisibilityIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </Link>
-                                                <Link href={"/exams/edit/"+value.id}>
-                                                    <Button startIcon={<EditIcon/>}>
-                                                    </Button>
+                                                <Link href={"exams/edit/"+value.id}>
+                                                    <Tooltip title="Modifier">
+                                                        <IconButton><EditIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </Link>
-                                                <Button onClick={() => handleDelete(value.id)} startIcon={<DeleteIcon />}>
-                                                </Button>
-
+                                                <Tooltip title="Supprimer">
+                                                    <IconButton onClick={() => handleDelete(value.id)}><DeleteIcon />
+                                                    </IconButton>
+                                                </Tooltip>
                                             </Stack>
                                         </TableCell>
                                     </TableRow>

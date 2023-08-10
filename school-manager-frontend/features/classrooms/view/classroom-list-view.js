@@ -2,7 +2,21 @@
 
 import {useEffect, useState} from "react";
 import {Add} from "@mui/icons-material";
-import {Box, Button, Link, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography,LinearProgress } from "@mui/material";
+import {
+    Box,
+    Button,
+    Link,
+    Stack,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography,
+    LinearProgress,
+    Tooltip, IconButton
+} from "@mui/material";
 import {deleteClassroomById, findAllClassrooms} from "../classroom-services";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
@@ -61,7 +75,7 @@ export default function ClassroomListView() {
                                 <TableCell>{"Niveau"}</TableCell>
                                 <TableCell>{"Prof. Titulaire"}</TableCell>
                                 <TableCell>{"Année scolaire"}</TableCell>
-                                <TableCell align={"center"}>{"Action"}</TableCell>
+                                <TableCell>{"Action"}</TableCell>
                             </TableRow>
                         </TableHead>
                         {isLoading && <LinearProgress/>}
@@ -74,18 +88,23 @@ export default function ClassroomListView() {
                                         <TableCell>{value.headTeacherName}</TableCell>
                                         <TableCell>{value.schoolYear.year}</TableCell>
                                         <TableCell>
-                                            <Stack direction={"row"} spacing={0} justifyContent={"center"}>
+                                            <Stack direction={"row"} spacing={0}>
                                                 <Link href={"classrooms/"+value.id}>
-                                                    <Button startIcon={<VisibilityIcon/>}>
-                                                    </Button>
+                                                    <Tooltip title="Détails">
+                                                        <IconButton><VisibilityIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </Link>
-                                                <Link href={"/classrooms/edit/"+value.id}>
-                                                    <Button startIcon={<EditIcon/>}>
-                                                    </Button>
+                                                <Link href={"classrooms/edit/"+value.id}>
+                                                    <Tooltip title="Modifier">
+                                                        <IconButton><EditIcon />
+                                                        </IconButton>
+                                                    </Tooltip>
                                                 </Link>
-                                                <Button onClick={() => handleDelete(value.id)} startIcon={<DeleteIcon />}>
-                                                </Button>
-
+                                                <Tooltip title="Supprimer">
+                                                    <IconButton onClick={() => handleDelete(value.id)}><DeleteIcon />
+                                                    </IconButton>
+                                                </Tooltip>
                                             </Stack>
                                         </TableCell>
                                     </TableRow>
