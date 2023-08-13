@@ -2,10 +2,9 @@ import React, {useState} from 'react';
 import {
     Card,
     CardHeader,
-    IconButton, InputAdornment,
+    IconButton,
     LinearProgress,
     Link,
-    OutlinedInput,
     Stack,
     Table,
     TableBody,
@@ -17,40 +16,22 @@ import {
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import {deleteSchoolYearById, useSearchSchoolYears} from "../school-year-services";
-import Alert from "@mui/material/Alert";
-import {Add, Refresh, Search} from "@mui/icons-material";
+import { useSearchSchoolYears} from "../school-year-services";
+import {Add, Refresh} from "@mui/icons-material";
 import SearchField from "../../../shared/components/search-field";
+import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
 
 export default function SchoolYearList() {
 
     const [query, setQuery] = useState();
     const {data: currentValue, isLoading, isError, error, refetch} = useSearchSchoolYears({query});
 
-    const [deleted, setDeleted] = useState(false);
-
-    console.log("===> school-years: ", currentValue);
-
-    const handleDelete = (id) => {
-        const confirmation = window.confirm("Etes vous sur de vouloir supprimer cette année scolaire ?");
-        if (confirmation) {
-            try {
-                deleteSchoolYearById(id).then(setDeleted);
-            } catch (error) {
-                console.error("===> ", error);
-                throw error;
-                setDeleted(false);
-            }
-
-        }
-    };
 
     return (
         <Card>
 
             <CardHeader
-                title={<SearchField query={query} setQuery={setQuery}/>}
+                title={<SearchField query={query} setQuery={setQuery} label={"Année scolaire"} length={4} />}
                 action={(
                     <Stack direction={"row"}>
                         <Link href={"school-years/new"}>
@@ -65,7 +46,8 @@ export default function SchoolYearList() {
                     </Stack>
                 )}
             />
-            <TableContainer sx={{minWidth: 800}}>
+
+            <TableContainer sx={{minWidth: 800}}>{isLoading && <LinearProgress/>}
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -73,10 +55,10 @@ export default function SchoolYearList() {
                             <TableCell>{"Année"}</TableCell>
                             <TableCell>{"Date de début"}</TableCell>
                             <TableCell>{"Date de fin"}</TableCell>
-                            <TableCell>{"Action"}</TableCell>
+                            <TableCell>{""}</TableCell>
                         </TableRow>
                     </TableHead>
-                    {isLoading && <LinearProgress/>}
+
                     {currentValue && (
                         <TableBody>
                             {currentValue.map(value => (
@@ -99,10 +81,9 @@ export default function SchoolYearList() {
                                                     </IconButton>
                                                 </Tooltip>
                                             </Link>
-                                            <Tooltip title="Supprimer">
-                                                <IconButton onClick={() => handleDelete(value.id)}><DeleteIcon/>
-                                                </IconButton>
-                                            </Tooltip>
+
+                                            <SchoolYearDelete id={value.id} refetch={refetch}/>
+
                                         </Stack>
                                     </TableCell>
                                 </TableRow>
@@ -113,12 +94,6 @@ export default function SchoolYearList() {
                 </Table>
 
             </TableContainer>
-
-            {
-                deleted && (<Alert severity="success" justifyContent={"end"} onClose={() => {
-                    setDeleted(false)
-                }}>Année scolaire supprimé avec succès !</Alert>)
-            }
 
         </Card>
 

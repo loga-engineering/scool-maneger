@@ -3,18 +3,18 @@
 import React, {useEffect, useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
 import SchoolYearEditForm from "@/features/school-years/components/school-year-edit-form";
-import {findSchoolYearById} from "@/features/school-years/school-year-services";
+import {
+    findSchoolYearById,
+    useEditSchoolYear,
+    useFindSchoolYearById
+} from "@/features/school-years/school-year-services";
 
 
 export default function SchoolYearEditView({id}) {
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
+    const [query, setQuery] = useState(id);
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindSchoolYearById({query});
 
-    useEffect(() => {
-        setIsLoading(true);
-        findSchoolYearById(id).then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
 
     return (
         <Box p={3}>

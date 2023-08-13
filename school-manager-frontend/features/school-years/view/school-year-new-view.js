@@ -11,7 +11,7 @@ export default function SchoolYearNewView() {
         <Box p={3}>
             <Stack spacing={3}>
                 <Typography variant="h3">
-                    {"Création année scolaire"}
+                    {"Ajouter année scolaire"}
                 </Typography>
 
                 <SchoolYearNewForm/>

@@ -1,19 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
 import {Button, Card, Stack, TextField} from "@mui/material";
-import {createSchoolYear} from "../school-year-services";
+import { useCreateSchoolYear } from "../school-year-services";
 import {useRouter} from "next/navigation";
 import FormikTextField from "../../../shared/forms/formik-text-field";
 
 export default function SchoolYearNewForm() {
 
     const router = useRouter();
+    const createSchoolYear = useCreateSchoolYear();
+
 
     const initialValues = {
-        year: '',
-        startDate: Date.now(),
-        endDate: Date.now(),
+        year: "",
+        startDate: "",
+        endDate: "",
     };
 
     const validationSchema = Yup.object().shape({
@@ -25,16 +27,18 @@ export default function SchoolYearNewForm() {
     const formik = useFormik({
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
-            try {
-                console.log("===>: ", values);
 
-                const created = await createSchoolYear(values);
+            createSchoolYear.mutate(values,{
+                onSuccess: (data) => {
+                    console.log("===> ",data);
+                    router.push("/school-years/" + data.id);
+                },
+                onError: (error) => {
+                    console.error("===> ", error);
+                    throw error;
+                },
+            });
 
-                router.push("/school-years/" + created.id);
-
-            } catch (error) {
-                console.error(error);
-            }
         }
     });
 
@@ -43,25 +47,9 @@ export default function SchoolYearNewForm() {
             <Form onSubmit={formik.handleSubmit}>
                 <Card>
                     <Stack spacing={3} p={3}>
-                        <FormikTextField name={"year"} label={"Année"}/>/>
-
-                        <TextField
-                            fullWidth
-                            type={"date"}
-                            label="Date de debut"
-                            {...formik.getFieldProps("startDate")}
-                            error={!!formik.errors["startDate"]}
-                            helperText={formik.errors["startDate"]}
-                        />
-
-                        <TextField
-                            fullWidth
-                            type={"date"}
-                            label="Date de fin"
-                            {...formik.getFieldProps("endDate")}
-                            error={!!formik.errors["endDate"]}
-                            helperText={formik.errors["endDate"]}
-                        />
+                        <FormikTextField name={"year"} label={"Année"}/>
+                        <FormikTextField name={"startDate"} label={"Date de debut"} type={"date"} />
+                        <FormikTextField name={"endDate"} label={"Date de fin"} type={"date"} />
 
                         <Stack direction={"row"} spacing={2} justifyContent={"end"}>
                             <Button type="reset">

@@ -77,7 +77,7 @@ export default function ExamListView() {
                                 <TableCell>{"Matière"}</TableCell>
                                 <TableCell>{"Nom prof."}</TableCell>
                                 <TableCell>{"Date d'examen"}</TableCell>
-                                <TableCell>{"Action"}</TableCell>
+                                <TableCell>{""}</TableCell>
                             </TableRow>
                         </TableHead>
                         {isLoading && <LinearProgress/>}

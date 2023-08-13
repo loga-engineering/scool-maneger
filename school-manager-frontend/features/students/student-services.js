@@ -1,13 +1,15 @@
 import axios from "axios";
+import {useQuery} from "@tanstack/react-query";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 const urlBase = process.env.BACKEND_URL + "students";
 
-export const findAllStudents = async () => {
+export const findAllStudents = async ({query}) => {
     try {
-        const {data} = await axios.get(urlBase);
+        const {data} = await axios.get(urlBase,{params: {query}});
         return data;
     } catch (error) {
-        console.error("===> ", e);
+        console.error("===> ", error);
         throw error;
     }
 
@@ -22,6 +24,19 @@ export const findStudentById = async (id) => {
     } catch (error) {
         console.error("===> ", error);
         throw error;
+    }
+
+};
+
+export const findByRegistrationNumber = async ({query}) => {
+    try {
+        const url = urlBase + "/registration-number/"+query;
+        console.log("=======+> url: ", url);
+        const {data} = await axios.get(url);
+        return data;
+    } catch (error) {
+         console.error("===> ", error);
+        // throw error;
     }
 
 };
@@ -88,3 +103,21 @@ export const countStudentsByClassroomId = async (id) => {
     }
 
 };
+
+export const useSearchStudents = ({query}) => {
+    if (!query) {
+        const queryKey = ["students", "all", query];
+        const queryFn = () => findAllStudents({query});
+
+        return useQuery({queryKey, queryFn});
+    }
+    const isValid = /^[a-z0-9]+$/i.test(query);
+    if (isValid) {
+
+        const queryKey = ["student", "registration-number", query];
+        const queryFn = () => findByRegistrationNumber({query});
+
+        return useQuery({queryKey, queryFn});
+    }
+
+}

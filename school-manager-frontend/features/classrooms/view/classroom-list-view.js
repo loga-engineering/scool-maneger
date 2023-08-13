@@ -76,6 +76,7 @@ export default function ClassroomListView() {
             <Box m={3}>
 
                 <TableContainer sx={{minWidth: 800}}>
+                    {isLoading && <LinearProgress/>}
                     <Table>
                         <TableHead>
                             <TableRow>
@@ -83,43 +84,40 @@ export default function ClassroomListView() {
                                 <TableCell>{"Niveau"}</TableCell>
                                 <TableCell>{"Prof. Titulaire"}</TableCell>
                                 <TableCell>{"Année scolaire"}</TableCell>
-                                <TableCell>{"Action"}</TableCell>
+                                <TableCell>{""}</TableCell>
                             </TableRow>
                         </TableHead>
-                        {isLoading && <LinearProgress/>}
-                        {currentValue && (
-                            <TableBody>
-                                {currentValue.map(value => (
-                                    <TableRow key={value.id}>
-                                        <TableCell>{value.name}</TableCell>
-                                        <TableCell>{value.level}</TableCell>
-                                        <TableCell>{value.headTeacherName}</TableCell>
-                                        <TableCell>{value.schoolYear.year}</TableCell>
-                                        <TableCell>
-                                            <Stack direction={"row"} spacing={0}>
-                                                <Link href={"classrooms/"+value.id}>
-                                                    <Tooltip title="Détails">
-                                                        <IconButton><VisibilityIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </Link>
-                                                <Link href={"classrooms/edit/"+value.id}>
-                                                    <Tooltip title="Modifier">
-                                                        <IconButton><EditIcon />
-                                                        </IconButton>
-                                                    </Tooltip>
-                                                </Link>
-                                                <Tooltip title="Supprimer">
-                                                    <IconButton onClick={() => handleDelete(value.id)}><DeleteIcon />
+                        <TableBody>
+                            {currentValue?.map(value => (
+                                <TableRow key={value.id}>
+                                    <TableCell>{value.name}</TableCell>
+                                    <TableCell>{value.level}</TableCell>
+                                    <TableCell>{value.headTeacherName}</TableCell>
+                                    <TableCell>{value.schoolYear.year}</TableCell>
+                                    <TableCell>
+                                        <Stack direction={"row"} spacing={0}>
+                                            <Link href={"classrooms/"+value.id}>
+                                                <Tooltip title="Détails">
+                                                    <IconButton><VisibilityIcon />
                                                     </IconButton>
                                                 </Tooltip>
-                                            </Stack>
-                                        </TableCell>
-                                    </TableRow>
+                                            </Link>
+                                            <Link href={"classrooms/edit/"+value.id}>
+                                                <Tooltip title="Modifier">
+                                                    <IconButton><EditIcon />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </Link>
+                                            <Tooltip title="Supprimer">
+                                                <IconButton onClick={() => handleDelete(value.id)}><DeleteIcon />
+                                                </IconButton>
+                                            </Tooltip>
+                                        </Stack>
+                                    </TableCell>
+                                </TableRow>
 
-                                ))}
-                            </TableBody>
-                        )}
+                            ))}
+                        </TableBody>
                     </Table>
 
                 </TableContainer>

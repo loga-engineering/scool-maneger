@@ -1,4 +1,5 @@
 import axios from "axios";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 const urlBase = process.env.BACKEND_URL + "classrooms";
 

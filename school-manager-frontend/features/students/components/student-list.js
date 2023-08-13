@@ -1,10 +1,9 @@
-"use client";
-
-import {useEffect, useState} from "react";
-import {Add} from "@mui/icons-material";
+import React, { useState} from 'react';
 import {
-    Box,
-    Button,
+    Card,
+    CardHeader,
+    IconButton,
+    LinearProgress,
     Link,
     Stack,
     Table,
@@ -13,95 +12,96 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Typography,
-    LinearProgress,
-    IconButton, Tooltip
+    Tooltip
 } from "@mui/material";
-import {deleteGradeById, findAllGrades} from "../grade-services";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import Alert from '@mui/material/Alert';
+import Alert from "@mui/material/Alert";
+import {Add, Refresh, Search} from "@mui/icons-material";
+import SearchField from "../../../shared/components/search-field";
+import {
+    deleteStudentById,
+    useSearchStudents
+} from "@/features/students/student-services";
 
-export default function GradeListView() {
+export default function StudentList() {
 
+    const [query, setQuery] = useState();
+    const {data: currentValue, isLoading, isError, error, refetch} = useSearchStudents({query});
+    console.log("===> students: ", currentValue);
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
-    const [deleted, setDeleted] = useState(false);
-
-    useEffect(() => {
-        setIsLoading(true);
-        findAllGrades().then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
-
-    console.log("===> grades: ", currentValue);
+   const [deleted, setDeleted] = useState(false);
 
     const handleDelete = (id) => {
-        const confirmation = window.confirm("Etes vous sur de vouloir supprimer cette note ?");
+        const confirmation = window.confirm("Etes vous sur de vouloir supprimer cet élève ?");
         if (confirmation) {
             try {
-                deleteGradeById(id).then(setDeleted);
+                deleteStudentById(id).then(() =>setDeleted(true));
             }catch (error) {
+                setDeleted(false);
                 console.error("===> ", error);
                 throw error;
-                setDeleted(false);
+
             }
 
         }
     };
 
+
     return (
-        <Box>
-            <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
-                <Typography variant="h3" p={3}>
-                    {"Liste des notes des élèves"}
-                </Typography>
+        <Card>
 
-                <Link href={"grades/new"}>
-                    <Button startIcon={<Add/>} sx={{
-                        color: 'text.secondary',
-                    }}>
-                        {"Ajouter"}
-                    </Button>
-                </Link>
-            </Stack>
+            <CardHeader
+                title={<SearchField query={query} setQuery={setQuery} label={"Matricule"} length={4}/>}
+                action={(
+                    <Stack direction={"row"}>
+                        <Link href={"students/new"}>
+                            <IconButton>
+                                <Add/>
+                            </IconButton>
+                        </Link>
 
-            <Box m={3}>
+                        <IconButton onClick={refetch}>
+                            <Refresh/>
+                        </IconButton>
+                    </Stack>
+                )}
+            />
 
-                <TableContainer sx={{minWidth: 800}}>
+
+                <TableContainer sx={{minWidth: 700}}>
+                    {isLoading && <LinearProgress/>}
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>{"Date d'examen"}</TableCell>
-                                <TableCell>{"Matière"}</TableCell>
+                                <TableCell>{"Matricule"}</TableCell>
                                 <TableCell>{"Nom"}</TableCell>
                                 <TableCell>{"Prénom"}</TableCell>
-                                <TableCell>{"Note"}</TableCell>
+                                <TableCell>{"Date de Naissance"}</TableCell>
                                 <TableCell>{"Classe"}</TableCell>
                                 <TableCell>{""}</TableCell>
                             </TableRow>
                         </TableHead>
-                        {isLoading && <LinearProgress/>}
                         {currentValue && (
+
                             <TableBody>
                                 {currentValue.map(value => (
                                     <TableRow key={value.id}>
-                                        <TableCell>{value.exam.examDate}</TableCell>
-                                        <TableCell>{value.exam.subject}</TableCell>
-                                        <TableCell>{value.student.lastName}</TableCell>
-                                        <TableCell>{value.student.firstName}</TableCell>
-                                        <TableCell>{value.value}</TableCell>
-                                        <TableCell>{value.student.classroom.name}</TableCell>
+                                        <TableCell>{value.registrationNumber}</TableCell>
+                                        <TableCell>{value.firstName}</TableCell>
+                                        <TableCell>{value.lastName}</TableCell>
+                                        <TableCell>{value.dateOfBirth}</TableCell>
+                                        <TableCell>{value.classroom.name}</TableCell>
                                         <TableCell>
                                             <Stack direction={"row"} spacing={0}>
-                                                <Link href={"grades/"+value.id}>
+                                                <Link href={"students/"+value.id}>
                                                     <Tooltip title="Détails">
                                                         <IconButton><VisibilityIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </Link>
-                                                <Link href={"grades/edit/"+value.id}>
+                                                <Link href={"students/edit/"+value.id}>
                                                     <Tooltip title="Modifier">
                                                         <IconButton><EditIcon />
                                                         </IconButton>
@@ -114,18 +114,18 @@ export default function GradeListView() {
                                             </Stack>
                                         </TableCell>
                                     </TableRow>
-
                                 ))}
                             </TableBody>
                         )}
                     </Table>
-
                 </TableContainer>
-            </Box>
+
             {
-                deleted && (<Alert severity="success" justifyContent={"end"} onClose={() => {setDeleted(false)}}>Note supprimé avec succès !</Alert>)
+                deleted && (<Alert severity="success" justifyContent={"end"} onClose={() => {setDeleted(false)}}>Elève supprimé avec succès !</Alert>)
             }
-        </Box>
+
+        </Card>
+
     );
 }
 

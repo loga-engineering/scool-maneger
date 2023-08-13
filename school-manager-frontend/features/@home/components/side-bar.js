@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from "next/link";
-import {Box, ListItemButton, ListItemIcon, ListItemText, MenuItem, Stack, Typography} from "@mui/material";
+import {Avatar, Box, ListItemButton, ListItemIcon, ListItemText, MenuItem, Stack, Typography} from "@mui/material";
 import {Home, School, CalendarMonth, Person} from "@mui/icons-material";
 import {usePathname} from "next/navigation";
 import GroupsIcon from '@mui/icons-material/Groups';
@@ -53,8 +53,8 @@ export default function SideBar() {
         <Stack height={"100%"} width={300} sx={{
             backgroundColor: theme => theme.palette.divider,
         }}>
-            <Box height={100} width={50} marginX={"auto"}>
-                {"Logo"}
+            <Box height={150} width={60} marginX={"auto"} p={1} pr={15} alignItems="center">
+                    <Avatar alt="Loga School" src="/img.png" sx={{ width: 120, height: 120 }} />
             </Box>
 
             {menus.map(({label, href, icon}) => (

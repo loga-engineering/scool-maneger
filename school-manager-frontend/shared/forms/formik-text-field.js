@@ -6,7 +6,6 @@ export default function FormikTextField({label, name, ...other}) {
 
     const [field, meta, form] = useField(name);
 
-
     return (
         <TextField
             fullWidth
