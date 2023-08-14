@@ -2,20 +2,16 @@
 
 import React, {useEffect, useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import {findStudentById} from "@/features/students/student-services";
 import StudentEditForm from "@/features/students/components/student-edit-form";
+import {useFindStudentById} from "@/features/students/student-services";
 
 
 
 export default function StudentEditView({id}) {
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
+    const [query, setQuery] = useState(id);
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindStudentById({query});
 
-    useEffect(() => {
-        setIsLoading(true);
-        findStudentById(id).then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
 
     return (
         <Box p={3}>

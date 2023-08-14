@@ -1,46 +1,34 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
-import {Button, Card, Stack, TextField, Select, MenuItem, InputLabel} from "@mui/material";
+import {Button, Card, Stack, Select, MenuItem, InputLabel} from "@mui/material";
 import {useRouter} from "next/navigation";
-import {findAllClassroomNames} from "@/features/classrooms/classroom-services";
+import { useSearchClassrooms} from "@/features/classrooms/classroom-services";
 import {findByClassroomId} from "@/features/students/student-services";
-import {findAllExams} from "@/features/exams/exam-services";
-import {updateGradeById} from "@/features/grades/grade-services";
+import { useSearchExams} from "@/features/exams/exam-services";
+import {useEditGrade} from "@/features/grades/grade-services";
+import FormikTextField from "@/shared/forms/formik-text-field";
 
 export default function GradeEditForm({currentValue}) {
 
     const router = useRouter();
+    const [id, setId] = useState();
+    const [grade, setGrade] = useState();
+    const [query, setQuery] = useState();
+    const editGrade = useEditGrade();
+    const {data: classrooms, isLoading : classroomLoading} = useSearchClassrooms({query});
+    const {data: exams, isLoading : examLoading} = useSearchExams({query});
+
     const [students, setStudents] = useState([]);
-    const [classrooms, setClassrooms] = useState([]);
-    const [exams, setExams] = useState([]);
-
-    useEffect(() => {
-        const fetchClassrooms = async () => {
-            try {
-                const data = await findAllClassroomNames();
-                setClassrooms(data);
-                ///
-                findAllExams().then(setExams).finally(() => console.log(exams));
-                fetchStudents(currentValue.student.classroom.id);
-
-            } catch (error) {
-                console.error("Erreur lors de la récupération des classes : ", error);
-            }
-        };
-        fetchClassrooms();
-    }, []);
-
     const fetchStudents = (id) => {
         try {
             findByClassroomId(id).then(setStudents);
-            console.log(students);
+            //console.log(students);
         } catch (error) {
             console.error("Erreur lors de la récupération des élèves : ", error);
         }
     };
-
 
     const initialValues = {
         value: currentValue.value,
@@ -60,17 +48,15 @@ export default function GradeEditForm({currentValue}) {
 
     });
 
-
-
     const formik = useFormik({
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
             try {
-                console.log("===>: ", values);
+                setGrade(values);
+                setId(currentValue.id);
+                editGrade.mutate();
 
-                const updated = await updateGradeById(currentValue.id, values);
-
-                router.push("/grades/" + updated.id);
+                router.push("/grades/" + currentValue.id);
 
             } catch (error) {
                 console.error(error);
@@ -107,7 +93,7 @@ export default function GradeEditForm({currentValue}) {
                             helperText={formik.errors["student.id"]}
                         >
                             {students.map((student) => (
-                                <MenuItem key={student.id} value={student.id}> {student.registrationNumber+" --- "+student.firstName+" "+student.lastName}</MenuItem>
+                                <MenuItem key={student.id} value={student.id}> {student.registrationNumber+" / "+student.firstName+" "+student.lastName}</MenuItem>
                             ))}
                         </Select>
 
@@ -120,20 +106,11 @@ export default function GradeEditForm({currentValue}) {
                             helperText={formik.errors["exam.id"]}
                         >
                             {exams.map((exam) => (
-                                <MenuItem key={exam.id} value={exam.id}> {exam.examDate+" --- "+exam.subject+" --- "+exam.teacherName}</MenuItem>
+                                <MenuItem key={exam.id} value={exam.id}> {exam.examDate+" / "+exam.subject+" / "+exam.teacherName}</MenuItem>
                             ))}
                         </Select>
 
-                        <TextField
-                            fullWidth
-                            label="Note"
-                            {...formik.getFieldProps("value")}
-                            error={!!formik.errors["value"]}
-                            helperText={formik.errors["value"]}
-                        />
-
-
-
+                        <FormikTextField name={"value"} label={"Note"}/>
 
                         <Stack direction={"row"} spacing={2} justifyContent={"end"}>
                             <Button type="reset">

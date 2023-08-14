@@ -1,20 +1,16 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import {findGradeById} from "@/features/grades/grade-services";
 import GradeEditForm from "@/features/grades/components/grade-edit-form";
+import {useFindGradeById} from "@/features/grades/grade-services";
 
 
 export default function GradeEditView({id}) {
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
+    const [query, setQuery] = useState(id);
+    const {data: currentValue, isLoading, isError, error} = useFindGradeById({query});
 
-    useEffect(() => {
-        setIsLoading(true);
-        findGradeById(id).then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
 
     return (
         <Box p={3}>

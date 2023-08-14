@@ -2,20 +2,15 @@
 
 import React, {useEffect, useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import {findExamById} from "@/features/exams/exam-services";
 import ExamEditForm from "@/features/exams/components/exam-edit-form";
+import {useFindExamById} from "@/features/exams/exam-services";
 
 
 
 export default function ExamEditView({id}) {
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
-
-    useEffect(() => {
-        setIsLoading(true);
-        findExamById(id).then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
+    const [query, setQuery] = useState(id);
+    const {data: currentValue, isLoading, isError, error} = useFindExamById({query});
 
     return (
         <Box p={3}>

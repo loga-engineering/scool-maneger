@@ -16,35 +16,29 @@ import {
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Alert from "@mui/material/Alert";
 import {Add, Refresh, Search} from "@mui/icons-material";
 import SearchField from "../../../shared/components/search-field";
-import {
-    deleteStudentById,
-    useSearchStudents
-} from "@/features/students/student-services";
-import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
-import StudentDelete from "@/features/students/components/student-delete";
+import {useSearchExams} from "@/features/exams/exam-services";
+import ExamDelete from "@/features/exams/components/exam-delete";
 
-export default function StudentList() {
+export default function ExamList() {
 
     const [query, setQuery] = useState();
-    const {data: currentValue, isLoading, isError, error, refetch} = useSearchStudents({query});
+    const {data: currentValue, isLoading, isError, error, refetch} = useSearchExams({query});
+
 
     return (
         <Card>
 
             <CardHeader
-                title={<SearchField query={query} setQuery={setQuery} label={"Matricule"} length={4}/>}
+                title={<SearchField query={query} setQuery={setQuery} label={"Matière"} length={2}/>}
                 action={(
                     <Stack direction={"row"}>
-                        <Link href={"students/new"}>
+                        <Link href={"exams/new"}>
                             <IconButton>
                                 <Add/>
                             </IconButton>
                         </Link>
-
                         <IconButton onClick={refetch}>
                             <Refresh/>
                         </IconButton>
@@ -58,11 +52,10 @@ export default function StudentList() {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>{"Matricule"}</TableCell>
-                                <TableCell>{"Nom"}</TableCell>
-                                <TableCell>{"Prénom"}</TableCell>
-                                <TableCell>{"Date de Naissance"}</TableCell>
-                                <TableCell>{"Classe"}</TableCell>
+                                <TableCell>{"ID"}</TableCell>
+                                <TableCell>{"Matière"}</TableCell>
+                                <TableCell>{"Nom prof."}</TableCell>
+                                <TableCell>{"Date d'examen"}</TableCell>
                                 <TableCell>{""}</TableCell>
                             </TableRow>
                         </TableHead>
@@ -71,26 +64,25 @@ export default function StudentList() {
                             <TableBody>
                                 {currentValue.map(value => (
                                     <TableRow key={value.id}>
-                                        <TableCell>{value.registrationNumber}</TableCell>
-                                        <TableCell>{value.firstName}</TableCell>
-                                        <TableCell>{value.lastName}</TableCell>
-                                        <TableCell>{value.dateOfBirth}</TableCell>
-                                        <TableCell>{value.classroom.name}</TableCell>
+                                        <TableCell>{value.id}</TableCell>
+                                        <TableCell>{value.subject}</TableCell>
+                                        <TableCell>{value.teacherName}</TableCell>
+                                        <TableCell>{value.examDate}</TableCell>
                                         <TableCell>
                                             <Stack direction={"row"} spacing={0}>
-                                                <Link href={"students/"+value.id}>
+                                                <Link href={"exams/"+value.id}>
                                                     <Tooltip title="Détails">
                                                         <IconButton><VisibilityIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </Link>
-                                                <Link href={"students/edit/"+value.id}>
+                                                <Link href={"exams/edit/"+value.id}>
                                                     <Tooltip title="Modifier">
                                                         <IconButton><EditIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </Link>
-                                                <StudentDelete id={value.id} refetch={refetch}/>
+                                                <ExamDelete id={value.id} refetch={refetch}/>
                                             </Stack>
                                         </TableCell>
                                     </TableRow>

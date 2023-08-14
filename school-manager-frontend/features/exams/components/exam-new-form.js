@@ -1,17 +1,20 @@
 import React from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
-import {Button, Card, Stack, TextField} from "@mui/material";
+import {Button, Card, Stack} from "@mui/material";
 import {useRouter} from "next/navigation";
-import {createExam} from "@/features/exams/exam-services";
+import {useCreateExam} from "@/features/exams/exam-services";
+import FormikTextField from "@/shared/forms/formik-text-field";
+import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 
 export default function ExamNewForm() {
 
     const router = useRouter();
+    const createExam = useCreateExam();
 
     const initialValues = {
         subject: '',
-        examDate: Date.now(),
+        examDate: '',
         teacherName: '',
     };
 
@@ -24,16 +27,16 @@ export default function ExamNewForm() {
     const formik = useFormik({
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
-            try {
-                console.log("===>: ", values);
-
-                const created = await createExam(values);
-
-                router.push("/exams/" + created.id);
-
-            } catch (error) {
-                console.error(error);
-            }
+            createExam.mutate(values,{
+                onSuccess: (data) => {
+                    console.log("===> ",data);
+                    router.push("/exams/" + data.id);
+                },
+                onError: (error) => {
+                    console.error("===> ", error);
+                    throw error;
+                },
+            });
         }
     });
 
@@ -42,39 +45,16 @@ export default function ExamNewForm() {
             <Form onSubmit={formik.handleSubmit}>
                 <Card>
                     <Stack spacing={3} p={3}>
-                        <TextField
-                            fullWidth
-                            label="Matière"
-                            variant={"outlined"}
-                            {...formik.getFieldProps("subject")}
-                            error={!!formik.errors["subject"]}
-                            helperText={formik.errors["subject"]}
-                        />
-
-                        <TextField
-                            fullWidth
-                            type={"date"}
-                            label="Date d'examen"
-                            {...formik.getFieldProps("examDate")}
-                            error={!!formik.errors["examDate"]}
-                            helperText={formik.errors["examDate"]}
-                        />
-
-                        <TextField
-                            fullWidth
-                            label="Nom prof."
-                            {...formik.getFieldProps("teacherName")}
-                            error={!!formik.errors["teacherName"]}
-                            helperText={formik.errors["teacherName"]}
-                        />
-
+                        <FormikTextField name={"subject"} label={"Matière"}/>
+                        <FormikDatePicker name={"examDate"} label={"Date d'examen"} />
+                        <FormikTextField name={"teacherName"} label={"Nom prof."}/>
 
                         <Stack direction={"row"} spacing={2} justifyContent={"end"}>
                             <Button type="reset">
                                 {"Annuler"}
                             </Button>
 
-                            <Button type={"submit"} variant={"outlined"}>
+                            <Button type={"submit"} variant={"contained"}>
                                 {"Céer"}
                             </Button>
                         </Stack>

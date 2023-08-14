@@ -1,45 +1,34 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
 import {Button, Card, Stack, TextField, Select, MenuItem, InputLabel} from "@mui/material";
-import {createGrade} from "../grade-services";
 import {useRouter} from "next/navigation";
-import {findAllClassroomNames} from "@/features/classrooms/classroom-services";
-import {findByClassroomId} from "@/features/students/student-services";
-import {findAllExams} from "@/features/exams/exam-services";
+import {findByClassroomId, useSearchStudents} from "@/features/students/student-services";
+import {useCreateGrade, useFindGradeById} from "../grade-services";
+import {useSearchClassrooms} from "@/features/classrooms/classroom-services";
+import {useSearchExams} from "@/features/exams/exam-services";
+import FormikTextField from "@/shared/forms/formik-text-field";
 
 export default function GradeNewForm() {
 
     const router = useRouter();
+    const [query, setQuery] = useState();
+    const [temp, setTemp] = useState("");
+    const createGrade = useCreateGrade();
+   // const {data: students, isLoading: studentLoading} = useSearchStudents({query});
+    const {data: classrooms, isLoading : classroomLoading} = useSearchClassrooms({query: temp});
+    const {data: exams, isLoading : examLoading} = useSearchExams({query: temp});
+
     const [students, setStudents] = useState([]);
-    const [classrooms, setClassrooms] = useState([]);
-    const [exams, setExams] = useState([]);
-
-    useEffect(() => {
-        const fetchClassrooms = async () => {
+    const fetchStudents = (id) => {
             try {
-                const data = await findAllClassroomNames();
-                setClassrooms(data);
-                ///
-                findAllExams().then(setExams).finally(() => console.log(exams));
-
+                findByClassroomId(id).then(setStudents);
+                //console.log(students);
             } catch (error) {
-                console.error("Erreur lors de la récupération des classes : ", error);
+                console.error("Erreur lors de la récupération des élèves : ", error);
             }
         };
-        fetchClassrooms();
-    }, []);
-
-    const fetchStudents = (id) => {
-        try {
-            findByClassroomId(id).then(setStudents);
-            console.log(students);
-        } catch (error) {
-            console.error("Erreur lors de la récupération des élèves : ", error);
-        }
-    };
-
 
     const initialValues = {
         value: '',
@@ -64,16 +53,16 @@ export default function GradeNewForm() {
     const formik = useFormik({
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
-            try {
-                console.log("===>: ", values);
-
-                const created = await createGrade(values);
-
-                router.push("/grades/" + created.id);
-
-            } catch (error) {
-                console.error(error);
-            }
+            createGrade.mutate(values,{
+                onSuccess: (data) => {
+                    console.log("===> ",data);
+                    router.push("/grades/" + data.id);
+                },
+                onError: (error) => {
+                    console.error("===> ", error);
+                    throw error;
+                },
+            });
         }
     });
 
@@ -87,13 +76,14 @@ export default function GradeNewForm() {
                         <Select
                             fullWidth
                             labelId="select-filled-label1"
+                            value={temp}
                             {...formik.getFieldProps("student.classroom.id")}
                             error={!!formik.errors["student.classroom.id"]}
                             helperText={formik.errors["student.classroom.id"]}
                             onChange={(event) => fetchStudents(event.target.value)}
                         >
-                            {classrooms.map((classroom) => (
-                                <MenuItem key={classroom.id} value={classroom.id}> {classroom.name}</MenuItem>
+                            {classrooms?.map((classroom) => (
+                                <MenuItem key={classroom.id} value={classroom.id} onSelect={() => setTemp(classroom.name)}> {classroom.name}</MenuItem>
                             ))}
                         </Select>
 
@@ -105,8 +95,9 @@ export default function GradeNewForm() {
                             error={!!formik.errors["student.id"]}
                             helperText={formik.errors["student.id"]}
                         >
-                            {students.map((student) => (
-                                <MenuItem key={student.id} value={student.id}> {student.registrationNumber+" --- "+student.firstName+" "+student.lastName}</MenuItem>
+                            <MenuItem key={""} value={""}> {"None"}</MenuItem>
+                            {students?.map((student) => (
+                                <MenuItem key={student.id} value={student.id}> {student.registrationNumber+" / "+student.firstName+" "+student.lastName}</MenuItem>
                             ))}
                         </Select>
 
@@ -118,22 +109,12 @@ export default function GradeNewForm() {
                             error={!!formik.errors["exam.id"]}
                             helperText={formik.errors["exam.id"]}
                         >
-                            {exams.map((exam) => (
-                                <MenuItem key={exam.id} value={exam.id}> {exam.examDate+" --- "+exam.subject+" --- "+exam.teacherName}</MenuItem>
+                            {exams?.map((exam) => (
+                                <MenuItem key={exam.id} value={exam.id}> {exam.examDate+" / "+exam.subject+" / "+exam.teacherName}</MenuItem>
                             ))}
                         </Select>
 
-                        <TextField
-                            fullWidth
-                            label="Note"
-                            variant={"outlined"}
-                            {...formik.getFieldProps("value")}
-                            error={!!formik.errors["value"]}
-                            helperText={formik.errors["value"]}
-                        />
-
-
-
+                        <FormikTextField name={"value"} label={"Note"}/>
 
                         <Stack direction={"row"} spacing={2} justifyContent={"end"}>
                             <Button type="reset">

@@ -13,7 +13,7 @@ import {
 export default function SchoolYearEditView({id}) {
 
     const [query, setQuery] = useState(id);
-    const {data: currentValue, isLoading, isError, error, refetch} = useFindSchoolYearById({query});
+    const {data: currentValue, isLoading, isError, error} = useFindSchoolYearById({query});
 
 
     return (

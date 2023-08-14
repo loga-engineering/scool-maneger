@@ -1,7 +1,11 @@
 import axios from "axios";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import {useMutation, useQuery} from "@tanstack/react-query";
 
 const urlBase = process.env.BACKEND_URL + "exams";
 
+
+////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllExams = async () => {
     try {
         const {data} = await axios.get(urlBase);
@@ -12,24 +16,32 @@ export const findAllExams = async () => {
     }
 
 };
+export const findExamBySubject = async (subject) => {
+    try {
+        const url = urlBase + "/subjects/" + subject;
+        console.log("=======+> url: ", url);
+        const {data} = await axios.get(url);
+        return data;
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+};
+export const useSearchExams = ({query}) => {
+    if(!query) {
+        const queryKey = ["exams", "all"];
+        const queryFn = () => findAllExams();
 
-// export const findAllExamNames = async () => {
-//     try {
-//         const {data} = await axios.get(urlBase);
-//         const exams = [];
-//
-//         data.map((exam) => {
-//             const temp = {id : exam.id, year : exam.year };
-//             exams.push(temp);
-//         });
-//         console.log("=====>", exams);
-//         return exams;
-//     } catch (error) {
-//         console.error("===> ", error);
-//         throw error;
-//     }
-// };
+        return useQuery({queryKey, queryFn});
+    }else{
+        const queryKey = ["exams", "subjects", query];
+        const queryFn = () => findExamBySubject(query);
 
+        return useQuery({queryKey, queryFn});
+    }
+};
+
+////////////////////////////////// findById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findExamById = async (id) => {
     try {
         const url = urlBase + "/" + id;
@@ -40,15 +52,27 @@ export const findExamById = async (id) => {
         console.error("===> ", error);
         throw error;
     }
-
 };
+export const useFindExamById = ({query}) => {
 
+    if(query) {
+        const queryKey = ["exam", "id", query];
+        const queryFn = () => findExamById(query);
+
+        return useQuery({queryKey, queryFn});
+    }
+
+}
+////////////////////////////////// create fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const createExam = async (exam) => {
     const {data} = await axios.post(urlBase, exam);
 
     return data;
 }
-
+export const useCreateExam = () => {
+    return useMutation((exam) => createExam(exam));
+};
+////////////////////////////////// delete fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const deleteExamById = async (id) => {
     try {
         const url = urlBase + "/" + id;
@@ -67,7 +91,11 @@ export const deleteExamById = async (id) => {
         throw error;
     }
 };
+export const useDeleteExam = () => {
+    return useMutation((id) => deleteExamById(id));
+};
 
+////////////////////////////////// update fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const updateExamById = async (id, exam) => {
     try {
         const url = urlBase + "/" + id;
@@ -79,4 +107,7 @@ export const updateExamById = async (id, exam) => {
         throw error;
     }
 
+};
+export const useEditExam = (id, exam) => {
+    return useMutation(() => updateExamById(id, exam));
 };

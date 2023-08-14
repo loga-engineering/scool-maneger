@@ -1,28 +1,21 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
-import {Button, Card, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
-import {updateClassroomById} from "../classroom-services";
+import {Button, Card, InputLabel, MenuItem, Select, Stack} from "@mui/material";
+import {useEditClassroom} from "../classroom-services";
 import {useRouter} from "next/navigation";
-import {findAllSchoolYearNames} from "@/features/school-years/school-year-services";
+import {useSearchSchoolYears} from "@/features/school-years/school-year-services";
+import FormikTextField from "@/shared/forms/formik-text-field";
 
 export default function ClassroomEditForm({currentValue}) {
 
     const router = useRouter();
-    const [schoolYears, setSchoolYears] = useState([]);
+    const [query, setQuery] = useState();
+    const {data: schoolYears, isLoading, isError, error, refetch} = useSearchSchoolYears({query});
 
-    useEffect(() => {
-        const fetchSchoolYears = async () => {
-            try {
-                const data = await findAllSchoolYearNames();
-                setSchoolYears(data);
-                console.log("=====>", schoolYears)
-            } catch (error) {
-                console.error("Erreur lors de la récupération des années scolaire : ", error);
-            }
-        };
-        fetchSchoolYears();
-    }, []);
+    const [id, setId] = useState();
+    const [classroom, setClassroom] = useState();
+    const editClassroom = useEditClassroom(id, classroom);
 
     const initialValues = {
         name: currentValue.name,
@@ -46,11 +39,11 @@ export default function ClassroomEditForm({currentValue}) {
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
             try {
-                console.log("===>: ", values);
+                setClassroom(values);
+                setId(currentValue.id);
+                editClassroom.mutate();
 
-                const updated = await updateClassroomById(currentValue.id, values);
-
-                router.push("/classrooms/" + updated.id);
+                router.push("/classrooms/" + currentValue.id);
 
             } catch (error) {
                 console.error(error);
@@ -63,30 +56,10 @@ export default function ClassroomEditForm({currentValue}) {
             <Form onSubmit={formik.handleSubmit}>
                 <Card>
                     <Stack spacing={3} p={3}>
-                        <TextField
-                            fullWidth
-                            label="Nom"
-                            variant={"outlined"}
-                            {...formik.getFieldProps("name")}
-                            error={!!formik.errors["name"]}
-                            helperText={formik.errors["name"]}
-                        />
+                        <FormikTextField name={"name"} label={"Nom"}/>
+                        <FormikTextField name={"level"} label={"Niveau"}/>
+                        <FormikTextField name={"headTeacherName"} label={"Prof. Titulaire"}/>
 
-                        <TextField
-                            fullWidth
-                            label="niveau"
-                            {...formik.getFieldProps("level")}
-                            error={!!formik.errors["level"]}
-                            helperText={formik.errors["level"]}
-                        />
-
-                        <TextField
-                            fullWidth
-                            label="Prof. Titulaire"
-                            {...formik.getFieldProps("headTeacherName")}
-                            error={!!formik.errors["headTeacherName"]}
-                            helperText={formik.errors["headTeacherName"]}
-                        />
                         <InputLabel id="select-filled-label">Année scolaire</InputLabel>
                         <Select
                             fullWidth
@@ -95,11 +68,10 @@ export default function ClassroomEditForm({currentValue}) {
                             error={!!formik.errors["schoolYear.id"]}
                             helperText={formik.errors["schoolYear.id"]}
                         >
-                            {schoolYears.map((schoolYear) => (
+                            {schoolYears?.map((schoolYear) => (
                                 <MenuItem key={schoolYear.id} value={schoolYear.id}> {schoolYear.year}</MenuItem>
                             ))}
                         </Select>
-
 
                         <Stack direction={"row"} spacing={2} justifyContent={"end"}>
                             <Button type="reset">

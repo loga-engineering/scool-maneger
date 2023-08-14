@@ -1,25 +1,13 @@
 import axios from "axios";
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 const urlBase = process.env.BACKEND_URL + "students";
 
+////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllStudents = async ({query}) => {
     try {
         const {data} = await axios.get(urlBase,{params: {query}});
-        return data;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-
-};
-
-export const findStudentById = async (id) => {
-    try {
-        const url = urlBase + "/" + id;
-        console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -35,71 +23,8 @@ export const findByRegistrationNumber = async ({query}) => {
         const {data} = await axios.get(url);
         return data;
     } catch (error) {
-         console.error("===> ", error);
+        console.error("===> ", error);
         // throw error;
-    }
-
-};
-
-export const findByClassroomId = async (id) => {
-    try {
-        const url = urlBase + "/classroom/" + id;
-        console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
-        return data;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-
-};
-
-export const createStudent = async (student) => {
-    const {data} = await axios.post(urlBase, student);
-
-    return data;
-};
-
-export const deleteStudentById = async (id) => {
-    try {
-        const url = urlBase + "/" + id;
-        console.log("=======+> url: ", url);
-        const response = await axios.delete(url);
-
-        // Vérifier si le statut de la réponse est "no_content" (204)
-
-        if (response.status === 204) {
-            return { success: true, message: "Deleted successfully" };
-        } else {
-            throw new Error("Delete operation did not return a 'no_content' response.");
-        }
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-};
-
-export const updateStudentById = async (id, student) => {
-    try {
-        const url = urlBase + "/" + id;
-        console.log("=======+> url: ", url);
-        const {data} = await axios.put(url, student);
-        return data;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-};
-
-export const countStudentsByClassroomId = async (id) => {
-    try {
-        const url = urlBase + "/count/" + id;
-        console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
-        return data;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
     }
 
 };
@@ -121,3 +46,109 @@ export const useSearchStudents = ({query}) => {
     }
 
 }
+////////////////////////////////// findById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+export const findStudentById = async (id) => {
+    try {
+        const url = urlBase + "/" + id;
+        console.log("=======+> url: ", url);
+        const {data} = await axios.get(url);
+        return data;
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+
+};
+
+export const useFindStudentById = ({query}) => {
+
+    if(query) {
+        const queryKey = ["student", "id", query];
+        const queryFn = () => findStudentById(query);
+
+        return useQuery({queryKey, queryFn});
+    }
+
+}
+
+
+////////////////////////////////// findByClassroomId fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+export const findByClassroomId = async (id) => {
+    try {
+        const url = urlBase + "/classroom/" + id;
+        console.log("=======+> url: ", url);
+        const {data} = await axios.get(url);
+        return data;
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+
+};
+
+////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+export const createStudent = async (student) => {
+    const {data} = await axios.post(urlBase, student);
+
+    return data;
+};
+
+export const useCreateStudent = () => {
+    return useMutation((student) => createStudent(student));
+};
+
+////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+export const deleteStudentById = async (id) => {
+    try {
+        const url = urlBase + "/" + id;
+        console.log("=======+> url: ", url);
+        const response = await axios.delete(url);
+
+        // Vérifier si le statut de la réponse est "no_content" (204)
+
+        if (response.status === 204) {
+            return { success: true, message: "Deleted successfully" };
+        } else {
+            throw new Error("Delete operation did not return a 'no_content' response.");
+        }
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+};
+
+export const useDeleteStudent = () => {
+    return useMutation((id) => deleteStudentById(id));
+};
+
+////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+export const updateStudentById = async (id, student) => {
+    try {
+        const url = urlBase + "/" + id;
+        console.log("=======+> url: ", url);
+        const {data} = await axios.put(url, student);
+        return data;
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+};
+
+export const useEditStudent = (id, student) => {
+    return useMutation(() => updateStudentById(id, student));
+};
+
+//////////////////////////////////   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+export const countStudentsByClassroomId = async (id) => {
+    try {
+        const url = urlBase + "/count/" + id;
+        console.log("=======+> url: ", url);
+        const {data} = await axios.get(url);
+        return data;
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+
+};
+

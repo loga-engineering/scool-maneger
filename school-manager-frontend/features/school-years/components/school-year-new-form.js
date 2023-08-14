@@ -5,6 +5,7 @@ import {Button, Card, Stack, TextField} from "@mui/material";
 import { useCreateSchoolYear } from "../school-year-services";
 import {useRouter} from "next/navigation";
 import FormikTextField from "../../../shared/forms/formik-text-field";
+import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 
 export default function SchoolYearNewForm() {
 
@@ -48,8 +49,8 @@ export default function SchoolYearNewForm() {
                 <Card>
                     <Stack spacing={3} p={3}>
                         <FormikTextField name={"year"} label={"Année"}/>
-                        <FormikTextField name={"startDate"} label={"Date de debut"} type={"date"} />
-                        <FormikTextField name={"endDate"} label={"Date de fin"} type={"date"} />
+                        <FormikDatePicker name={"startDate"} label={"Date de debut"} />
+                        <FormikDatePicker name={"endDate"} label={"Date de fin"} />
 
                         <Stack direction={"row"} spacing={2} justifyContent={"end"}>
                             <Button type="reset">

@@ -1,38 +1,44 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TextField} from "@mui/material";
-import formik, {useField} from "formik";
-import { DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import dayjs from 'dayjs';
-/*export default function FormikDatePicker({label, name, ...other}) {
+import {DesktopDatePicker} from "@mui/x-date-pickers";
+import {useFormikContext} from "formik";
 
-    const [field, meta, helpers] = useField(name);
-    //const [value, setValue] = useState(dayjs());
-
-    /!*const handleDateChange = (newValue) => {
-        // Formater la date sélectionnée
-        const formattedDate = newValue.format("YYYY-MM-DD");
-        // Mettre à jour la valeur de l'état local
-        setValue(formattedDate);
-    };*!/
-    const handleDateChange = (date) => {
-        helpers.setValue(date);
-    };
-
+export function FormikDatePicker({name,label, ...others}) {
+    const {getFieldProps, setFieldValue, touched, errors} = useFormikContext();
+    const errorMessage = touched[name] && errors[name];
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DesktopDatePicker
-                fullWidth
-                label={label}
-                value={field.value}
-                onChange={handleDateChange}
+        <DesktopDatePicker
+            fullWidth
+            label={label}
+            {...getFieldProps(name)}
+            format={"DD-MM-YYYY"}
+            mask={"__-__-____"}
+            onChange={(newValue) => setFieldValue(name, newValue)}
+            components={{
+                TextField: (props) => (
+                    <TextField fullWidth {...props} helperText={errorMessage} error={Boolean(errorMessage)}/>
+                )
+            }}
+            {...others}
+        />
+    )
+}
 
-                format="YYYY-MM-DD"
-                {...field}
-                error={!!meta.error}
-                helperText={meta.error}
-                {...other}
-            />
-        </LocalizationProvider>
-    );
-}*/
+/*
+export function FormikTimePicker({name, ...others}) {
+    const {getFieldProps, setFieldValue, touched, errors} = useFormikContext();
+    const errorMessage = touched[name] && errors[name];
+    return (
+        <DesktopTimePicker
+            {...getFieldProps(name)}
+            inputFormat="HH:mm"
+            onChange={(newValue) => setFieldValue(name, newValue)}
+            renderInput={(params) => (
+                <TextField fullWidth {...params} helperText={errorMessage} error={Boolean(errorMessage)}/>
+            )}
+            {...others}
+        />
+    )
+}
+
+ */

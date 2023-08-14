@@ -3,27 +3,18 @@ import React, {useEffect, useState} from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
 import {Button, Card, Stack, TextField, Select, MenuItem, InputLabel} from "@mui/material";
-import {createClassroom, findAllClassroomNames, updateClassroomById} from "../classroom-services";
+import {useCreateClassroom} from "../classroom-services";
 import {useRouter} from "next/navigation";
-import {findAllSchoolYearNames, findAllSchoolYears} from "@/features/school-years/school-year-services";
+import {useSearchSchoolYears} from "@/features/school-years/school-year-services";
+import FormikTextField from "@/shared/forms/formik-text-field";
 
 export default function ClassroomNewForm() {
 
     const router = useRouter();
-    const [schoolYears, setSchoolYears] = useState([]);
+    const createClassroom = useCreateClassroom();
 
-    useEffect(() => {
-        const fetchSchoolYears = async () => {
-            try {
-                const data = await findAllSchoolYearNames();
-                setSchoolYears(data);
-                console.log("=====>", schoolYears)
-            } catch (error) {
-                console.error("Erreur lors de la récupération des années scolaire : ", error);
-            }
-        };
-        fetchSchoolYears();
-    }, []);
+    const [query, setQuery] = useState();
+    const {data: schoolYears, isLoading, isError, error, refetch} = useSearchSchoolYears({query});
 
     const initialValues = {
         name: '',
@@ -45,16 +36,15 @@ export default function ClassroomNewForm() {
     const formik = useFormik({
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
-            try {
-                console.log("===>: ", values);
-
-                const created = await createClassroom(values);
-
-                router.push("/classrooms/" + created.id);
-
-            } catch (error) {
-                console.error(error);
-            }
+            createClassroom.mutate(values,{
+                onSuccess: (data) => {
+                    router.push("/classrooms/" + data.id);
+                },
+                onError: (error) => {
+                    console.error("===> ", error);
+                    throw error;
+                },
+            });
         }
     });
 
@@ -63,31 +53,10 @@ export default function ClassroomNewForm() {
             <Form onSubmit={formik.handleSubmit}>
                 <Card>
                     <Stack spacing={3} p={3}>
-                        <TextField
-                            fullWidth
-                            label="Nom"
-                            variant={"outlined"}
-                            {...formik.getFieldProps("name")}
-                            error={!!formik.errors["name"]}
-                            helperText={formik.errors["name"]}
-                        />
+                        <FormikTextField name={"name"} label={"Nom"}/>
+                        <FormikTextField name={"level"} label={"Niveau"}/>
+                        <FormikTextField name={"headTeacherName"} label={"Prof. Titulaire"}/>
 
-                        <TextField
-                            fullWidth
-                            label="niveau"
-                            variant={"outlined"}
-                            {...formik.getFieldProps("level")}
-                            error={!!formik.errors["level"]}
-                            helperText={formik.errors["level"]}
-                        />
-
-                        <TextField
-                            fullWidth
-                            label="Prof. Titulaire"
-                            {...formik.getFieldProps("headTeacherName")}
-                            error={!!formik.errors["headTeacherName"]}
-                            helperText={formik.errors["headTeacherName"]}
-                        />
                         <InputLabel id="select-filled-label">Année scolaire</InputLabel>
                         <Select
                             fullWidth
@@ -96,7 +65,7 @@ export default function ClassroomNewForm() {
                             error={!!formik.errors["schoolYear.id"]}
                             helperText={formik.errors["schoolYear.id"]}
                         >
-                            {schoolYears.map((schoolYear) => (
+                            {schoolYears?.map((schoolYear) => (
                                 <MenuItem key={schoolYear.id} value={schoolYear.id}> {schoolYear.year}</MenuItem>
                             ))}
                         </Select>

@@ -3,17 +3,13 @@
 import React, {useEffect, useState} from "react";
 import {Box, LinearProgress, Stack, Typography} from "@mui/material";
 import ExamDetails from "../components/exam-details";
-import {findExamById} from "../exam-services";
+import {useFindExamById} from "../exam-services";
 
 export default function ExamDetailsView({id}) {
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
+    const [query, setQuery] = useState(id);
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindExamById({query});
 
-    useEffect(() => {
-        setIsLoading(true);
-        findExamById(id).then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
 
 
     return (

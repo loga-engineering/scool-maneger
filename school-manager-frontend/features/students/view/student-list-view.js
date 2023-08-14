@@ -5,7 +5,6 @@ import {
     Typography,
 } from "@mui/material";
 import * as React from "react";
-import ModuleName from "../../../shared/components/module-name";
 import StudentList from "@/features/students/components/student-list";
 
 export default function StudentListView() {
@@ -13,7 +12,6 @@ export default function StudentListView() {
 
     return (
         <Box>
-            {/*<ModuleName/>*/}
 
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
 
@@ -21,13 +19,6 @@ export default function StudentListView() {
                     {"Liste des élèves"}
                 </Typography>
 
-                {/*<Link href={"students/new"}>*/}
-                {/*    <Button startIcon={<Add/>} sx={{*/}
-                {/*        color: 'text.secondary',*/}
-                {/*    }}>*/}
-                {/*        {"Ajouter"}*/}
-                {/*    </Button>*/}
-                {/*</Link>*/}
             </Stack>
 
             <StudentList />

@@ -4,13 +4,10 @@ import {countStudentsByClassroomId} from "@/features/students/student-services";
 
 export default function ClassroomDetails({currentValue}) {
 
-    const [isLoading, setIsLoading] = useState();
     const [numberOfStudents, setNumberOfStudents] = useState(0);
 
     useEffect(() => {
-        setIsLoading(true);
-        countStudentsByClassroomId(currentValue.id).then(setNumberOfStudents).finally(() => setIsLoading(false));
-        console.log("====>", numberOfStudents);
+        countStudentsByClassroomId(currentValue.id).then(setNumberOfStudents).finally(() => console.log("====>", numberOfStudents));
     }, []);
 
     return (

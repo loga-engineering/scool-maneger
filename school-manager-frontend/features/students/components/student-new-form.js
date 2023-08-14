@@ -3,25 +3,18 @@ import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
 import {Button, Card, InputLabel, MenuItem, Select, Stack, TextField} from "@mui/material";
 import {useRouter} from "next/navigation";
-import {createStudent} from "@/features/students/student-services";
-import {findAllClassroomNames} from "@/features/classrooms/classroom-services";
+import {createStudent, useCreateStudent} from "@/features/students/student-services";
+import { useSearchClassrooms} from "@/features/classrooms/classroom-services";
+import FormikTextField from "@/shared/forms/formik-text-field";
+import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 
 export default function StudentNewForm() {
 
     const router = useRouter();
-    const [classrooms, setClassrooms] = useState([]);
+    const createStudent = useCreateStudent();
+    const [query, setQuery] = useState();
+    const {data: classrooms, isLoading, isError, error, refetch} = useSearchClassrooms({query});
 
-    useEffect(() => {
-        const fetchClassrooms = async () => {
-            try {
-                const data = await findAllClassroomNames();
-                setClassrooms(data);
-            } catch (error) {
-                console.error("Erreur lors de la récupération des classes : ", error);
-            }
-        };
-        fetchClassrooms();
-    }, []);
 
     const initialValues = {
         registrationNumber: '',
@@ -32,7 +25,7 @@ export default function StudentNewForm() {
         contact: '',
         address: '',
         dateOfBirth: '',
-        enrollmentDate: Date.now(),
+        enrollmentDate: '',
         classroom : {
             id: ''
         }
@@ -53,16 +46,15 @@ export default function StudentNewForm() {
     const formik = useFormik({
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
-            try {
-                console.log("===>: ", values);
-
-                const created = await createStudent(values);
-
-                router.push("/students/" + created.id);
-
-            } catch (error) {
-                console.error(error);
-            }
+            createStudent.mutate(values,{
+                onSuccess: (data) => {
+                    router.push("/students/" + data.id);
+                },
+                onError: (error) => {
+                    console.error("===> ", error);
+                    throw error;
+                },
+            });
         }
     });
 
@@ -71,54 +63,23 @@ export default function StudentNewForm() {
             <Form onSubmit={formik.handleSubmit}>
                 <Card>
                     <Stack spacing={3} p={3}>
-                        <TextField
-                            fullWidth
-                            label="Matricule"
-                            variant={"outlined"}
-                            {...formik.getFieldProps("registrationNumber")}
-                            error={!!formik.errors["registrationNumber"]}
-                            helperText={formik.errors["registrationNumber"]}
-                        />
+                        <FormikTextField name={"registrationNumber"} label={"Matricule"}/>
 
-                        <TextField fullWidth
-                                   label="Nom"
-                                   {...formik.getFieldProps("firstName")}
-                                   error={!!formik.errors["firstName"]}
-                                   helperText={formik.errors["firstName"]}/>
+                        <FormikTextField name={"lastName"} label={"Nom"}/>
 
-                        <TextField fullWidth
-                                   label="Prénom"
-                                   {...formik.getFieldProps("lastName")}
-                                   error={!!formik.errors["lastName"]}
-                                   helperText={formik.errors["lastName"]}/>
+                        <FormikTextField name={"firstName"} label={"Prénom"}/>
 
+                        <FormikDatePicker name={"dateOfBirth"} label={"Date de naissance"} />
 
-                        <TextField type="date" label="Date de naissance" variant={"outlined"}
-                                   {...formik.getFieldProps("dateOfBirth")}
-                                   error={!!formik.errors["dateOfBirth"]}
-                                   helperText={formik.errors["dateOfBirth"]} />
+                        <FormikTextField name={"fatherName"} label={"Prénom du père"} />
 
-                        <TextField label="Prénom du père"
-                                   {...formik.getFieldProps("fatherName")}
-                                   error={!!formik.errors["fatherName"]}
-                                   helperText={formik.errors["fatherName"]} />
+                        <FormikTextField name={"motherName"} label={"Nom de la mère"} />
 
-                        <TextField label="Nom de la mère" {...formik.getFieldProps("motherName")}
-                                   error={!!formik.errors["motherName"]}
-                                   helperText={formik.errors["motherName"]}/>
+                        <FormikTextField name={"contact"} label={"Contact"} />
 
-                        <TextField label="Contact" {...formik.getFieldProps("contact")}
-                                   error={!!formik.errors["contact"]}
-                                   helperText={formik.errors["contact"]}/>
+                        <FormikTextField name={"address"} label={"Adresse"} />
 
-                        <TextField label="Adresse" {...formik.getFieldProps("address")}
-                                   error={!!formik.errors["address"]}
-                                   helperText={formik.errors["address"]}/>
-
-                        <TextField type="date" label="Date d'inscription" variant={"outlined"}
-                                   {...formik.getFieldProps("enrollmentDate")}
-                                   error={!!formik.errors["enrollmentDate"]}
-                                   helperText={formik.errors["enrollmentDate"]} />
+                        <FormikDatePicker name={"enrollmentDate"} label={"Date d'inscription"} />
 
                         <InputLabel id="select-filled-label">Classe</InputLabel>
                         <Select
@@ -128,7 +89,7 @@ export default function StudentNewForm() {
                             error={!!formik.errors["classroom.id"]}
                             helperText={formik.errors["classroom.id"]}
                         >
-                            {classrooms.map((classroom) => (
+                            {classrooms?.map((classroom) => (
                                 <MenuItem key={classroom.id} value={classroom.id}> {classroom.name}</MenuItem>
                             ))}
                         </Select>

@@ -48,17 +48,6 @@ export const useSearchSchoolYears = ({query}) => {
 
 ////////////////////////////////// findById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-export const useFindSchoolYearById = ({query}) => {
-
-    if(query) {
-        const queryKey = ["school-year", "id", query];
-        const queryFn = () => findSchoolYearById(query);
-
-        return useQuery({queryKey, queryFn});
-    }
-
-}
-
 export const findSchoolYearById = async (query) => {
     try {
         const url = urlBase + "/" + query;
@@ -71,6 +60,19 @@ export const findSchoolYearById = async (query) => {
     }
 
 };
+
+export const useFindSchoolYearById = ({query}) => {
+
+    if(query) {
+        const queryKey = ["school-year", "id", query];
+        const queryFn = () => findSchoolYearById(query);
+
+        return useQuery({queryKey, queryFn});
+    }
+
+}
+
+
 
 ////////////////////////////////// Create fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 

@@ -3,17 +3,12 @@
 import React, {useEffect, useState} from "react";
 import {Box, LinearProgress, Stack, Typography} from "@mui/material";
 import ClassroomDetails from "../components/classroom-details";
-import {findClassroomById} from "../classroom-services";
+import {useFindClassroomById} from "@/features/classrooms/classroom-services";
 
 export default function ClassroomDetailsView({id}) {
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
-
-    useEffect(() => {
-        setIsLoading(true);
-        findClassroomById(id).then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
+    const [query, setQuery] = useState(id);
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindClassroomById({query});
 
 
     return (
