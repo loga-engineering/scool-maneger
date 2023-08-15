@@ -1,5 +1,5 @@
-import React from "react";
-import ClassroomEditView from "@/features/classrooms/view/classroom-edit-view";
+import ClassroomEditView from "../../../../features/classrooms/view/classroom-edit-view";
+
 
 export const metadata = {
     title: "Modifier une salle de classe",

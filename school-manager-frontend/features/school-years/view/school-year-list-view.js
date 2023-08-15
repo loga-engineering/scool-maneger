@@ -2,6 +2,7 @@
 
 import {Box, Stack, Typography} from "@mui/material";
 import Example from "../components/school-year-table";
+
 export default function SchoolYearListView() {
 
 

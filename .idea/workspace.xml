@@ -4,25 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="RAS">
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-list.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/components/module-name.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/components/search-field.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-context.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/react-query-context.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-text-field.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/tests/test01.js" afterDir="false" />
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Introduce context, react-query, formik-field">
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-new-edit-form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-form-provider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-hooks.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-submit-buttons.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/tests/test.yup.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/classrooms/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/classrooms/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/students/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/students/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-list-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-new-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-new-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/classrooms/edit/[id]/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]/edit/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/school-years/edit/[id]/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-edit-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-edit-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-edit-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-new-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-details-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-details-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-edit-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-edit-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-new-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-new-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/students/view/student-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/students/view/student-list-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package.json" afterDir="false" />
     </list>
@@ -66,10 +66,12 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="jdk.selected.JAVA_MODULE" value="18" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rest.client.default.execution.environment" value="dev" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -80,25 +82,27 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]/edit" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/shared/context" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/features" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/app/eleves" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.test01.js">
+  <component name="RunManager" selected="Spring Boot.SchoolManageApplication">
     <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="classroom#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="school-year#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" runType="Run single request">
-      <method v="2" />
-    </configuration>
     <configuration name="school-year#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" index="2" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="test01.js" type="NodeJSConfigurationType" temporary="true" path-to-node="/usr/local/bin/node" nameIsGenerated="true" path-to-js-file="test01.js" working-dir="$PROJECT_DIR$/school-manager-frontend/tests">
+      <method v="2" />
+    </configuration>
+    <configuration name="test.yup.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/school-manager-frontend/tests/test.yup.js" working-dir="$PROJECT_DIR$/school-manager-frontend/tests">
       <method v="2" />
     </configuration>
     <configuration name="SchoolManageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -123,18 +127,18 @@
     <list>
       <item itemvalue="HTTP Request.classroom#1" />
       <item itemvalue="HTTP Request.classroom#2" />
-      <item itemvalue="HTTP Request.school-year#1" />
       <item itemvalue="HTTP Request.school-year#2" />
-      <item itemvalue="Spring Boot.SchoolManageApplication" />
       <item itemvalue="Node.js.test01.js" />
+      <item itemvalue="Spring Boot.SchoolManageApplication" />
+      <item itemvalue="Node.js.test.yup.js" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Node.js.test.yup.js" />
         <item itemvalue="Node.js.test01.js" />
         <item itemvalue="HTTP Request.school-year#2" />
         <item itemvalue="HTTP Request.classroom#1" />
         <item itemvalue="HTTP Request.classroom#2" />
-        <item itemvalue="HTTP Request.school-year#1" />
       </list>
     </recent_temporary>
   </component>
@@ -149,7 +153,8 @@
       <workItem from="1691404773768" duration="446000" />
       <workItem from="1691405471296" duration="5081000" />
       <workItem from="1691493907381" duration="4446000" />
-      <workItem from="1691685807831" duration="5882000" />
+      <workItem from="1691685807831" duration="6663000" />
+      <workItem from="1692121396940" duration="3621000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -186,7 +191,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691685829978</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Introduce context, react-query, formik-field">
+      <created>1691691883998</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691691883998</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +221,7 @@
     <MESSAGE value="Fix relation bug between Classroom and School Year" />
     <MESSAGE value="Add School year page, view and form" />
     <MESSAGE value="RAS" />
-    <option name="LAST_COMMIT_MESSAGE" value="RAS" />
+    <MESSAGE value="Introduce context, react-query, formik-field" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce context, react-query, formik-field" />
   </component>
 </project>

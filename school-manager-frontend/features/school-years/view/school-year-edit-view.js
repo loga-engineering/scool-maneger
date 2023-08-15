@@ -1,19 +1,14 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
-import {Box, Stack, Typography} from "@mui/material";
-import SchoolYearEditForm from "@/features/school-years/components/school-year-edit-form";
-import {
-    findSchoolYearById,
-    useEditSchoolYear,
-    useFindSchoolYearById
-} from "@/features/school-years/school-year-services";
+import {Box, LinearProgress, Stack, Typography} from "@mui/material";
+
+import {useFindSchoolYearById} from "../school-year-services";
+import SchoolYearNewEditForm from "../components/school-year-new-edit-form";
 
 
 export default function SchoolYearEditView({id}) {
 
-    const [query, setQuery] = useState(id);
-    const {data: currentValue, isLoading, isError, error} = useFindSchoolYearById({query});
+    const {data: currentValue, isLoading, isError, error} = useFindSchoolYearById(id);
 
 
     return (
@@ -23,7 +18,9 @@ export default function SchoolYearEditView({id}) {
                     {"Modifier une année scolaire"}
                 </Typography>
 
-                {currentValue && <SchoolYearEditForm currentValue={currentValue}/>}
+                {isLoading && <LinearProgress/>}
+
+                {currentValue && <SchoolYearNewEditForm currentValue={currentValue} isEdit/>}
 
             </Stack>
         </Box>

@@ -1,9 +1,9 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import {findClassroomById} from "@/features/classrooms/classroom-services";
-import ClassroomEditForm from "@/features/classrooms/components/classroom-edit-form";
+import {findClassroomById} from "../classroom-services";
+import ClassroomEditForm from "../components/classroom-edit-form";
 
 
 

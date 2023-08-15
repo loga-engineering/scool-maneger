@@ -70,9 +70,11 @@ export const useFindSchoolYears = ({query}) => {
 
 ////////////////////////////////// findById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-export const findSchoolYearById = async (query) => {
+export const findSchoolYearById = async (id) => {
     try {
-        const url = urlBase + "/" + query;
+        if(!id) return null;
+
+        const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
         const {data} = await axios.get(url);
         return data;
@@ -83,15 +85,11 @@ export const findSchoolYearById = async (query) => {
 
 };
 
-export const useFindSchoolYearById = ({query}) => {
+export const useFindSchoolYearById = (id) => {
+    const queryKey = ["school-year", "id", id];
+    const queryFn = () => findSchoolYearById(id);
 
-    if(query) {
-        const queryKey = ["school-year", "id", query];
-        const queryFn = () => findSchoolYearById(query);
-
-        return useQuery({queryKey, queryFn});
-    }
-
+    return useQuery({queryKey, queryFn});
 }
 
 
@@ -105,8 +103,16 @@ export const createSchoolYear = async (schoolYear) => {
     return data;
 }
 
-export const useCreateSchoolYear = () => {
-    return useMutation((schoolYear) => createSchoolYear(schoolYear));
+export const updateSchoolYearById = async (id, schoolYear) => {
+    try {
+        const url = urlBase + "/" + id;
+        const {data} = await axios.put(url, schoolYear);
+        return data;
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+
 };
 
 ////////////////////////////////// delete fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -134,23 +140,6 @@ export const useDeleteSchoolYear = () => {
 };
 
 ////////////////////////////////// Update fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-export const updateSchoolYearById = async (id, schoolYear) => {
-    try {
-        const url = urlBase + "/" + id;
-        console.log("=======+> url: ", url);
-        const {data} = await axios.put(url, schoolYear);
-        return data;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-
-};
-
-export const useEditSchoolYear = (id, schoolYear) => {
-    return useMutation(() => updateSchoolYearById(id, schoolYear));
-};
 
 //////////////////////////////
 export const findAllSchoolYearNames = async () => {

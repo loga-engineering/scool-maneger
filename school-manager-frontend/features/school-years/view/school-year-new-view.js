@@ -1,9 +1,7 @@
 "use client";
 
-import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import SchoolYearNewForm from "../components/school-year-new-form";
-
+import SchoolYearNewEditForm from "../components/school-year-new-edit-form";
 
 
 export default function SchoolYearNewView() {
@@ -14,7 +12,7 @@ export default function SchoolYearNewView() {
                     {"Ajouter année scolaire"}
                 </Typography>
 
-                <SchoolYearNewForm/>
+                <SchoolYearNewEditForm/>
             </Stack>
         </Box>
     );

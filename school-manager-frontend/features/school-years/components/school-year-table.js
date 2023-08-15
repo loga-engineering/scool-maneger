@@ -83,14 +83,6 @@ const Example = () => {
     );
 };
 
-const queryClient = new QueryClient();
-
-const ExampleWithReactQueryProvider = () => (
-    <QueryClientProvider client={queryClient}>
-        <Example />
-    </QueryClientProvider>
-);
-
-export default ExampleWithReactQueryProvider;
+export default Example;
 
 
