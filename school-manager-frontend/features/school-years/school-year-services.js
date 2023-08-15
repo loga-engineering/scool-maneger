@@ -4,7 +4,29 @@ import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/post
 
 const urlBase = process.env.BACKEND_URL + "school-years";
 
+
+////////////////////////////////// research fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+export const searchSchoolYears = async ({query,page,size,sort}) => {
+    try {
+        const {data} = await axios.get(urlBase + "/search", {params: {query,page,size,sort}});
+        return data;
+    } catch (error) {
+        console.error("===> ", error);
+        throw error;
+    }
+
+};
+export const useSearchSchoolYears = ({query,page,size,sort}) => {
+
+    const queryKey = ["school-years", "all", query,page,size,sort];
+    const queryFn = () => searchSchoolYears({query,page,size,sort});
+
+    return useQuery({queryKey, queryFn});
+}
+
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
+
 export const findAllSchoolYears = async ({query}) => {
     try {
         const {data} = await axios.get(urlBase, {params: {query}});
@@ -28,7 +50,7 @@ export const findSchoolYearsByYear = async (query) => {
 
 };
 
-export const useSearchSchoolYears = ({query}) => {
+export const useFindSchoolYears = ({query}) => {
 
     if(!query) {
         const queryKey = ["school-years", "all", query];
@@ -148,6 +170,11 @@ export const findAllSchoolYearNames = async () => {
     }
 };
 
+////////////////////////////////////////////////////////////////////////////////////////
+
+export const useSchoolYearTable = (id, schoolYear) => {
+    return useMutation(() => updateSchoolYearById(id, schoolYear));
+};
 
 
 

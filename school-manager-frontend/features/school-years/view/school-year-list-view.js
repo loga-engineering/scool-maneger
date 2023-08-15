@@ -1,8 +1,7 @@
 "use client";
 
 import {Box, Stack, Typography} from "@mui/material";
-import SchoolYearList from "../components/school-year-list";
-
+import Example from "../components/school-year-table";
 export default function SchoolYearListView() {
 
 
@@ -15,7 +14,8 @@ export default function SchoolYearListView() {
 
             </Stack>
 
-            <SchoolYearList/>
+            {/*<SchoolYearList/>*/}
+            <Example />
         </Box>
     );
 }

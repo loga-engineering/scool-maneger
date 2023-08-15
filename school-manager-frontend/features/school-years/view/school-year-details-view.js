@@ -1,9 +1,9 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {Box, LinearProgress, Stack, Typography} from "@mui/material";
 import SchoolYearDetails from "../components/school-year-details";
-import {findSchoolYearById, useFindSchoolYearById, useSearchSchoolYears} from "../school-year-services";
+import {useFindSchoolYearById} from "../school-year-services";
 
 export default function SchoolYearDetailsView({id}) {
 

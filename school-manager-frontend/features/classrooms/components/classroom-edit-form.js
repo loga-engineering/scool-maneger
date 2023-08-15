@@ -4,14 +4,14 @@ import {Form, FormikProvider, useFormik} from "formik";
 import {Button, Card, InputLabel, MenuItem, Select, Stack} from "@mui/material";
 import {useEditClassroom} from "../classroom-services";
 import {useRouter} from "next/navigation";
-import {useSearchSchoolYears} from "@/features/school-years/school-year-services";
+import {useFindSchoolYears} from "@/features/school-years/school-year-services";
 import FormikTextField from "@/shared/forms/formik-text-field";
 
 export default function ClassroomEditForm({currentValue}) {
 
     const router = useRouter();
     const [query, setQuery] = useState();
-    const {data: schoolYears, isLoading, isError, error, refetch} = useSearchSchoolYears({query});
+    const {data: schoolYears, isLoading, isError, error, refetch} = useFindSchoolYears({query});
 
     const [id, setId] = useState();
     const [classroom, setClassroom] = useState();

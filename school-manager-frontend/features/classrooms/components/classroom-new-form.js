@@ -1,11 +1,11 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import * as Yup from "yup";
 import {Form, FormikProvider, useFormik} from "formik";
-import {Button, Card, Stack, TextField, Select, MenuItem, InputLabel} from "@mui/material";
+import {Button, Card, Stack, Select, MenuItem, InputLabel} from "@mui/material";
 import {useCreateClassroom} from "../classroom-services";
 import {useRouter} from "next/navigation";
-import {useSearchSchoolYears} from "@/features/school-years/school-year-services";
+import {useFindSchoolYears} from "@/features/school-years/school-year-services";
 import FormikTextField from "@/shared/forms/formik-text-field";
 
 export default function ClassroomNewForm() {
@@ -14,7 +14,7 @@ export default function ClassroomNewForm() {
     const createClassroom = useCreateClassroom();
 
     const [query, setQuery] = useState();
-    const {data: schoolYears, isLoading, isError, error, refetch} = useSearchSchoolYears({query});
+    const {data: schoolYears, isLoading, isError, error, refetch} = useFindSchoolYears({query});
 
     const initialValues = {
         name: '',

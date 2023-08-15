@@ -15,7 +15,7 @@ export default function SearchField({query, setQuery, label, length}) {
 
     return (
         <OutlinedInput
-            // value={query}
+            //value={query}
             onChange={(event) => handleChange(event)}
             startAdornment={(
                 <InputAdornment position={"start"}>

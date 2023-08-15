@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
-import { useSearchSchoolYears} from "../school-year-services";
+import { useFindSchoolYears} from "../school-year-services";
 import {Add, Refresh} from "@mui/icons-material";
 import SearchField from "../../../shared/components/search-field";
 import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
@@ -24,7 +24,7 @@ import SchoolYearDelete from "@/features/school-years/components/school-year-del
 export default function SchoolYearList() {
 
     const [query, setQuery] = useState();
-    const {data: currentValue, isLoading, isError, error, refetch} = useSearchSchoolYears({query});
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindSchoolYears({query});
 
 
     return (
