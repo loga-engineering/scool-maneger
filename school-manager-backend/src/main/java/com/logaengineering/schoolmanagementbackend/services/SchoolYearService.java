@@ -1,26 +1,32 @@
 package com.logaengineering.schoolmanagementbackend.services;
 
+import com.logaengineering.schoolmanagementbackend.domains.dto.SearchData;
 import com.logaengineering.schoolmanagementbackend.domains.entities.SchoolYear;
 import com.logaengineering.schoolmanagementbackend.repositories.SchoolYearRepository;
-import javax.persistence.EntityNotFoundException;
-
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static java.util.Objects.isNull;
-
+@Slf4j
 @Service
 @Transactional
+@AllArgsConstructor
 public class SchoolYearService {
-    private final SchoolYearRepository schoolYearRepository;
 
-    public SchoolYearService(SchoolYearRepository schoolYearRepository) {
-        this.schoolYearRepository = schoolYearRepository;
-    }
+    private final JdbcTemplate jdbcTemplate;
+    private final EntityManager entityManager;
+    private final SchoolYearRepository schoolYearRepository;
 
     public SchoolYear createSchoolYear(SchoolYear schoolYear) {
         return schoolYearRepository.save(schoolYear);
@@ -30,12 +36,57 @@ public class SchoolYearService {
         return schoolYearRepository.findAll();
     }
 
-    public Page<SchoolYear> searchSchoolYears(String query, Pageable pageable) {
-        if (isNull(query) || "".equals(query)) {
-            return schoolYearRepository.findAll(pageable);
-        } else {
-            return schoolYearRepository.search(query, pageable);
+    public Page<SchoolYear> searchSchoolYears(SearchData searchData) {
+        String table = "school_years";
+
+        List<String> conditions = searchData.getFilter().stream().map(filteringData -> {
+            if (filteringData.getId().equals("year")) {
+                return "year like \"%" + filteringData.getValue() + "%\"";
+            } else if (filteringData.getId().equals("startDate")) {
+                return "start_date <= \"" + filteringData.getValue() + "\"";
+            } else if (filteringData.getId().equals("endDate")) {
+                return "end_date >= \"" + filteringData.getValue() + "\"";
+            }
+            return filteringData.getId() + " like \"%" + filteringData.getValue() + "%\"";
+        }).collect(Collectors.toList());
+
+        List<String> sort = searchData.getSort().stream().map(sortingData -> {
+            String column;
+            if (sortingData.getId().equals("year")) {
+                column = "year";
+            } else if (sortingData.getId().equals("startDate")) {
+                column = "start_date";
+            } else if (sortingData.getId().equals("endDate")) {
+                column = "end_date";
+            } else {
+                column = sortingData.getId();
+            }
+            return column + " " + (sortingData.isDesc() ? "desc" : "asc");
+        }).collect(Collectors.toList());
+
+        String request = "select * from " + table;
+        if (!conditions.isEmpty()) {
+            String condition = String.join(" and ", conditions);
+            request += " where " + condition;
         }
+        if (!sort.isEmpty()) {
+            String orderBy = String.join(", ", sort);
+            request += " order by " + orderBy;
+        }
+
+        String countRequest = "select count(*) nb from (" + request + ") t";
+
+        Pageable pageable = PageRequest.of(searchData.getPage(), searchData.getSize());
+        long offset = pageable.getOffset();
+        request += " limit " + offset + ", " + searchData.getSize();
+
+        log.info("======> request: {}", request);
+        log.info("======> countRequest: {}", countRequest);
+
+        List<SchoolYear> content = entityManager.createNativeQuery(request, SchoolYear.class).getResultList();
+        Long totalCount = jdbcTemplate.queryForObject(countRequest, Long.class);
+
+        return new PageImpl<>(content, pageable, totalCount);
     }
 
 
@@ -55,8 +106,8 @@ public class SchoolYearService {
         try {
             schoolYearRepository.deleteById(id);
             return true;
-        }catch (Exception e){
-            System.out.println("Error at deleteSchoolYear : "+e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Error at deleteSchoolYear : " + e.getMessage());
             return false;
         }
     }

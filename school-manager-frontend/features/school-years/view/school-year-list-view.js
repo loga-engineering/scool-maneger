@@ -21,12 +21,14 @@ export default function SchoolYearListView() {
             <Box>
                 <Stack direction={"row"} justifyContent={"normal"} alignItems={"center"}>
                     <Button
+                        variant={current === "liste" && "outlined"}
                         onClick={() => setCurrent('liste')}
                     >
                         LISTE
                     </Button>
 
                     <Button
+                        variant={current === "table" && "outlined"}
                         onClick={() => setCurrent('table')}
                     >
                         TABLE

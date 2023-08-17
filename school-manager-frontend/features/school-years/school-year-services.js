@@ -6,16 +6,11 @@ const urlBase = process.env.BACKEND_URL + "school-years";
 
 
 ////////////////////////////////// research fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-export const searchSchoolYears = async ({query,page,size,sort}) => {
+export const searchSchoolYears = async ({query, page, size, sort, filter}) => {
     try {
-        console.log(" Sort ========>",sort);
+        console.log("======> ", {query, page, size, sort, filter});
 
-        let sortId = "id";
-        let sortDirection = true;
-        if(sort.length !== 0){ sortDirection=sort[0].desc; sortId = sort[0].id; }
-        console.log("  id :",sortId, " desc : ",sortDirection);
-
-        const {data} = await axios.get(urlBase + "/search", {params: {query,page,size,sortId,sortDirection}});
+        const {data} = await axios.post(urlBase + "/search", {query, page, size, sort, filter});
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -23,12 +18,9 @@ export const searchSchoolYears = async ({query,page,size,sort}) => {
     }
 
 };
-export const useSearchSchoolYears = ({query,page,size,sort}) => {
-
-    const queryKey = ["school-years", "all", query,page,size,sort];
-
-    const queryFn = () => searchSchoolYears({query,page,size,sort});
-
+export const useSearchSchoolYears = ({query, page, size, sort, filter}) => {
+    const queryKey = ["school-years", "all", query, page, size, sort, filter];
+    const queryFn = () => searchSchoolYears({query, page, size, sort, filter});
     return useQuery({queryKey, queryFn});
 }
 
@@ -48,7 +40,7 @@ export const findAllSchoolYears = async ({query}) => {
 
 export const findSchoolYearsByYear = async (query) => {
     try {
-        const url = urlBase + "/years/"+query;
+        const url = urlBase + "/years/" + query;
         console.log("=======+> url: ", url);
         const {data} = await axios.get(url);
         return data;
@@ -60,14 +52,14 @@ export const findSchoolYearsByYear = async (query) => {
 
 export const useFindSchoolYears = ({query}) => {
 
-    if(!query) {
+    if (!query) {
         const queryKey = ["school-years", "all", query];
         const queryFn = () => findAllSchoolYears({query});
 
         return useQuery({queryKey, queryFn});
     }
     const isYear = /^\d{4}$/.test(query);
-    if (isYear)  {
+    if (isYear) {
         const queryKey = ["school-year", "year", query];
         const queryFn = () => findSchoolYearsByYear(query);
 
@@ -80,7 +72,7 @@ export const useFindSchoolYears = ({query}) => {
 
 export const findSchoolYearById = async (id) => {
     try {
-        if(!id) return null;
+        if (!id) return null;
 
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
@@ -99,7 +91,6 @@ export const useFindSchoolYearById = (id) => {
 
     return useQuery({queryKey, queryFn});
 }
-
 
 
 ////////////////////////////////// Create fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

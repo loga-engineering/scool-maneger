@@ -8,11 +8,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "school_years")
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "school_years")
 public class SchoolYear {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -4,27 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Introduce context, react-query, formik-field">
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-new-edit-form.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-form-provider.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-hooks.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-submit-buttons.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/tests/test.yup.js" afterDir="false" />
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Introduce lodash, useValidationSchema, formikForm">
+      <change afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/dto/FilteringData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/dto/SortingData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/shared/components/tables/table-utils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/classrooms/edit/[id]/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]/edit/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/school-years/edit/[id]/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-edit-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-edit-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-edit-form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-new-form.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/SchoolYearController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/SchoolYearController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/SchoolYear.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/entities/SchoolYear.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/utils/SearchRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/domains/dto/SearchData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/SchoolYearService.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/SchoolYearService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-details-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-details-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-edit-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-edit-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-new-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-new-view.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +30,7 @@
         <option value="HTTP Request" />
         <option value="HTTP Public Environment File" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -88,6 +82,9 @@
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/shared/context" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.logaengineering.schoolmanagementbackend.domains.dto" />
+    </key>
   </component>
   <component name="RunManager" selected="Spring Boot.SchoolManageApplication">
     <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
@@ -129,8 +126,8 @@
       <item itemvalue="HTTP Request.classroom#2" />
       <item itemvalue="HTTP Request.school-year#2" />
       <item itemvalue="Node.js.test01.js" />
-      <item itemvalue="Spring Boot.SchoolManageApplication" />
       <item itemvalue="Node.js.test.yup.js" />
+      <item itemvalue="Spring Boot.SchoolManageApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -154,7 +151,8 @@
       <workItem from="1691405471296" duration="5081000" />
       <workItem from="1691493907381" duration="4446000" />
       <workItem from="1691685807831" duration="6663000" />
-      <workItem from="1692121396940" duration="3621000" />
+      <workItem from="1692121396940" duration="3706000" />
+      <workItem from="1692264173767" duration="4941000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -198,7 +196,14 @@
       <option name="project" value="LOCAL" />
       <updated>1691691883998</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Introduce lodash, useValidationSchema, formikForm">
+      <created>1692125081227</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692125081227</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,6 +227,7 @@
     <MESSAGE value="Add School year page, view and form" />
     <MESSAGE value="RAS" />
     <MESSAGE value="Introduce context, react-query, formik-field" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduce context, react-query, formik-field" />
+    <MESSAGE value="Introduce lodash, useValidationSchema, formikForm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introduce lodash, useValidationSchema, formikForm" />
   </component>
 </project>

@@ -1,64 +1,38 @@
 package com.logaengineering.schoolmanagementbackend.controllers;
 
+import com.logaengineering.schoolmanagementbackend.domains.dto.SearchData;
 import com.logaengineering.schoolmanagementbackend.domains.entities.SchoolYear;
 import com.logaengineering.schoolmanagementbackend.services.SchoolYearService;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
-@CrossOrigin(value = "*")
 @RestController
+@AllArgsConstructor
+@CrossOrigin(value = "*")
 @RequestMapping("school-years")
 public class SchoolYearController {
 
     private final SchoolYearService schoolYearService;
 
-    public SchoolYearController(SchoolYearService schoolYearService) {
-        this.schoolYearService = schoolYearService;
-    }
-
     @PostMapping()
     public ResponseEntity<SchoolYear> createSchoolYear(@RequestBody SchoolYear schoolYear) {
-        SchoolYear newSchoolYear = schoolYearService.createSchoolYear(schoolYear);
-        return ResponseEntity.status(HttpStatus.CREATED).body(newSchoolYear);
+        return ResponseEntity.status(HttpStatus.CREATED).body(schoolYearService.createSchoolYear(schoolYear));
     }
 
 
-    @GetMapping("/search")
-    public Page<SchoolYear> searchSchoolYears(@RequestParam(name="query", required = false) String query,
-                                              @RequestParam(name="page", defaultValue="0") int page,
-                                              @RequestParam(name="size", defaultValue="10") int size,
-                                              @RequestParam(name="sortId", required = false) String sortId,
-                                              @RequestParam(name="sortDirection", required = false) boolean sortDirection) {
-
-        System.out.println("query = " + query + ", page = " + page + ", size = " + size + ", sortId = " + sortId + ", sortDirection = " + sortDirection);
-
-        Sort sort = null;
-        if (sortId != null) {
-
-            if(sortDirection) {
-                sort = Sort.by(sortId).descending();
-            } else {
-                sort = Sort.by(sortId).ascending();
-            }
-        }
-
-
-        Sort pageableSort = null;
-        if (sort != null) {
-            pageableSort = sort;
-        }else pageableSort = Sort.by("id").descending();
-
-        Pageable pageable = PageRequest.of(page, size, pageableSort);
-
-        System.out.println("pageable =====> " + pageable);
-        return schoolYearService.searchSchoolYears(query, pageable);
+    @PostMapping("search")
+    public ResponseEntity<Page<SchoolYear>> searchSchoolYears(@RequestBody SearchData searchData) {
+        return ResponseEntity.ok(schoolYearService.searchSchoolYears(searchData));
     }
 
 
@@ -90,19 +64,16 @@ public class SchoolYearController {
 
     @GetMapping()
     public ResponseEntity<List<SchoolYear>> getAllSchoolYears() {
-        List<SchoolYear> schoolYears = schoolYearService.getAllSchoolYears();
-        return ResponseEntity.ok(schoolYears);
+        return ResponseEntity.ok(schoolYearService.getAllSchoolYears());
     }
     @GetMapping("{id}")
     public ResponseEntity<SchoolYear> getSchoolYearById(@PathVariable Long id) {
-        SchoolYear schoolYear = schoolYearService.getSchoolYearById(id);
-        return ResponseEntity.ok(schoolYear);
+        return ResponseEntity.ok(schoolYearService.getSchoolYearById(id));
     }
 
-    @GetMapping("/years/{year}")
+    @GetMapping("years/{year}")
     public ResponseEntity<List<SchoolYear>> getSchoolYearsByYear(@PathVariable String year) {
-        List<SchoolYear> schoolYears = schoolYearService.getSchoolYearsByYear(year);
-        return ResponseEntity.ok(schoolYears);
+        return ResponseEntity.ok(schoolYearService.getSchoolYearsByYear(year));
     }
 
 }

@@ -1,73 +1,81 @@
 "use client";
 
-import React, {useMemo, useState} from 'react';
-import {MaterialReactTable} from 'material-react-table';
-import {IconButton, Link, Stack, Tooltip} from '@mui/material';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import {useSearchSchoolYears} from "@/features/school-years/school-year-services";
-import {schoolYearConfig} from "@/features/school-years/school-year-config";
-import {Add} from "@mui/icons-material";
+import {useMemo, useState} from "react";
+import {Add, Refresh} from "@mui/icons-material";
+import {MaterialReactTable} from "material-react-table";
+import {IconButton, Link, Stack, Tooltip} from "@mui/material";
 
-const SchoolYearTable = () => {
-    const [columnFilters, setColumnFilters] = useState([]);
-    const [query, setQuery] = useState("");
+import {schoolYearConfig} from "../school-year-config";
+import {useSearchSchoolYears} from "../school-year-services";
+import {initialPagination} from "../../../shared/components/tables/table-utils";
+
+const useColumns = () => useMemo(() => [
+    {
+        accessorKey: 'id',
+        header: 'ID',
+    },
+    {
+        accessorKey: 'year',
+        header: 'Année',
+    },
+    {
+        accessorKey: 'startDate',
+        header: 'Date de début',
+    },
+    {
+        accessorKey: 'endDate',
+        header: 'Date de fin',
+    },
+], []);
+
+
+export default function SchoolYearTable() {
     const [sort, setSort] = useState([]);
+    const [globalFilter, setGlobalFilter] = useState("");
+    const [columnFilters, setColumnFilters] = useState([]);
+    const [pagination, setPagination] = useState(initialPagination);
 
-    const [pagination, setPagination] = useState({
-        pageIndex: 0,
-        pageSize: 10
+    const {data: currentPage, isLoading, isError, error, refetch} = useSearchSchoolYears({
+            query: globalFilter, page: pagination.pageIndex, size: pagination.pageSize, sort, filter: columnFilters
     });
-    const {data: currentValue, isLoading, isError, error, refetch} = useSearchSchoolYears({query,page: pagination.pageIndex,size:pagination.pageSize,sort});
 
-    console.log({currentValue});
+    console.log({currentPage});
 
-    const columns = useMemo(
-        () => [
-            {
-                accessorKey: 'id',
-                header: 'ID',
-            },
-            {
-                accessorKey: 'year',
-                header: 'Année',
-            },
-            {
-                accessorKey: 'startDate',
-                header: 'Date de début',
-            },
-            {
-                accessorKey: 'endDate',
-                header: 'Date de fin',
-            },
-        ],
-        [],
-    );
+    const columns = useColumns();
 
     return (
         <MaterialReactTable
             columns={columns}
-            data={currentValue?.content ?? []} //data is undefined on first render
-            initialState={{ showColumnFilters: true }}
-            manualFiltering
-            manualPagination
-            manualSorting
+            data={currentPage?.content ?? []} //data is undefined on first render
+            initialState={{showColumnFilters: true}}
+            onSortingChange={setSort}
+            onPaginationChange={setPagination}
+            rowCount={currentPage?.totalElements}
+            onGlobalFilterChange={setGlobalFilter}
+            onColumnFiltersChange={setColumnFilters}
+            manualFiltering manualPagination manualSorting
+            state={{
+                isLoading,
+                pagination,
+                columnFilters,
+                globalFilter,
+                showAlertBanner: isError,
+                showProgressBars: isLoading,
+                sort,
+            }}
             muiToolbarAlertBannerProps={
                 isError
                     ? {
                         color: 'error',
-                        children: 'Error loading data',
+                        children: 'Error loading data', // TODO: Show the message containing in error object
                     }
                     : undefined
             }
-            onColumnFiltersChange={setColumnFilters}
-            onGlobalFilterChange={setQuery}
-            onPaginationChange={setPagination}
-            onSortingChange={setSort}
             renderTopToolbarCustomActions={() => (
                 <Stack direction={"row"}>
                     <Tooltip arrow title="Actualiser">
                         <IconButton onClick={refetch}>
-                            <RefreshIcon />
+                            <Refresh/>
                         </IconButton>
                     </Tooltip>
                     <Link href={schoolYearConfig.path.new}>
@@ -79,21 +87,9 @@ const SchoolYearTable = () => {
                     </Link>
                 </Stack>
             )}
-            /*rowCount={currentValue?.totalRowCount ?? 0} */
-            rowCount={currentValue?.meta?.totalRowCount ?? 0}
-            state={{
-                columnFilters,
-                globalFilter:query,
-                isLoading,
-                pagination,
-                showAlertBanner: isError,
-                showProgressBars: isLoading,
-                sort,
-            }}
         />
     );
 };
 
-export default SchoolYearTable;
 
 
