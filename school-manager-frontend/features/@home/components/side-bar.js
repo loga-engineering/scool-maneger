@@ -9,8 +9,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import HistoryEduOutlinedIcon from '@mui/icons-material/HistoryEduOutlined';
 import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
-import GradingOutlinedIcon from '@mui/icons-material/GradingOutlined';
-import EditNoteIcon from '@mui/icons-material/EditNote';
 
 const menus = [
     {

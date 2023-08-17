@@ -30,7 +30,7 @@ export default function Home() {
         <Container component={"main"} maxWidth={"lg"}>
             <Box mt={5}>
                 <Typography variant={"h2"} gutterBottom>
-                    {"Gestion d'établissement Scolaire"}
+                    {"Gestion d'établissement scolaire"}
                 </Typography>
             </Box>
 

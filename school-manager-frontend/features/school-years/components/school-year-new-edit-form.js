@@ -4,10 +4,11 @@ import {useRouter} from "next/navigation";
 import {useCallback, useMemo} from "react";
 
 import {schoolYearConfig} from "../school-year-config";
-import {generateValues} from "../../../shared/forms/formik-hooks";
+import {generateValues} from "@/shared/forms/formik-hooks";
 import FormikTextField from "../../../shared/forms/formik-text-field";
 import {createSchoolYear, updateSchoolYearById} from "../school-year-services";
-import {SimpleCardFormikForm} from "../../../shared/forms/formik-form-provider";
+import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
+import {formikSubmit} from "@/shared/forms/formik-submit";
 
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
@@ -26,24 +27,11 @@ export default function SchoolYearNewEditForm({currentValue, isEdit}) {
     const router = useRouter();
     const {initialValues, validationSchema} = useValidationSchema({currentValue});
 
+
     const formik = useFormik({
         initialValues, validationSchema,
         onSubmit: async (values, {resetForm}) => {
-            try {
-                const newValues = {...currentValue, values};
-
-                let id = newValues.id;
-                if(isEdit) {
-                    await updateSchoolYearById(id, newValues);
-                } else {
-                    const createdValue = await createSchoolYear(newValues);
-                    id = createdValue.id;
-                }
-
-                router.push(schoolYearConfig.path.details(id));
-            } catch (error) {
-                console.error(error);
-            }
+            await formikSubmit(values, isEdit, createSchoolYear, updateSchoolYearById, router, schoolYearConfig);
         }
     });
 

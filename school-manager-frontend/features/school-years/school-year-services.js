@@ -8,7 +8,14 @@ const urlBase = process.env.BACKEND_URL + "school-years";
 ////////////////////////////////// research fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const searchSchoolYears = async ({query,page,size,sort}) => {
     try {
-        const {data} = await axios.get(urlBase + "/search", {params: {query,page,size,sort}});
+        console.log(" Sort ========>",sort);
+
+        let sortId = "id";
+        let sortDirection = true;
+        if(sort.length !== 0){ sortDirection=sort[0].desc; sortId = sort[0].id; }
+        console.log("  id :",sortId, " desc : ",sortDirection);
+
+        const {data} = await axios.get(urlBase + "/search", {params: {query,page,size,sortId,sortDirection}});
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -19,6 +26,7 @@ export const searchSchoolYears = async ({query,page,size,sort}) => {
 export const useSearchSchoolYears = ({query,page,size,sort}) => {
 
     const queryKey = ["school-years", "all", query,page,size,sort];
+
     const queryFn = () => searchSchoolYears({query,page,size,sort});
 
     return useQuery({queryKey, queryFn});
@@ -138,35 +146,5 @@ export const deleteSchoolYearById = async (id) => {
 export const useDeleteSchoolYear = () => {
     return useMutation((id) => deleteSchoolYearById(id));
 };
-
-////////////////////////////////// Update fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-//////////////////////////////
-export const findAllSchoolYearNames = async () => {
-    try {
-        const {data} = await axios.get(urlBase);
-        const schoolYears = [];
-
-        data.map((schoolYear) => {
-            const temp = {id: schoolYear.id, year: schoolYear.year};
-            schoolYears.push(temp);
-        });
-        console.log("=====>", schoolYears);
-        return schoolYears;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-};
-
-////////////////////////////////////////////////////////////////////////////////////////
-
-export const useSchoolYearTable = (id, schoolYear) => {
-    return useMutation(() => updateSchoolYearById(id, schoolYear));
-};
-
-
-
-
 
 

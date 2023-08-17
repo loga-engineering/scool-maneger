@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import {
-    Card,
-    CardHeader,
     IconButton,
     LinearProgress,
     Link,
@@ -17,35 +15,18 @@ import {
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
 import { useFindSchoolYears} from "../school-year-services";
-import {Add, Refresh} from "@mui/icons-material";
-import SearchField from "../../../shared/components/search-field";
 import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
+import {schoolYearConfig} from "@/features/school-years/school-year-config";
+import ListToolBar from "@/shared/components/list-tool-bar";
 
 export default function SchoolYearList() {
 
     const [query, setQuery] = useState();
-    const {data: currentValue, isLoading, isError, error, refetch} = useFindSchoolYears({query});
+    const {data: currentValue, isLoading, refetch} = useFindSchoolYears({query});
 
 
     return (
-        <Card>
-
-            <CardHeader
-                title={<SearchField query={query} setQuery={setQuery} label={"Année scolaire"} length={4} />}
-                action={(
-                    <Stack direction={"row"}>
-                        <Link href={"school-years/new"}>
-                            <IconButton>
-                                <Add/>
-                            </IconButton>
-                        </Link>
-
-                        <IconButton onClick={refetch}>
-                            <Refresh/>
-                        </IconButton>
-                    </Stack>
-                )}
-            />
+            <ListToolBar refetch={refetch} label={"Année scolaire"} length={4} query={query} setQuery={setQuery} config={schoolYearConfig}>
 
             <TableContainer sx={{minWidth: 800}}>{isLoading && <LinearProgress/>}
                 <Table>
@@ -69,13 +50,13 @@ export default function SchoolYearList() {
                                     <TableCell>{value.endDate}</TableCell>
                                     <TableCell>
                                         <Stack direction={"row"} spacing={0}>
-                                            <Link href={"school-years/" + value.id}>
+                                            <Link href={schoolYearConfig.path.details(value.id)}>
                                                 <Tooltip title="Détails">
                                                     <IconButton><VisibilityIcon/>
                                                     </IconButton>
                                                 </Tooltip>
                                             </Link>
-                                            <Link href={"school-years/edit/" + value.id}>
+                                            <Link href={schoolYearConfig.path.edit(value.id)}>
                                                 <Tooltip title="Modifier">
                                                     <IconButton><EditIcon/>
                                                     </IconButton>
@@ -94,8 +75,7 @@ export default function SchoolYearList() {
                 </Table>
 
             </TableContainer>
-
-        </Card>
+            </ListToolBar>
 
     );
 }

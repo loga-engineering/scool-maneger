@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import ClassroomNewForm from "../components/classroom-new-form";
+import ClassroomNewEditForm from "@/features/classrooms/components/classroom-new-edit-form";
 
 export default function ClassroomNewView() {
     return (
@@ -12,7 +12,9 @@ export default function ClassroomNewView() {
                     {"Ajouter une classe"}
                 </Typography>
 
-                <ClassroomNewForm/>
+                {/*<ClassroomNewForm/>*/}
+                <ClassroomNewEditForm isEdit={false} />
+
             </Stack>
         </Box>
     );

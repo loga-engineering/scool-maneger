@@ -1,22 +1,15 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import {findClassroomById} from "../classroom-services";
-import ClassroomEditForm from "../components/classroom-edit-form";
-
-
+import {useFindClassroomById} from "../classroom-services";
+import ClassroomNewEditForm from "@/features/classrooms/components/classroom-new-edit-form";
 
 
 export default function ClassroomEditView({id}) {
 
-    const [isLoading, setIsLoading] = useState();
-    const [currentValue, setCurrentValue] = useState();
-
-    useEffect(() => {
-        setIsLoading(true);
-        findClassroomById(id).then(setCurrentValue).finally(() => setIsLoading(false));
-    }, []);
+    const [query, setQuery] = useState(id);
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindClassroomById({query});
 
     return (
         <Box p={3}>
@@ -25,7 +18,8 @@ export default function ClassroomEditView({id}) {
                     {"Modifier les informations d'une classe"}
                 </Typography>
 
-                {currentValue && <ClassroomEditForm currentValue={currentValue}/>}
+                {/*{currentValue && <ClassroomEditForm currentValue={currentValue}/>}*/}
+                {currentValue && <ClassroomNewEditForm currentValue={currentValue} isEdit />}
 
             </Stack>
         </Box>

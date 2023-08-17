@@ -1,8 +1,5 @@
 import React from 'react';
-import * as Yup from "yup";
-import {Form, FormikProvider, useFormik} from "formik";
-import {Button, Card, Stack, TextField} from "@mui/material";
-import {createSchoolYear} from "../school-year-services";
+import {Card, Stack, TextField} from "@mui/material";
 
 export default function SchoolYearDetails({currentValue}) {
 

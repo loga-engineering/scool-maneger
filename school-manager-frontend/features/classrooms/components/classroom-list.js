@@ -1,7 +1,5 @@
 import React, { useState} from 'react';
 import {
-    Card,
-    CardHeader,
     IconButton,
     LinearProgress,
     Link,
@@ -16,36 +14,19 @@ import {
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
-import {Add, Refresh, Search} from "@mui/icons-material";
-import SearchField from "../../../shared/components/search-field";
 import {useSearchClassrooms} from "@/features/classrooms/classroom-services";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
+import {classroomConfig} from "@/features/classrooms/classroom-config";
+import ListToolBar from "@/shared/components/list-tool-bar";
 
 export default function ClassroomList() {
 
     const [query, setQuery] = useState();
-    const {data: currentValue, isLoading, isError, error, refetch} = useSearchClassrooms({query});
+    const {data: currentValue, isLoading, refetch} = useSearchClassrooms({query});
 
 
     return (
-        <Card>
-
-            <CardHeader
-                title={<SearchField query={query} setQuery={setQuery} label={"Nom"} length={1}/>}
-                action={(
-                    <Stack direction={"row"}>
-                        <Link href={"classrooms/new"}>
-                            <IconButton>
-                                <Add/>
-                            </IconButton>
-                        </Link>
-
-                        <IconButton onClick={refetch}>
-                            <Refresh/>
-                        </IconButton>
-                    </Stack>
-                )}
-            />
+            <ListToolBar refetch={refetch} label={"Nom"} length={1} query={query} setQuery={setQuery} config={classroomConfig}>
 
 
                 <TableContainer sx={{minWidth: 700}}>
@@ -71,13 +52,13 @@ export default function ClassroomList() {
                                         <TableCell>{value.schoolYear.year}</TableCell>
                                         <TableCell>
                                             <Stack direction={"row"} spacing={0}>
-                                                <Link href={"classrooms/"+value.id}>
+                                                <Link href={classroomConfig.path.details(value.id)}>
                                                     <Tooltip title="Détails">
                                                         <IconButton><VisibilityIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </Link>
-                                                <Link href={"classrooms/edit/"+value.id}>
+                                                <Link href={classroomConfig.path.edit(value.id)}>
                                                     <Tooltip title="Modifier">
                                                         <IconButton><EditIcon />
                                                         </IconButton>
@@ -93,8 +74,7 @@ export default function ClassroomList() {
                     </Table>
                 </TableContainer>
 
-        </Card>
-
+            </ListToolBar>
     );
 }
 

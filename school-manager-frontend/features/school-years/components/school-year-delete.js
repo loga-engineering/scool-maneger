@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {useDeleteSchoolYear} from "@/features/school-years/school-year-services";
 import Alert from "@mui/material/Alert";
-import {IconButton, Snackbar, Tooltip} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {IconButton, Snackbar, Tooltip} from "@mui/material";
+import {useDeleteSchoolYear} from "@/features/school-years/school-year-services";
 
 export default function SchoolYearDelete({id, refetch}) {
 

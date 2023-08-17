@@ -2,18 +2,19 @@
 
 import React, {useMemo, useState} from 'react';
 import {MaterialReactTable} from 'material-react-table';
-import {IconButton, Tooltip} from '@mui/material';
+import {IconButton, Link, Stack, Tooltip} from '@mui/material';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import {QueryClient, QueryClientProvider, useQuery,} from '@tanstack/react-query';
 import {useSearchSchoolYears} from "@/features/school-years/school-year-services";
+import {schoolYearConfig} from "@/features/school-years/school-year-config";
+import {Add} from "@mui/icons-material";
 
-const Example = () => {
+const SchoolYearTable = () => {
     const [columnFilters, setColumnFilters] = useState([]);
     const [query, setQuery] = useState("");
     const [sort, setSort] = useState([]);
 
     const [pagination, setPagination] = useState({
-        pageIndex: 1,
+        pageIndex: 0,
         pageSize: 10
     });
     const {data: currentValue, isLoading, isError, error, refetch} = useSearchSchoolYears({query,page: pagination.pageIndex,size:pagination.pageSize,sort});
@@ -63,13 +64,23 @@ const Example = () => {
             onPaginationChange={setPagination}
             onSortingChange={setSort}
             renderTopToolbarCustomActions={() => (
-                <Tooltip arrow title="Refresh Data">
-                    <IconButton onClick={refetch}>
-                        <RefreshIcon />
-                    </IconButton>
-                </Tooltip>
+                <Stack direction={"row"}>
+                    <Tooltip arrow title="Actualiser">
+                        <IconButton onClick={refetch}>
+                            <RefreshIcon />
+                        </IconButton>
+                    </Tooltip>
+                    <Link href={schoolYearConfig.path.new}>
+                        <Tooltip arrow title="Ajouter">
+                            <IconButton>
+                                <Add/>
+                            </IconButton>
+                        </Tooltip>
+                    </Link>
+                </Stack>
             )}
-            rowCount={currentValue?.totalRowCount ?? 0}
+            /*rowCount={currentValue?.totalRowCount ?? 0} */
+            rowCount={currentValue?.meta?.totalRowCount ?? 0}
             state={{
                 columnFilters,
                 globalFilter:query,
@@ -77,12 +88,12 @@ const Example = () => {
                 pagination,
                 showAlertBanner: isError,
                 showProgressBars: isLoading,
-                sorting:sort,
+                sort,
             }}
         />
     );
 };
 
-export default Example;
+export default SchoolYearTable;
 
 

@@ -12,7 +12,7 @@ export default function SchoolYearNewView() {
                     {"Ajouter année scolaire"}
                 </Typography>
 
-                <SchoolYearNewEditForm/>
+                <SchoolYearNewEditForm isEdit={false} />
             </Stack>
         </Box>
     );

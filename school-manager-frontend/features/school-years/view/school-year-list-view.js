@@ -1,10 +1,13 @@
 "use client";
 
-import {Box, Stack, Typography} from "@mui/material";
-import Example from "../components/school-year-table";
+import {Box, Button, Stack, Typography} from "@mui/material";
+import SchoolYearTable from "../components/school-year-table";
+import SchoolYearList from "@/features/school-years/components/school-year-list";
+import {useState} from "react";
 
 export default function SchoolYearListView() {
 
+    const [current, setCurrent] = useState('table');
 
     return (
         <Box>
@@ -15,8 +18,29 @@ export default function SchoolYearListView() {
 
             </Stack>
 
-            {/*<SchoolYearList/>*/}
-            <Example />
+            <Box>
+                <Stack direction={"row"} justifyContent={"normal"} alignItems={"center"}>
+                    <Button
+                        onClick={() => setCurrent('liste')}
+                    >
+                        LISTE
+                    </Button>
+
+                    <Button
+                        onClick={() => setCurrent('table')}
+                    >
+                        TABLE
+                    </Button>
+                </Stack>
+
+
+
+                {current === 'liste' && <SchoolYearList />}
+
+                {current === 'table' && <SchoolYearTable />}
+
+            </Box>
+
         </Box>
     );
 }
