@@ -50,9 +50,9 @@ public class StudentController {
     }
 
     @GetMapping("registration-number/{number}")
-    public ResponseEntity<Student> getStudentByRegistrationNumber(@PathVariable String number) {
-        Student student = studentService.getStudentByRegistrationNumber(number);
-        return ResponseEntity.ok(student);
+    public ResponseEntity<List<Student>> getStudentsByRegistrationNumber(@PathVariable String number) {
+        List<Student> students = studentService.getStudentsByRegistrationNumber(number);
+        return ResponseEntity.ok(students);
     }
 
     @GetMapping("classroom/{id}")

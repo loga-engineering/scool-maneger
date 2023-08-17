@@ -2,9 +2,7 @@ package com.logaengineering.schoolmanagementbackend.services;
 
 
 import com.logaengineering.schoolmanagementbackend.domains.entities.Classroom;
-import com.logaengineering.schoolmanagementbackend.domains.entities.Student;
 import com.logaengineering.schoolmanagementbackend.repositories.ClassroomRepository;
-import com.logaengineering.schoolmanagementbackend.repositories.StudentRepository;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.stereotype.Service;
@@ -17,11 +15,8 @@ import java.util.List;
 public class ClassroomService {
     private final ClassroomRepository classroomRepository;
 
-    private final StudentRepository studentRepository;
-
-    public ClassroomService(ClassroomRepository classroomRepository, StudentRepository studentRepository) {
+    public ClassroomService(ClassroomRepository classroomRepository) {
         this.classroomRepository = classroomRepository;
-        this.studentRepository = studentRepository;
     }
 
     public Classroom createClassroom(Classroom classroom) {
@@ -36,8 +31,8 @@ public class ClassroomService {
         return classroomRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Classroom with id="+id+" not found !"));
     }
 
-    public Classroom getClassroomByName(String name) {
-        return classroomRepository.findClassroomByName(name).orElseThrow(() -> new EntityNotFoundException("Classroom with name="+name+" not found !"));
+    public List<Classroom> getClassroomsByName(String name) {
+        return classroomRepository.findByNameContaining(name);
     }
 
     public Classroom updateClassroom(Long id, Classroom classroom) {

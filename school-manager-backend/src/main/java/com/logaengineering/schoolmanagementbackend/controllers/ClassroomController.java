@@ -1,7 +1,6 @@
 package com.logaengineering.schoolmanagementbackend.controllers;
 
 import com.logaengineering.schoolmanagementbackend.domains.entities.Classroom;
-import com.logaengineering.schoolmanagementbackend.domains.entities.Student;
 import com.logaengineering.schoolmanagementbackend.services.ClassroomService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -53,9 +52,9 @@ public class ClassroomController {
     }
 
     @GetMapping("names/{nom}")
-    public ResponseEntity<Classroom> getClassroomByName(@PathVariable String name) {
-        Classroom classroom = classroomService.getClassroomByName(name);
-        return ResponseEntity.ok(classroom);
+    public ResponseEntity<List<Classroom>> getClassroomByName(@PathVariable String nom) {
+        List<Classroom> classrooms = classroomService.getClassroomsByName(nom);
+        return ResponseEntity.ok(classrooms);
     }
 
     @GetMapping("school-year/{year}")

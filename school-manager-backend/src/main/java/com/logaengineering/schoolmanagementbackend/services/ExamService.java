@@ -55,7 +55,7 @@ public class ExamService {
     }
 
     public List<Exam> getExamsBySubject(String matiere) {
-        return examRepository.findBySubject(matiere);
+        return examRepository.findBySubjectContaining(matiere);
     }
 
     public List<Exam> getExamsByTeacherName(String nomProf) {

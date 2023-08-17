@@ -7,12 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student,Long> {
     List<Student> findByClassroomId(Long id);
-    Optional<Student> findByRegistrationNumber(String registrationNumber);
+    List<Student> findByRegistrationNumberContaining(String registrationNumber);
 
     @Query("SELECT COUNT(s) FROM Student s WHERE s.classroom.id = :classroomId")
     int countStudentByClassroomId(@Param("classroomId") Long classroomId);

@@ -25,9 +25,4 @@ public class SchoolYear {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
 
-    public SchoolYear(String year, LocalDate startDate, LocalDate endDate) {
-        this.year = year;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
 }

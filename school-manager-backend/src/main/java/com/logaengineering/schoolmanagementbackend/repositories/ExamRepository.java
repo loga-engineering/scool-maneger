@@ -11,7 +11,7 @@ import java.util.List;
 public interface ExamRepository extends JpaRepository<Exam,Long> {
 
     List<Exam> findByExamDate(LocalDate examDate);
-    List<Exam> findBySubject(String subject);
+    List<Exam> findBySubjectContaining(String subject);
     List<Exam> findByTeacherName(String teacherName);
 
 }

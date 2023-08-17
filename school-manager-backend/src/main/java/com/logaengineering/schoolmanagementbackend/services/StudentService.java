@@ -36,9 +36,9 @@ public class StudentService {
         return student;
     }
 
-    public Student getStudentByRegistrationNumber(String registrationNumber) {
-        Student student = studentRepository.findByRegistrationNumber(registrationNumber).orElseThrow(() -> new EntityNotFoundException("Student not found !"));
-        return student;
+    public List<Student> getStudentsByRegistrationNumber(String registrationNumber) {
+        List<Student> students = studentRepository.findByRegistrationNumberContaining(registrationNumber);
+        return students;
     }
 
     public List<Student> getStudentsByClassroomId(Long classroomId) {
