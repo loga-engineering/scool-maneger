@@ -18,12 +18,18 @@ import { useFindSchoolYears} from "../school-year-services";
 import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
 import {schoolYearConfig} from "@/features/school-years/school-year-config";
 import ListToolBar from "@/shared/components/list-tool-bar";
+import {useRouter} from "next/navigation";
+import {classroomConfig} from "@/features/classrooms/classroom-config";
 
 export default function SchoolYearList() {
 
+    const router = useRouter();
+
     const [query, setQuery] = useState();
     const {data: currentValue, isLoading, refetch} = useFindSchoolYears({query});
-
+    const handleClick = (value) => {
+        router.push(classroomConfig.path.root);
+    };
 
     return (
             <ListToolBar refetch={refetch} label={"Année scolaire"} length={4} query={query} setQuery={setQuery} config={schoolYearConfig}>
@@ -32,10 +38,10 @@ export default function SchoolYearList() {
                 <Table>
                     <TableHead>
                         <TableRow>
-                            <TableCell>{"ID"}</TableCell>
-                            <TableCell>{"Année"}</TableCell>
-                            <TableCell>{"Date de début"}</TableCell>
-                            <TableCell>{"Date de fin"}</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold'}}>{"ID"}</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold'}}>{"Année"}</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold'}}>{"Date de début"}</TableCell>
+                            <TableCell sx={{ fontWeight: 'bold'}}>{"Date de fin"}</TableCell>
                             <TableCell>{""}</TableCell>
                         </TableRow>
                     </TableHead>
@@ -43,7 +49,7 @@ export default function SchoolYearList() {
                     {currentValue && (
                         <TableBody>
                             {currentValue.map(value => (
-                                <TableRow key={value.id}>
+                                <TableRow key={value.id} onClick={() => handleClick(value)}>
                                     <TableCell>{value.id}</TableCell>
                                     <TableCell>{value.year}</TableCell>
                                     <TableCell>{value.startDate}</TableCell>

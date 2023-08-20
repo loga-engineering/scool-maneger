@@ -1,7 +1,10 @@
 package com.logaengineering.schoolmanagementbackend.controllers;
 
+import com.logaengineering.schoolmanagementbackend.domains.dto.SearchData;
 import com.logaengineering.schoolmanagementbackend.domains.entities.Grade;
+import com.logaengineering.schoolmanagementbackend.domains.entities.Student;
 import com.logaengineering.schoolmanagementbackend.services.GradeService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,11 @@ public class GradeController {
     public ResponseEntity<Grade> createGrade(@RequestBody Grade grade) {
         Grade newGrade = gradeService.createGrade(grade);
         return ResponseEntity.status(HttpStatus.CREATED).body(newGrade);
+    }
+
+    @PostMapping("search")
+    public ResponseEntity<Page<Grade>> searchStudents(@RequestBody SearchData searchData) {
+        return ResponseEntity.ok(gradeService.searchGrades(searchData));
     }
 
     @GetMapping()

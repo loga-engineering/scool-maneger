@@ -69,7 +69,7 @@ export const findGradeById = async (id) => {
     }
 
 };
-export const useFindGradeById = ({query}) => {
+export const useFindGradeById = (query) => {
 
     if(query) {
         const queryKey = ["grade", "id", query];

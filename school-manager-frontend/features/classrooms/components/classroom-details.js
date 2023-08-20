@@ -1,14 +1,10 @@
-import React, {useEffect, useState} from 'react';
 import {Card, Stack, TextField} from "@mui/material";
-import {countStudentsByClassroomId} from "@/features/students/student-services";
+import {useCountStudents} from "@/features/students/student-services";
 
 export default function ClassroomDetails({currentValue}) {
 
-    const [numberOfStudents, setNumberOfStudents] = useState(0);
+    const {data: numberOfStudents, isLoading, isError, error, refetch} = useCountStudents(currentValue.id);
 
-    useEffect(() => {
-        countStudentsByClassroomId(currentValue.id).then(setNumberOfStudents).finally(() => console.log("====>", numberOfStudents));
-    }, []);
 
     return (
         <Card>

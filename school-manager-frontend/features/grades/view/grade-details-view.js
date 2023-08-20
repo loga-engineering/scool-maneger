@@ -1,14 +1,12 @@
 "use client";
 
-import React, {useState} from "react";
 import {Box, LinearProgress, Stack, Typography} from "@mui/material";
 import GradeDetails from "../components/grade-details";
 import {useFindGradeById} from "@/features/grades/grade-services";
 
 export default function GradeDetailsView({id}) {
 
-    const [query, setQuery] = useState(id);
-    const {data: currentValue, isLoading, isError, error, refetch} = useFindGradeById({query});
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindGradeById(id);
 
 
 

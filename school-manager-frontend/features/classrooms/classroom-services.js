@@ -1,8 +1,9 @@
 import axios from "axios";
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {useMutation, useQuery} from "@tanstack/react-query";
+import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 
 const urlBase = process.env.BACKEND_URL + "classrooms";
+
 
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllClassrooms = async () => {
@@ -15,9 +16,17 @@ export const findAllClassrooms = async () => {
     }
 
 };
-export const findClassroomsByName = async ({query}) => {
+export const useFindAllClassrooms = () => {
+
+        const queryKey = ["classrooms", "all"];
+        const queryFn = () => findAllClassrooms();
+
+        return useQuery({queryKey, queryFn});
+
+}
+export const findClassroomsByName = async (name) => {
     try {
-        const url = urlBase + "/names/" + query;
+        const url = urlBase + "/names/" + name;
         console.log("=======+> url: ", url);
         const {data} = await axios.get(url);
         return data;
@@ -27,41 +36,24 @@ export const findClassroomsByName = async ({query}) => {
     }
 
 };
-export const useSearchClassrooms = ({query}) => {
-    if (!query) {
-        const queryKey = ["classrooms", "all"];
+export const useFindClassrooms = ({query}) => {
+
+    if(!query){
+        const queryKey = ["classrooms", "all", "usefindclassrooms", query];
         const queryFn = () => findAllClassrooms();
 
         return useQuery({queryKey, queryFn});
+
     }
     const isValid = /^[a-z0-9]+$/i.test(query);
     if (isValid) {
-
         const queryKey = ["classroom", "name", query];
-        const queryFn = () => findClassroomsByName({query});
+        const queryFn = () => findClassroomsByName(query);
 
         return useQuery({queryKey, queryFn});
     }
-
 }
 
-//////////////////////////////////   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-export const findAllClassroomNames = async () => {
-    try {
-        const {data} = await axios.get(urlBase);
-        const classrooms = [];
-
-        data.map((classroom) => {
-            const temp = {id : classroom.id, name : classroom.name};
-            classrooms.push(temp);
-        });
-        console.log("=====>", classrooms);
-        return classrooms;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-};
 
 ////////////////////////////////// findById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findClassroomById = async (id) => {
@@ -76,15 +68,14 @@ export const findClassroomById = async (id) => {
     }
 
 };
-export const useFindClassroomById = ({query}) => {
+export const useFindClassroomById = (id) => {
 
-    if(query) {
-        const queryKey = ["classroom", "id", query];
-        const queryFn = () => findClassroomById(query);
+    if(id) {
+        const queryKey = ["classroom", "id", id];
+        const queryFn = () => findClassroomById(id);
 
         return useQuery({queryKey, queryFn});
     }
-
 }
 
 ////////////////////////////////// create fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

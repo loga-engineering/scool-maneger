@@ -18,6 +18,9 @@ const useValidationSchema = ({currentValue}) => useMemo(() => {
         name: Yup.string().default("").required("Le nom est obligatoire"),
         level: Yup.string().default("").required("Le niveau est obligatoire"),
         headTeacherName: Yup.string().default(""),
+        schoolYear: Yup.object().shape({
+            id: Yup.number().required("Ce champ est obligatoire"),
+        }),
     });
 
     return generateValues({currentValue, validationSchema});

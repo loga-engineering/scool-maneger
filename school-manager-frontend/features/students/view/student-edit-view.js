@@ -1,17 +1,15 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import StudentEditForm from "@/features/students/components/student-edit-form";
 import {useFindStudentById} from "@/features/students/student-services";
+import StudentNewEditForm from "@/features/students/components/student-new-edit-form";
 
 
 
 export default function StudentEditView({id}) {
 
-    const [query, setQuery] = useState(id);
-    const {data: currentValue, isLoading, isError, error, refetch} = useFindStudentById({query});
-
+    const {data: currentValue, isLoading, refetch} = useFindStudentById(id);
 
     return (
         <Box p={3}>
@@ -20,7 +18,7 @@ export default function StudentEditView({id}) {
                     {"Modifier les informations d'un élève"}
                 </Typography>
 
-                {currentValue && <StudentEditForm currentValue={currentValue}/>}
+                {currentValue && <StudentNewEditForm currentValue={currentValue} isEdit />}
 
             </Stack>
         </Box>

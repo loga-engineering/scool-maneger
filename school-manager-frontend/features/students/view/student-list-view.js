@@ -1,14 +1,17 @@
 "use client";
-import {
-    Box,
-    Stack,
-    Typography,
-} from "@mui/material";
-import * as React from "react";
+
+import {useState} from "react";
+import {Box, Stack, Tab, Tabs, Typography} from "@mui/material";
+
 import StudentList from "@/features/students/components/student-list";
+import StudentTable from "@/features/students/components/student-table";
 
 export default function StudentListView() {
 
+    const [current, setCurrent] = useState(0);
+    const handleChange = (event, newValue) => {
+        setCurrent(newValue);
+    };
 
     return (
         <Box>
@@ -20,8 +23,18 @@ export default function StudentListView() {
                 </Typography>
 
             </Stack>
+            <Box>
+                <Stack direction={"row"} justifyContent={"normal"} pl={3}>
+                    <Tabs value={current} onChange={handleChange}>
+                        <Tab label="LISTE" />
+                        <Tab label="TABLE" />
+                    </Tabs>
+                </Stack>
 
-            <StudentList />
+                {current === 0 && <StudentList />}
+                {current === 1 && <StudentTable />}
+            </Box>
+
         </Box>
     );
 }

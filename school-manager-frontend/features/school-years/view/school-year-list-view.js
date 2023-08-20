@@ -1,13 +1,16 @@
 "use client";
-
-import {Box, Button, Stack, Typography} from "@mui/material";
+import {useState} from "react";
+import {Box, Stack, Tab, Tabs, Typography} from "@mui/material";
 import SchoolYearTable from "../components/school-year-table";
 import SchoolYearList from "@/features/school-years/components/school-year-list";
-import {useState} from "react";
 
 export default function SchoolYearListView() {
 
-    const [current, setCurrent] = useState('table');
+    const [current, setCurrent] = useState(0);
+
+    const handleChange = (event, newValue) => {
+        setCurrent(newValue);
+    };
 
     return (
         <Box>
@@ -19,28 +22,15 @@ export default function SchoolYearListView() {
             </Stack>
 
             <Box>
-                <Stack direction={"row"} justifyContent={"normal"} alignItems={"center"}>
-                    <Button
-                        variant={current === "liste" && "outlined"}
-                        onClick={() => setCurrent('liste')}
-                    >
-                        LISTE
-                    </Button>
-
-                    <Button
-                        variant={current === "table" && "outlined"}
-                        onClick={() => setCurrent('table')}
-                    >
-                        TABLE
-                    </Button>
+                <Stack direction={"row"} justifyContent={"normal"} pl={3}>
+                    <Tabs value={current} onChange={handleChange}>
+                        <Tab label="LISTE" />
+                        <Tab label="TABLE" />
+                    </Tabs>
                 </Stack>
 
-
-
-                {current === 'liste' && <SchoolYearList />}
-
-                {current === 'table' && <SchoolYearTable />}
-
+                {current === 0 && <SchoolYearList />}
+                {current === 1 && <SchoolYearTable />}
             </Box>
 
         </Box>

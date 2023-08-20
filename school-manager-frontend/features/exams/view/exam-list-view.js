@@ -1,15 +1,18 @@
 "use client";
 
-import React from "react";
-import {
-    Box,
-    Stack,
-    Typography,
+import React, {useState} from "react";
+import {Box, Stack, Tab, Tabs, Typography} from "@mui/material";
 
-} from "@mui/material";
 import ExamList from "@/features/exams/components/exam-list";
+import ExamTable from "@/features/exams/components/exam-table";
 
 export default function ExamListView() {
+
+    const [current, setCurrent] = useState(0);
+
+    const handleChange = (event, newValue) => {
+        setCurrent(newValue);
+    };
 
     return (
         <Box>
@@ -19,7 +22,19 @@ export default function ExamListView() {
                 </Typography>
 
             </Stack>
-            <ExamList/>
+
+            <Box>
+                <Stack direction={"row"} justifyContent={"normal"} pl={3}>
+                    <Tabs value={current} onChange={handleChange}>
+                        <Tab label="LISTE" />
+                        <Tab label="TABLE" />
+                    </Tabs>
+                </Stack>
+
+                {current === 0 && <ExamList />}
+                {current === 1 && <ExamTable />}
+
+            </Box>
 
         </Box>
     );

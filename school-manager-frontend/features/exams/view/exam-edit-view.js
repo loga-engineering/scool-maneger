@@ -1,16 +1,14 @@
 "use client";
 
-import React, {useEffect, useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import ExamEditForm from "@/features/exams/components/exam-edit-form";
 import {useFindExamById} from "@/features/exams/exam-services";
+import ExamNewEditForm from "@/features/exams/components/exam-new-edit-form";
 
 
 
 export default function ExamEditView({id}) {
 
-    const [query, setQuery] = useState(id);
-    const {data: currentValue, isLoading, isError, error} = useFindExamById({query});
+    const {data: currentValue, isLoading} = useFindExamById(id);
 
     return (
         <Box p={3}>
@@ -19,7 +17,7 @@ export default function ExamEditView({id}) {
                     {"Modifier un examen"}
                 </Typography>
 
-                {currentValue && <ExamEditForm currentValue={currentValue}/>}
+                {currentValue && <ExamNewEditForm currentValue={currentValue} isEdit />}
 
             </Stack>
         </Box>

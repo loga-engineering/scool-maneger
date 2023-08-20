@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import GradeNewForm from "../components/grade-new-form";
+import GradeNewEditForm from "@/features/grades/components/grades-new-edit-form";
 
 export default function GradeNewView() {
     return (
@@ -12,7 +12,7 @@ export default function GradeNewView() {
                     {"Donner une note"}
                 </Typography>
 
-                <GradeNewForm/>
+                <GradeNewEditForm isEdit={false}/>
             </Stack>
         </Box>
     );

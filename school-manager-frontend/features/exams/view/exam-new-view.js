@@ -2,7 +2,7 @@
 
 import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import ExamNewForm from "@/features/exams/components/exam-new-form";
+import ExamNewEditForm from "@/features/exams/components/exam-new-edit-form";
 
 export default function ExamNewView() {
     return (
@@ -12,7 +12,7 @@ export default function ExamNewView() {
                     {"Ajouter un examen"}
                 </Typography>
 
-                <ExamNewForm/>
+                <ExamNewEditForm isEdit={false}/>
             </Stack>
         </Box>
     );

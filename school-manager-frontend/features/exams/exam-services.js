@@ -16,6 +16,17 @@ export const findAllExams = async () => {
     }
 
 };
+
+export const useFindAllExams = () => {
+
+    const queryKey = ["exams", "all"];
+    const queryFn = () => findAllExams();
+
+    return useQuery({queryKey, queryFn});
+}
+
+////////////////////////////////// findExamBySubject fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+
 export const findExamBySubject = async (subject) => {
     try {
         const url = urlBase + "/subjects/" + subject;
@@ -27,18 +38,13 @@ export const findExamBySubject = async (subject) => {
         throw error;
     }
 };
-export const useSearchExams = ({query}) => {
-    if(!query) {
-        const queryKey = ["exams", "all"];
-        const queryFn = () => findAllExams();
 
-        return useQuery({queryKey, queryFn});
-    }else{
-        const queryKey = ["exams", "subjects", query];
-        const queryFn = () => findExamBySubject(query);
+export const useFindExamBySubject = (query) => {
 
-        return useQuery({queryKey, queryFn});
-    }
+    const queryKey = ["exams", "subjects", query];
+    const queryFn = () => findExamBySubject(query);
+
+    return useQuery({queryKey, queryFn});
 };
 
 ////////////////////////////////// findById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
@@ -53,11 +59,11 @@ export const findExamById = async (id) => {
         throw error;
     }
 };
-export const useFindExamById = ({query}) => {
+export const useFindExamById = (id) => {
 
-    if(query) {
-        const queryKey = ["exam", "id", query];
-        const queryFn = () => findExamById(query);
+    if(id) {
+        const queryKey = ["exam", "id", id];
+        const queryFn = () => findExamById(id);
 
         return useQuery({queryKey, queryFn});
     }

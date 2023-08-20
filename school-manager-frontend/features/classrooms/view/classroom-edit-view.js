@@ -1,6 +1,5 @@
 "use client";
 
-import {useState} from "react";
 import {Box, Stack, Typography} from "@mui/material";
 import {useFindClassroomById} from "../classroom-services";
 import ClassroomNewEditForm from "@/features/classrooms/components/classroom-new-edit-form";
@@ -8,8 +7,7 @@ import ClassroomNewEditForm from "@/features/classrooms/components/classroom-new
 
 export default function ClassroomEditView({id}) {
 
-    const [query, setQuery] = useState(id);
-    const {data: currentValue, isLoading, isError, error, refetch} = useFindClassroomById({query});
+    const {data: currentValue, isLoading} = useFindClassroomById(id);
 
     return (
         <Box p={3}>
@@ -18,7 +16,6 @@ export default function ClassroomEditView({id}) {
                     {"Modifier les informations d'une classe"}
                 </Typography>
 
-                {/*{currentValue && <ClassroomEditForm currentValue={currentValue}/>}*/}
                 {currentValue && <ClassroomNewEditForm currentValue={currentValue} isEdit />}
 
             </Stack>

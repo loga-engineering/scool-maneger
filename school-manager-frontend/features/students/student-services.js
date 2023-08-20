@@ -24,7 +24,7 @@ export const findByRegistrationNumber = async ({query}) => {
         return data;
     } catch (error) {
         console.error("===> ", error);
-        // throw error;
+        throw error;
     }
 
 };
@@ -60,14 +60,12 @@ export const findStudentById = async (id) => {
 
 };
 
-export const useFindStudentById = ({query}) => {
+export const useFindStudentById = (id) => {
 
-    if(query) {
-        const queryKey = ["student", "id", query];
-        const queryFn = () => findStudentById(query);
+    const queryKey = ["student", "id", id];
+    const queryFn = () => findStudentById(id);
 
-        return useQuery({queryKey, queryFn});
-    }
+    return useQuery({queryKey, queryFn});
 
 }
 
@@ -75,18 +73,28 @@ export const useFindStudentById = ({query}) => {
 ////////////////////////////////// findByClassroomId fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findByClassroomId = async (id) => {
     try {
-        const url = urlBase + "/classroom/" + id;
-        console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
-        return data;
+        if(id){
+            const url = urlBase + "/classroom/" + id;
+            console.log("=======+> url: ", url);
+            const {data} = await axios.get(url);
+            return data;
+        }
     } catch (error) {
         console.error("===> ", error);
         throw error;
     }
 
 };
+export const useFindByClassroomId = (id) => {
 
-////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        const queryKey = ["useFindByClassroomId", "students", "classroom id"];
+        const queryFn = () => findByClassroomId(id);
+
+        return useQuery({queryKey, queryFn});
+
+}
+
+////////////////////////////////// createStudent fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const createStudent = async (student) => {
     const {data} = await axios.post(urlBase, student);
 
@@ -97,7 +105,7 @@ export const useCreateStudent = () => {
     return useMutation((student) => createStudent(student));
 };
 
-////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////// deleteStudentById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const deleteStudentById = async (id) => {
     try {
         const url = urlBase + "/" + id;
@@ -121,7 +129,7 @@ export const useDeleteStudent = () => {
     return useMutation((id) => deleteStudentById(id));
 };
 
-////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////// updateStudentById fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const updateStudentById = async (id, student) => {
     try {
         const url = urlBase + "/" + id;
@@ -138,7 +146,7 @@ export const useEditStudent = (id, student) => {
     return useMutation(() => updateStudentById(id, student));
 };
 
-//////////////////////////////////   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+////////////////////////////////// useCountStudents  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const countStudentsByClassroomId = async (id) => {
     try {
         const url = urlBase + "/count/" + id;
@@ -152,3 +160,11 @@ export const countStudentsByClassroomId = async (id) => {
 
 };
 
+export const useCountStudents = (classroomId) => {
+
+    const queryKey = ["students", "classroom", classroomId];
+    const queryFn = () => countStudentsByClassroomId(classroomId);
+
+    return useQuery({queryKey, queryFn});
+
+}

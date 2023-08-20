@@ -5,31 +5,32 @@ import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, Link, Stack, Tooltip} from "@mui/material";
 
-import {schoolYearConfig} from "../school-year-config";
+import {classroomConfig} from "@/features/classrooms/classroom-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
 
 const useColumns = () => useMemo(() => [
+
     {
-        accessorKey: 'id',
-        header: 'ID',
+        accessorKey: 'name',
+        header: 'Nom',
     },
     {
-        accessorKey: 'year',
-        header: 'Année',
+        accessorKey: 'level',
+        header: 'Niveau',
     },
     {
-        accessorKey: 'startDate',
-        header: 'Date de début',
+        accessorKey: 'headTeacherName',
+        header: 'Prof. Titulaire',
     },
     {
-        accessorKey: 'endDate',
-        header: 'Date de fin',
+        accessorKey: 'schoolYear.year',
+        header: 'Année scolaire',
     },
 ], []);
 
 
-export default function SchoolYearTable() {
+export default function ClassroomTable() {
     const [sort, setSort] = useState([]);
     const [globalFilter, setGlobalFilter] = useState("");
     const [columnFilters, setColumnFilters] = useState([]);
@@ -37,7 +38,7 @@ export default function SchoolYearTable() {
 
     const {data: currentPage, isLoading, isError, error, refetch} = useSearch({
             query: globalFilter, page: pagination.pageIndex, size: pagination.pageSize, sort, filter: columnFilters,
-            path: schoolYearConfig.path.search
+            path: classroomConfig.path.search
     });
 
     const columns = useColumns();
@@ -77,7 +78,7 @@ export default function SchoolYearTable() {
                             <Refresh/>
                         </IconButton>
                     </Tooltip>
-                    <Link href={schoolYearConfig.path.new}>
+                    <Link href={classroomConfig.path.new}>
                         <Tooltip arrow title="Ajouter">
                             <IconButton>
                                 <Add/>

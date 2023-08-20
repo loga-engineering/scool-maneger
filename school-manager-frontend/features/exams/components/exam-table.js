@@ -5,7 +5,7 @@ import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, Link, Stack, Tooltip} from "@mui/material";
 
-import {schoolYearConfig} from "../school-year-config";
+import {examConfig} from "../exam-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
 
@@ -15,21 +15,21 @@ const useColumns = () => useMemo(() => [
         header: 'ID',
     },
     {
-        accessorKey: 'year',
-        header: 'Année',
+        accessorKey: 'subject',
+        header: 'Matière',
     },
     {
-        accessorKey: 'startDate',
-        header: 'Date de début',
+        accessorKey: 'teacherName',
+        header: 'Nom prof.',
     },
     {
-        accessorKey: 'endDate',
-        header: 'Date de fin',
+        accessorKey: 'examDate',
+        header: "Date d'examen",
     },
 ], []);
 
 
-export default function SchoolYearTable() {
+export default function ExamTable() {
     const [sort, setSort] = useState([]);
     const [globalFilter, setGlobalFilter] = useState("");
     const [columnFilters, setColumnFilters] = useState([]);
@@ -37,7 +37,7 @@ export default function SchoolYearTable() {
 
     const {data: currentPage, isLoading, isError, error, refetch} = useSearch({
             query: globalFilter, page: pagination.pageIndex, size: pagination.pageSize, sort, filter: columnFilters,
-            path: schoolYearConfig.path.search
+            path: examConfig.path.search
     });
 
     const columns = useColumns();
@@ -77,7 +77,7 @@ export default function SchoolYearTable() {
                             <Refresh/>
                         </IconButton>
                     </Tooltip>
-                    <Link href={schoolYearConfig.path.new}>
+                    <Link href={examConfig.path.new}>
                         <Tooltip arrow title="Ajouter">
                             <IconButton>
                                 <Add/>

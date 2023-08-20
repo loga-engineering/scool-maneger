@@ -12,7 +12,7 @@ import {
     TableContainer,
     TableHead,
     TableRow,
-    Tooltip,Typography
+    Tooltip
 } from "@mui/material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
@@ -21,6 +21,7 @@ import {useSearchGrades} from "@/features/grades/grade-services";
 import GradeDelete from "@/features/grades/components/grade-delete";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import {gradeConfig} from "@/features/grades/grade-config";
 
 export default function GradeList() {
 
@@ -71,12 +72,12 @@ export default function GradeList() {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>{"Date d'examen"}</TableCell>
-                                <TableCell>{"Matière"}</TableCell>
-                                <TableCell>{"Note"}</TableCell>
-                                <TableCell>{"Nom"}</TableCell>
-                                <TableCell>{"Prénom"}</TableCell>
-                                <TableCell>{"Classe"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Date d'examen"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Matière"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Note"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Nom"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Prénom"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Classe"}</TableCell>
                                 <TableCell>{""}</TableCell>
                             </TableRow>
                         </TableHead>
@@ -93,13 +94,13 @@ export default function GradeList() {
                                         <TableCell>{value.student.classroom.name}</TableCell>
                                         <TableCell>
                                             <Stack direction={"row"} spacing={0}>
-                                                <Link href={"grades/"+value.id}>
+                                                <Link href={gradeConfig.path.details(value.id)}>
                                                     <Tooltip title="Détails">
                                                         <IconButton><VisibilityIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </Link>
-                                                <Link href={"grades/edit/"+value.id}>
+                                                <Link href={gradeConfig.path.edit(value.id)}>
                                                     <Tooltip title="Modifier">
                                                         <IconButton><EditIcon />
                                                         </IconButton>

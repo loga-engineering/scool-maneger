@@ -6,6 +6,7 @@ const path = {
     new: `${endpoint}/new`,
     details: (id) => `${endpoint}/${id}`,
     edit: (id) => `${endpoint}/${id}/edit`,
+    search: `school-years/search`
 }
 
 

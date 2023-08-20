@@ -1,27 +1,31 @@
 import * as React from 'react';
-import Link from 'next/link';
-import {Box, Card, CardContent, Container, Grid, Typography} from "@mui/material";
+import {Box, Card, CardActionArea, CardContent, Container, Grid, Typography} from "@mui/material";
 
 
 const modules = [
     {
         label: "Gestion années scolaire",
-        href: "/school-years"
+        href: "/school-years",
+        description : "rechercher, modifier, ajouter, supprimer..."
     },
     {
         label: "Gestion classes",
-        href: "/classrooms"
+        href: "/classrooms",
+        description : "rechercher, modifier, ajouter, supprimer..."
     },
     {
         label: "Gestion élèves",
-        href: "/students"
+        href: "/students",
+        description : "rechercher, modifier, ajouter, supprimer..."
     },
     {
         label: "Gestion examens",
-        href: "/exams"
+        href: "/exams",
+        description : "rechercher, modifier, ajouter, supprimer..."
     },{
         label: "Gestion notes",
-        href: "/grades"
+        href: "/grades",
+        description : "rechercher, modifier, ajouter, supprimer..."
     }
 ]
 
@@ -37,15 +41,18 @@ export default function Home() {
             <Grid container spacing={3}>
                 {modules.map(model => (
                     <Grid key={model.href} item xs={4}>
-                        <Link href={model.href}>
                             <Card>
-                                <CardContent>
-                                    <Typography>
-                                        {model.label}
-                                    </Typography>
-                                </CardContent>
+                                <CardActionArea href={model.href}>
+                                    <CardContent>
+                                        <Typography color={"primary.main"}>
+                                            {model.label}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {model.description}
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
                             </Card>
-                        </Link>
                     </Grid>
                 ))}
 

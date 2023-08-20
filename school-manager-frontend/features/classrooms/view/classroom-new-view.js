@@ -12,7 +12,6 @@ export default function ClassroomNewView() {
                     {"Ajouter une classe"}
                 </Typography>
 
-                {/*<ClassroomNewForm/>*/}
                 <ClassroomNewEditForm isEdit={false} />
 
             </Stack>

@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useState} from "react";
+import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import GradeEditForm from "@/features/grades/components/grade-edit-form";
 import {useFindGradeById} from "@/features/grades/grade-services";
+import GradeNewEditForm from "@/features/grades/components/grades-new-edit-form";
 
 
 export default function GradeEditView({id}) {
 
-    const [query, setQuery] = useState(id);
-    const {data: currentValue, isLoading, isError, error} = useFindGradeById({query});
+    const {data: currentValue, isLoading, isError, error} = useFindGradeById(id);
 
 
     return (
@@ -19,7 +18,7 @@ export default function GradeEditView({id}) {
                     {"Modifier la note"}
                 </Typography>
 
-                {currentValue && <GradeEditForm currentValue={currentValue}/>}
+                {currentValue && <GradeNewEditForm currentValue={currentValue} isEdit />}
 
             </Stack>
         </Box>

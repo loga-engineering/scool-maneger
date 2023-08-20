@@ -1,15 +1,15 @@
 
 
-const endpoint = "/classrooms";
+const endpoint = "/exams";
 const path = {
     root: endpoint,
     new: `${endpoint}/new`,
     details: (id) => `${endpoint}/${id}`,
     edit: (id) => `${endpoint}/${id}/edit`,
-    search: `classrooms/search`
+    search: `exams/search`
 }
 
 
-export const classroomConfig = {
+export const examConfig = {
     path,
 }

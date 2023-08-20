@@ -1,6 +1,4 @@
-import React, {useEffect, useState} from 'react';
-import {Card, InputLabel, MenuItem, Select, Stack, TextField, Typography} from "@mui/material";
-import {countStudentsByClassroomId} from "@/features/students/student-services";
+import {Card, Stack, TextField, Typography} from "@mui/material";
 
 export default function GradeDetails({currentValue}) {
 
@@ -44,7 +42,7 @@ export default function GradeDetails({currentValue}) {
                     />
                     <TextField
                         fullWidth
-                        label="Nom"
+                        label="Classe"
                         value={currentValue.student.classroom.name}
                         InputProps={{readOnly: true}}
                     />

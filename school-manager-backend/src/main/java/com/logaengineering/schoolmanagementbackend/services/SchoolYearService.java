@@ -1,5 +1,6 @@
 package com.logaengineering.schoolmanagementbackend.services;
 
+import com.logaengineering.schoolmanagementbackend.domains.dto.RequestData;
 import com.logaengineering.schoolmanagementbackend.domains.dto.SearchData;
 import com.logaengineering.schoolmanagementbackend.domains.entities.SchoolYear;
 import com.logaengineering.schoolmanagementbackend.repositories.SchoolYearRepository;
@@ -37,19 +38,21 @@ public class SchoolYearService {
     }
 
     public Page<SchoolYear> searchSchoolYears(SearchData searchData) {
-        String table = "school_years";
+        final String table = "school_years";
 
+        /// Column filters \\\
         List<String> conditions = searchData.getFilter().stream().map(filteringData -> {
             if (filteringData.getId().equals("year")) {
-                return "year like \"%" + filteringData.getValue() + "%\"";
+                return searchData.comparisonQuery("year",filteringData.getValue());
             } else if (filteringData.getId().equals("startDate")) {
-                return "start_date <= \"" + filteringData.getValue() + "\"";
+                return searchData.beforeDateQuery("start_date",filteringData.getValue());
             } else if (filteringData.getId().equals("endDate")) {
-                return "end_date >= \"" + filteringData.getValue() + "\"";
+                return searchData.afterDateQuery("end_date",filteringData.getValue());
             }
-            return filteringData.getId() + " like \"%" + filteringData.getValue() + "%\"";
+            return searchData.comparisonQuery(filteringData.getId(),filteringData.getValue());
         }).collect(Collectors.toList());
 
+        /// Sorting \\\
         List<String> sort = searchData.getSort().stream().map(sortingData -> {
             String column;
             if (sortingData.getId().equals("year")) {
@@ -64,27 +67,14 @@ public class SchoolYearService {
             return column + " " + (sortingData.isDesc() ? "desc" : "asc");
         }).collect(Collectors.toList());
 
-        String request = "select * from " + table;
-        if (!conditions.isEmpty()) {
-            String condition = String.join(" and ", conditions);
-            request += " where " + condition;
-        }
-        if (!sort.isEmpty()) {
-            String orderBy = String.join(", ", sort);
-            request += " order by " + orderBy;
-        }
+        RequestData requestData = new RequestData();
+        Pageable pageable = searchData.setRequest(table,sort,conditions,requestData);
 
-        String countRequest = "select count(*) nb from (" + request + ") t";
+        log.info("======> request: {}", requestData.getRequest());
+        log.info("======> countRequest: {}", requestData.getCountRequest());
 
-        Pageable pageable = PageRequest.of(searchData.getPage(), searchData.getSize());
-        long offset = pageable.getOffset();
-        request += " limit " + offset + ", " + searchData.getSize();
-
-        log.info("======> request: {}", request);
-        log.info("======> countRequest: {}", countRequest);
-
-        List<SchoolYear> content = entityManager.createNativeQuery(request, SchoolYear.class).getResultList();
-        Long totalCount = jdbcTemplate.queryForObject(countRequest, Long.class);
+        List<SchoolYear> content = entityManager.createNativeQuery(requestData.getRequest(), SchoolYear.class).getResultList();
+        Long totalCount = jdbcTemplate.queryForObject(requestData.getCountRequest(), Long.class);
 
         return new PageImpl<>(content, pageable, totalCount);
     }

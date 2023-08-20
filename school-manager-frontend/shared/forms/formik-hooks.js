@@ -6,5 +6,6 @@ export const generateValues = ({validationSchema, currentValue}) => {
 
     const initialValues = merge({}, defaultValues, currentValue);
 
+    console.log("initialValues = ",initialValues);
     return {initialValues, validationSchema}
 }

@@ -1,7 +1,5 @@
 import React, { useState} from 'react';
 import {
-    Card,
-    CardHeader,
     IconButton,
     LinearProgress,
     Link,
@@ -14,17 +12,14 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import Alert from "@mui/material/Alert";
-import {Add, Refresh, Search} from "@mui/icons-material";
-import SearchField from "../../../shared/components/search-field";
-import {
-    deleteStudentById,
-    useSearchStudents
-} from "@/features/students/student-services";
-import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
+import ListToolBar from "@/shared/components/list-tool-bar";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
+import {examConfig} from "@/features/exams/exam-config";
+import {studentConfig} from "@/features/students/student-config";
+import { useSearchStudents} from "@/features/students/student-services";
 import StudentDelete from "@/features/students/components/student-delete";
 
 export default function StudentList() {
@@ -32,37 +27,23 @@ export default function StudentList() {
     const [query, setQuery] = useState();
     const {data: currentValue, isLoading, isError, error, refetch} = useSearchStudents({query});
 
+    const router = useRouter();
+    const handleClick = (value) => {
+        router.push(examConfig.path.root);
+    };
     return (
-        <Card>
-
-            <CardHeader
-                title={<SearchField query={query} setQuery={setQuery} label={"Matricule"} length={4}/>}
-                action={(
-                    <Stack direction={"row"}>
-                        <Link href={"students/new"}>
-                            <IconButton>
-                                <Add/>
-                            </IconButton>
-                        </Link>
-
-                        <IconButton onClick={refetch}>
-                            <Refresh/>
-                        </IconButton>
-                    </Stack>
-                )}
-            />
-
-
+            <ListToolBar refetch={refetch} label={"Matricule"} length={4} query={query} setQuery={setQuery} config={studentConfig}>
+                
                 <TableContainer sx={{minWidth: 700}}>
                     {isLoading && <LinearProgress/>}
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>{"Matricule"}</TableCell>
-                                <TableCell>{"Nom"}</TableCell>
-                                <TableCell>{"Prénom"}</TableCell>
-                                <TableCell>{"Date de Naissance"}</TableCell>
-                                <TableCell>{"Classe"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Matricule"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Nom"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Prénom"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Date de Naissance"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Classe"}</TableCell>
                                 <TableCell>{""}</TableCell>
                             </TableRow>
                         </TableHead>
@@ -70,7 +51,7 @@ export default function StudentList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id}>
+                                    <TableRow key={value.id} onClick={() => handleClick(value)}>
                                         <TableCell>{value.registrationNumber}</TableCell>
                                         <TableCell>{value.firstName}</TableCell>
                                         <TableCell>{value.lastName}</TableCell>
@@ -78,13 +59,13 @@ export default function StudentList() {
                                         <TableCell>{value.classroom.name}</TableCell>
                                         <TableCell>
                                             <Stack direction={"row"} spacing={0}>
-                                                <Link href={"students/"+value.id}>
+                                                <Link href={studentConfig.path.details(value.id) }>
                                                     <Tooltip title="Détails">
                                                         <IconButton><VisibilityIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </Link>
-                                                <Link href={"students/edit/"+value.id}>
+                                                <Link href={studentConfig.path.edit(value.id) }>
                                                     <Tooltip title="Modifier">
                                                         <IconButton><EditIcon />
                                                         </IconButton>
@@ -100,7 +81,7 @@ export default function StudentList() {
                     </Table>
                 </TableContainer>
 
-        </Card>
+            </ListToolBar>
 
     );
 }

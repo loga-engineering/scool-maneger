@@ -1,14 +1,14 @@
 "use client";
 
 import React from 'react';
-import Link from "next/link";
-import {Avatar, Box, ListItemButton, ListItemIcon, ListItemText, MenuItem, Stack, Typography} from "@mui/material";
-import {Home, School, CalendarMonth, Person} from "@mui/icons-material";
 import {usePathname} from "next/navigation";
 import GroupsIcon from '@mui/icons-material/Groups';
+import {Home, CalendarMonth} from "@mui/icons-material";
+import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import HistoryEduOutlinedIcon from '@mui/icons-material/HistoryEduOutlined';
-import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
+import {Avatar, Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack} from "@mui/material";
+
 
 const menus = [
     {
@@ -28,7 +28,7 @@ const menus = [
     },
     {
         icon: <GroupsIcon/>,
-        label: "Elèves",
+        label: "Eleves",
         href: "/students"
     },
     {
@@ -54,21 +54,21 @@ export default function SideBar() {
             <Box height={150} width={60} marginX={"auto"} p={1} pr={15} alignItems="center">
                     <Avatar alt="Loga School" src="/img.png" sx={{ width: 120, height: 120 }} />
             </Box>
-
+            <List>
             {menus.map(({label, href, icon}) => (
-                <Link key={href} href={href}  underline="none">
-                    <ListItemButton sx={{
-                        backgroundColor: theme => (pathname === href) && theme.palette.primary.light,
-                        color: 'text.secondary',
-                    }}>
-                        <ListItemIcon>
-                            {icon}
-                        </ListItemIcon>
-                        <ListItemText sx={{ textDecorationLine: 'none' }}>{label}</ListItemText>
-                    </ListItemButton>
-                </Link>
+                <ListItem key={href} disablePadding>
+                        <ListItemButton href={href} sx={{
+                            backgroundColor: theme => (pathname === href) && theme.palette.primary.light,
+                            color: 'text.secondary',
+                        }}>
+                            <ListItemIcon>
+                                {icon}
+                            </ListItemIcon>
+                            <ListItemText primary={label} variant={"h5"} sx={{ fontWeight: "bold" }}/>
+                        </ListItemButton>
+                </ListItem>
             ))}
-
+            </List>
         </Stack>
     );
 }

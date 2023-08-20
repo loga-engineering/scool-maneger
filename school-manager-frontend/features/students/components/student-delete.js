@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import Alert from "@mui/material/Alert";
-import {IconButton, Snackbar, Tooltip} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {IconButton, Snackbar, Tooltip} from "@mui/material";
+
 import {useDeleteStudent} from "@/features/students/student-services";
 
 export default function StudentDelete({id, refetch}) {

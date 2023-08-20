@@ -5,31 +5,39 @@ import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, Link, Stack, Tooltip} from "@mui/material";
 
-import {schoolYearConfig} from "../school-year-config";
+import {gradeConfig} from "@/features/grades/grade-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
 
 const useColumns = () => useMemo(() => [
     {
-        accessorKey: 'id',
-        header: 'ID',
+        accessorKey: 'exam.examDate',
+        header: "Date d'examen",
     },
     {
-        accessorKey: 'year',
-        header: 'Année',
+        accessorKey: 'exam.subject',
+        header: 'Matière',
     },
     {
-        accessorKey: 'startDate',
-        header: 'Date de début',
+        accessorKey: 'value',
+        header: 'Note',
     },
     {
-        accessorKey: 'endDate',
-        header: 'Date de fin',
+        accessorKey: 'student.firstName',
+        header: 'Prénom',
+    },
+    {
+        accessorKey: 'student.lastName',
+        header: 'Nom',
+    },
+    {
+        accessorKey: 'student.classroom.name',
+        header: 'Classe',
     },
 ], []);
 
 
-export default function SchoolYearTable() {
+export default function GradeTable() {
     const [sort, setSort] = useState([]);
     const [globalFilter, setGlobalFilter] = useState("");
     const [columnFilters, setColumnFilters] = useState([]);
@@ -37,7 +45,7 @@ export default function SchoolYearTable() {
 
     const {data: currentPage, isLoading, isError, error, refetch} = useSearch({
             query: globalFilter, page: pagination.pageIndex, size: pagination.pageSize, sort, filter: columnFilters,
-            path: schoolYearConfig.path.search
+            path: gradeConfig.path.search
     });
 
     const columns = useColumns();
@@ -77,7 +85,7 @@ export default function SchoolYearTable() {
                             <Refresh/>
                         </IconButton>
                     </Tooltip>
-                    <Link href={schoolYearConfig.path.new}>
+                    <Link href={gradeConfig.path.new}>
                         <Tooltip arrow title="Ajouter">
                             <IconButton>
                                 <Add/>

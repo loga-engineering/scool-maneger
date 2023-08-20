@@ -1,7 +1,10 @@
 package com.logaengineering.schoolmanagementbackend.controllers;
 
+import com.logaengineering.schoolmanagementbackend.domains.dto.SearchData;
 import com.logaengineering.schoolmanagementbackend.domains.entities.Classroom;
+import com.logaengineering.schoolmanagementbackend.domains.entities.SchoolYear;
 import com.logaengineering.schoolmanagementbackend.services.ClassroomService;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +24,11 @@ public class ClassroomController {
     public ResponseEntity<Classroom> createClassroom(@RequestBody Classroom classroom) {
         Classroom newClassroom = classroomService.createClassroom(classroom);
         return ResponseEntity.status(HttpStatus.CREATED).body(newClassroom);
+    }
+
+    @PostMapping("search")
+    public ResponseEntity<Page<Classroom>> searchClassrooms(@RequestBody SearchData searchData) {
+        return ResponseEntity.ok(classroomService.searchClassrooms(searchData));
     }
 
     @PutMapping("{id}")

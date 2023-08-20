@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, Stack, TextField} from "@mui/material";
+import {Card, Stack, TextField} from "@mui/material";
 
 
 export default function StudentDetails({currentValue}) {
@@ -58,7 +58,6 @@ export default function StudentDetails({currentValue}) {
                 <TextField label="Classe"
                            value={currentValue.classroom.name}
                            InputProps={{readOnly: true}} />
-
 
             </Stack>
         </Card>

@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     IconButton,
     LinearProgress,
@@ -12,18 +12,25 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
+import {useRouter} from "next/navigation";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
-import {useSearchClassrooms} from "@/features/classrooms/classroom-services";
+
+import {useFindClassrooms} from "@/features/classrooms/classroom-services";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
 import {classroomConfig} from "@/features/classrooms/classroom-config";
 import ListToolBar from "@/shared/components/list-tool-bar";
+import {studentConfig} from "@/features/students/student-config";
 
 export default function ClassroomList() {
 
-    const [query, setQuery] = useState();
-    const {data: currentValue, isLoading, refetch} = useSearchClassrooms({query});
+    const [query, setQuery] = useState("");
+    const {data: currentValue, isLoading, refetch} = useFindClassrooms({query});
 
+    const router = useRouter();
+    const handleClick = (value) => {
+        router.push(studentConfig.path.root);
+    };
 
     return (
             <ListToolBar refetch={refetch} label={"Nom"} length={1} query={query} setQuery={setQuery} config={classroomConfig}>
@@ -34,10 +41,10 @@ export default function ClassroomList() {
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>{"Nom"}</TableCell>
-                                <TableCell>{"Niveau"}</TableCell>
-                                <TableCell>{"Prof. Titulaire"}</TableCell>
-                                <TableCell>{"Année scolaire"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Nom"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Niveau"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Prof. Titulaire"}</TableCell>
+                                <TableCell sx={{ fontWeight: 'bold'}}>{"Année scolaire"}</TableCell>
                                 <TableCell>{""}</TableCell>
                             </TableRow>
                         </TableHead>
@@ -45,7 +52,7 @@ export default function ClassroomList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id}>
+                                    <TableRow key={value.id} onClick={() => handleClick(value)}>
                                         <TableCell>{value.name}</TableCell>
                                         <TableCell>{value.level}</TableCell>
                                         <TableCell>{value.headTeacherName}</TableCell>

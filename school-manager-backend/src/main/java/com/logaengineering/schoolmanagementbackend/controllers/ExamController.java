@@ -1,7 +1,10 @@
 package com.logaengineering.schoolmanagementbackend.controllers;
 
+import com.logaengineering.schoolmanagementbackend.domains.dto.SearchData;
 import com.logaengineering.schoolmanagementbackend.domains.entities.Exam;
+import com.logaengineering.schoolmanagementbackend.domains.entities.SchoolYear;
 import com.logaengineering.schoolmanagementbackend.services.ExamService;
+import org.springframework.data.domain.Page;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,11 @@ public class ExamController {
     public ResponseEntity<Exam> createExam(@RequestBody Exam exam) {
         Exam newExam = examService.createExam(exam);
         return ResponseEntity.status(HttpStatus.CREATED).body(newExam);
+    }
+
+    @PostMapping("search")
+    public ResponseEntity<Page<Exam>> searchExams(@RequestBody SearchData searchData) {
+        return ResponseEntity.ok(examService.searchExams(searchData));
     }
 
     @PutMapping("{id}")

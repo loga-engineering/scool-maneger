@@ -5,25 +5,6 @@ import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/post
 const urlBase = process.env.BACKEND_URL + "school-years";
 
 
-////////////////////////////////// research fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-export const searchSchoolYears = async ({query, page, size, sort, filter}) => {
-    try {
-        console.log("======> ", {query, page, size, sort, filter});
-
-        const {data} = await axios.post(urlBase + "/search", {query, page, size, sort, filter});
-        return data;
-    } catch (error) {
-        console.error("===> ", error);
-        throw error;
-    }
-
-};
-export const useSearchSchoolYears = ({query, page, size, sort, filter}) => {
-    const queryKey = ["school-years", "all", query, page, size, sort, filter];
-    const queryFn = () => searchSchoolYears({query, page, size, sort, filter});
-    return useQuery({queryKey, queryFn});
-}
-
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
