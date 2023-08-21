@@ -102,7 +102,7 @@ public class StudentService {
             } else if (filteringData.getId().equals("registrationNumber")) {
                 return searchData.comparisonQuery("registration_number",filteringData.getValue());
             }
-            return searchData.comparisonQuery(filteringData.getId(),filteringData.getValue());
+            return searchData.comparisonQuery("c.name",filteringData.getValue());
         }).collect(Collectors.toList());
 
         /// Sorting \\\
@@ -117,20 +117,33 @@ public class StudentService {
             }else if (sortingData.getId().equals("dateOfBirth")) {
                 column = "date_of_birth";
             } else {
-                column = sortingData.getId();
+                column = "c.name";
             }
             return column + " " + (sortingData.isDesc() ? "desc" : "asc");
         }).collect(Collectors.toList());
 
+        String request = "select * from "+ table+" s, classrooms c where c.id = s.classroom_id ";
 
-        RequestData requestData = new RequestData();
-        Pageable pageable = searchData.setRequest(table,sort,conditions,requestData);
+        if (!conditions.isEmpty()) {
+            String condition = String.join(" and ", conditions);
+            request += " and "+condition;
+        }
+        if (!sort.isEmpty()) {
+            String orderBy = String.join(", ", sort);
+            request += " order by " + orderBy;
+        }
 
-        log.info("======> request: {}", requestData.getRequest());
-        log.info("======> countRequest: {}", requestData.getCountRequest());
+        String countRequest = "select count(*) nb from ( select s.id from " +table+ " s, classrooms c where c.id = s.classroom_id ) t";
 
-        List<Student> content = entityManager.createNativeQuery(requestData.getRequest(), Student.class).getResultList();
-        Long totalCount = jdbcTemplate.queryForObject(requestData.getCountRequest(), Long.class);
+        Pageable pageable = PageRequest.of(searchData.getPage(), searchData.getSize());
+        long offset = pageable.getOffset();
+        request += " limit " + offset + ", " + searchData.getSize();
+
+        log.info("======> request: {}", request);
+        log.info("======> countRequest: {}", countRequest);
+
+        List<Student> content = entityManager.createNativeQuery(request, Student.class).getResultList();
+        Long totalCount = jdbcTemplate.queryForObject(countRequest, Long.class);
 
         return new PageImpl<>(content, pageable, totalCount);
     }

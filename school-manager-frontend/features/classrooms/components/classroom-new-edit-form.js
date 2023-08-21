@@ -7,9 +7,9 @@ import {generateValues} from "@/shared/forms/formik-hooks";
 import FormikTextField from "../../../shared/forms/formik-text-field";
 import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
 import {formikSubmit} from "@/shared/forms/formik-submit";
-import {classroomConfig} from "@/features/classrooms/classroom-config";
+import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {createClassroom, updateClassroomById} from "@/features/classrooms/classroom-services";
-import {InputLabel, MenuItem, Select} from "@mui/material";
+import {Box, InputLabel, MenuItem, Select} from "@mui/material";
 import {useFindSchoolYears} from "@/features/school-years/school-year-services";
 
 
@@ -51,8 +51,15 @@ export default function ClassroomNewEditForm({currentValue, isEdit}) {
     return (
         <SimpleCardFormikForm formik={formik} isEdit={isEdit} onCancel={onCancel}>
 
-            <FormikTextField name={"name"} label={"Nom"}/>
-            <FormikTextField name={"level"} label={"Niveau"}/>
+            <Box display="flex" gap="16px">
+                <Box flex={1}>
+                    <FormikTextField name={"name"} label={"Nom"}/>
+                </Box>
+                <Box flex={1}>
+                    <FormikTextField name={"level"} label={"Niveau"}/>
+                </Box>
+            </Box>
+
             <FormikTextField name={"headTeacherName"} label={"Prof. Titulaire"}/>
 
             <InputLabel id="select-filled-label">Année scolaire</InputLabel>

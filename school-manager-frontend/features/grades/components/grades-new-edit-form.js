@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import {useRouter} from "next/navigation";
-import {InputLabel, MenuItem, Select} from "@mui/material";
+import {Box, InputLabel, MenuItem, Select} from "@mui/material";
 import React, {useCallback, useEffect, useMemo, useState} from "react";
 
 import {generateValues} from "@/shared/forms/formik-hooks";
@@ -70,33 +70,6 @@ export default function GradeNewEditForm({currentValue, isEdit}) {
     return (
         <SimpleCardFormikForm formik={formik} isEdit={isEdit} onCancel={onCancel}>
 
-            <InputLabel id="select-filled-label1">Classe</InputLabel>
-            <Select
-                fullWidth
-                labelId="select-filled-label1"
-                defaultValue={ isEdit ? formik.values.student.classroom.id : ""}
-                onChange={(event) => fetchStudents(event.target.value)}
-            >
-                {classrooms?.map((classroom) => (
-                    <MenuItem key={classroom.id} value={classroom.id} > {classroom.name}</MenuItem>
-                ))}
-            </Select>
-
-            <InputLabel id="select-filled-label2">Eleve</InputLabel>
-            <Select
-                fullWidth
-                labelId="select-filled-label2"
-                value={formik.values.student.id}
-                {...formik.getFieldProps("student.id")}
-                error={!!formik.errors["student.id"]}
-                helperText={formik.errors["student.id"]}
-            >
-                <MenuItem key={""} value={""}>No Selected // Or Empty</MenuItem>
-                {students?.map((student) => (
-                    <MenuItem key={student.id} value={student.id}> {student.registrationNumber+" / "+student.firstName+" "+student.lastName}</MenuItem>
-                ))}
-            </Select>
-
             <InputLabel id="select-filled-label3">Examen</InputLabel>
             <Select
                 fullWidth
@@ -110,6 +83,38 @@ export default function GradeNewEditForm({currentValue, isEdit}) {
                     <MenuItem key={exam.id} value={exam.id}> {exam.examDate+" / "+exam.subject+" / "+exam.teacherName}</MenuItem>
                 ))}
             </Select>
+
+            <Box display="flex" gap="16px">
+                <Box flex={1}>
+                    <InputLabel id="select-filled-label1">Classe</InputLabel>
+                    <Select
+                        fullWidth
+                        labelId="select-filled-label1"
+                        defaultValue={ isEdit ? formik.values.student.classroom.id : ""}
+                        onChange={(event) => fetchStudents(event.target.value)}
+                    >
+                        {classrooms?.map((classroom) => (
+                            <MenuItem key={classroom.id} value={classroom.id} > {classroom.name}</MenuItem>
+                        ))}
+                    </Select>
+                </Box>
+                <Box flex={1}>
+                    <InputLabel id="select-filled-label2">Eleve</InputLabel>
+                    <Select
+                        fullWidth
+                        labelId="select-filled-label2"
+                        value={formik.values.student.id}
+                        {...formik.getFieldProps("student.id")}
+                        error={!!formik.errors["student.id"]}
+                        helperText={formik.errors["student.id"]}
+                    >
+                        <MenuItem key={""} value={""}>No Selected // Or Empty</MenuItem>
+                        {students?.map((student) => (
+                            <MenuItem key={student.id} value={student.id}> {student.registrationNumber+" / "+student.firstName+" "+student.lastName}</MenuItem>
+                        ))}
+                    </Select>
+                </Box>
+            </Box>
 
             <FormikTextField name={"value"} label={"Note"}/>
 

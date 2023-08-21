@@ -9,12 +9,6 @@ export default function StudentDetails({currentValue}) {
             <Stack spacing={3} p={3}>
                 <TextField
                     fullWidth
-                    label="ID"
-                    value={currentValue.id}
-                    InputProps={{readOnly: true}}
-                />
-                <TextField
-                    fullWidth
                     label="Matricule"
                     value={currentValue.registrationNumber}
                     InputProps={{readOnly: true}}

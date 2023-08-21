@@ -12,22 +12,31 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
-import { useFindSchoolYears} from "../school-year-services";
-import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
-import {schoolYearConfig} from "@/features/school-years/school-year-config";
-import ListToolBar from "@/shared/components/list-tool-bar";
+import {useRecoilState} from "recoil";
 import {useRouter} from "next/navigation";
-import {classroomConfig} from "@/features/classrooms/classroom-config";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
+import ListToolBar from "@/shared/components/list-tool-bar";
+import {useFindSchoolYears} from "../school-year-services";
+import {classroomConfig} from "@/features/classrooms/classroomConfig";
+import {classroomQueryState} from "@/features/classrooms/classroom-services";
+import {schoolYearConfig} from "@/features/school-years/school-year-config";
+import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
 
 export default function SchoolYearList() {
 
     const router = useRouter();
-
     const [query, setQuery] = useState();
     const {data: currentValue, isLoading, refetch} = useFindSchoolYears({query});
-    const handleClick = (value) => {
+    const [classroomQuery, setClassroomQuery] = useRecoilState(classroomQueryState);
+
+    const handleRowClick = (year) => {
+        setClassroomQuery((prevState) => ({
+            ...prevState,
+            query: year,
+            listView: 1,
+        }));
         router.push(classroomConfig.path.root);
     };
 
@@ -49,7 +58,7 @@ export default function SchoolYearList() {
                     {currentValue && (
                         <TableBody>
                             {currentValue.map(value => (
-                                <TableRow key={value.id} onClick={() => handleClick(value)}>
+                                <TableRow key={value.id} onClick={() => handleRowClick(value.year)}>
                                     <TableCell>{value.id}</TableCell>
                                     <TableCell>{value.year}</TableCell>
                                     <TableCell>{value.startDate}</TableCell>

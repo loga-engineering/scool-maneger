@@ -1,13 +1,16 @@
 "use client";
 
-import {useMemo, useState} from "react";
+import React, {useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, Link, Stack, Tooltip} from "@mui/material";
 
+import {useRecoilValue} from "recoil";
 import {gradeConfig} from "@/features/grades/grade-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
-import {initialPagination} from "../../../shared/components/tables/table-utils";
+import {gradeQueryState} from "@/features/grades/grade-services";
+import GradeDelete from "@/features/grades/components/grade-delete";
+import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
 
 const useColumns = () => useMemo(() => [
     {
@@ -40,8 +43,13 @@ const useColumns = () => useMemo(() => [
 export default function GradeTable() {
     const [sort, setSort] = useState([]);
     const [globalFilter, setGlobalFilter] = useState("");
-    const [columnFilters, setColumnFilters] = useState([]);
     const [pagination, setPagination] = useState(initialPagination);
+
+    const gradeQuery = useRecoilValue(gradeQueryState);
+    const [columnFilters, setColumnFilters] = useState([
+        {id: 'student.firstName', value: gradeQuery.firstName},{id: 'student.lastName', value: gradeQuery.lastName},
+        {id: 'exam.examDate', value: gradeQuery.examDate},{id: 'exam.subject', value: gradeQuery.subject}]);
+
 
     const {data: currentPage, isLoading, isError, error, refetch} = useSearch({
             query: globalFilter, page: pagination.pageIndex, size: pagination.pageSize, sort, filter: columnFilters,
@@ -78,6 +86,12 @@ export default function GradeTable() {
                     }
                     : undefined
             }
+            enableRowActions
+            renderRowActionMenuItems={({ row }) => [
+                <ActionMenuItems config={gradeConfig} id={row.original.id}>
+                    <GradeDelete id={row.original.id} refetch={refetch}/>
+                </ActionMenuItems>
+            ]}
             renderTopToolbarCustomActions={() => (
                 <Stack direction={"row"}>
                     <Tooltip arrow title="Actualiser">

@@ -1,5 +1,4 @@
 
-
 const endpoint = "/classrooms";
 const path = {
     root: endpoint,
@@ -13,3 +12,4 @@ const path = {
 export const classroomConfig = {
     path,
 }
+

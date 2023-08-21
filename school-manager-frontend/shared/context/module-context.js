@@ -1,26 +1,21 @@
 "use client";
 
-import {createContext, useContext} from "react";
+import {createContext, useContext, useState} from "react";
 
 
 
-export const ModuleContext = createContext({
-    name: "",
-    urlBase: "/",
-});
+export const ModuleContext = createContext();
+
 
 export const useModule = () => {
   return useContext(ModuleContext);
 }
 
-export function ModuleProvider({name, urlBase, children}) {
+export function ModuleProvider({ children }) {
+    const [parameter, setParameter] = useState("");
 
-    const value = {
-        name: name,
-        urlBase: urlBase
-    }
     return (
-        <ModuleContext.Provider value={value}>
+        <ModuleContext.Provider value={{ parameter, setParameter }}>
             {children}
         </ModuleContext.Provider>
     )

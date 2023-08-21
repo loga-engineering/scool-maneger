@@ -1,9 +1,20 @@
 import axios from "axios";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {useMutation, useQuery} from "@tanstack/react-query";
+import {atom} from "recoil";
 
 const urlBase = process.env.BACKEND_URL + "grades";
 
+export const gradeQueryState = atom({
+    key: 'gradeQueryState',
+    default: {
+        firstName: "",
+        lastName: "",
+        examDate:"",
+        subject: "",
+        listView: 0,
+    },
+});
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllGrades = async () => {
     try {

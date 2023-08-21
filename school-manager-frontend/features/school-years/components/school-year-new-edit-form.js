@@ -9,6 +9,7 @@ import FormikTextField from "../../../shared/forms/formik-text-field";
 import {createSchoolYear, updateSchoolYearById} from "../school-year-services";
 import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
 import {formikSubmit} from "@/shared/forms/formik-submit";
+import {Box} from "@mui/material";
 
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
@@ -44,8 +45,14 @@ export default function SchoolYearNewEditForm({currentValue, isEdit}) {
     return (
         <SimpleCardFormikForm formik={formik} isEdit={isEdit} onCancel={onCancel}>
             <FormikTextField name={"year"} label={"Année"}/>
-            <FormikTextField name={"startDate"} label={"Date de debut"} type={"date"}/>
-            <FormikTextField name={"endDate"} label={"Date de fin"} type={"date"}/>
+            <Box display="flex" gap="16px">
+                <Box flex={1}>
+                    <FormikTextField name={"startDate"} label={"Date de debut"} type={"date"}/>
+                </Box>
+                <Box flex={1}>
+                    <FormikTextField name={"endDate"} label={"Date de fin"} type={"date"}/>
+                </Box>
+            </Box>
         </SimpleCardFormikForm>
     );
 }

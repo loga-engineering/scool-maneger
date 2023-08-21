@@ -17,20 +17,30 @@ import EditIcon from "@mui/icons-material/Edit";
 import ListToolBar from "@/shared/components/list-tool-bar";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-import {examConfig} from "@/features/exams/exam-config";
-import {studentConfig} from "@/features/students/student-config";
+import {useRecoilState} from "recoil";
+import {gradeConfig} from "@/features/grades/grade-config";
+import {gradeQueryState} from "@/features/grades/grade-services";
 import { useSearchStudents} from "@/features/students/student-services";
 import StudentDelete from "@/features/students/components/student-delete";
+import {studentConfig} from "@/features/students/student-config";
 
 export default function StudentList() {
 
     const [query, setQuery] = useState();
     const {data: currentValue, isLoading, isError, error, refetch} = useSearchStudents({query});
+    const [gradeQuery, setGradeQuery] = useRecoilState(gradeQueryState);
 
     const router = useRouter();
-    const handleClick = (value) => {
-        router.push(examConfig.path.root);
+    const handleRowClick = (value) => {
+        setGradeQuery((prevState) => ({
+            ...prevState,
+            firstName: value.firstName,
+            lastName: value.lastName,
+            listView: 1,
+        }));
+        router.push(gradeConfig.path.root);
     };
+
     return (
             <ListToolBar refetch={refetch} label={"Matricule"} length={4} query={query} setQuery={setQuery} config={studentConfig}>
                 
@@ -51,7 +61,7 @@ export default function StudentList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id} onClick={() => handleClick(value)}>
+                                    <TableRow key={value.id} onClick={() => handleRowClick(value)}>
                                         <TableCell>{value.registrationNumber}</TableCell>
                                         <TableCell>{value.firstName}</TableCell>
                                         <TableCell>{value.lastName}</TableCell>

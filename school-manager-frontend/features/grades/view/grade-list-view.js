@@ -3,13 +3,17 @@
 import {useState} from "react";
 import { Box, Stack, Tab, Tabs, Typography } from "@mui/material";
 
+import {useRecoilValue} from "recoil";
 import GradeList from "@/features/grades/components/grade-list";
 import GradeTable from "@/features/grades/components/grade-table";
+import {gradeQueryState} from "@/features/grades/grade-services";
 
 
 
 export default function GradeListView() {
-    const [current, setCurrent] = useState(0);
+
+    const gradeQuery = useRecoilValue(gradeQueryState);
+    const [current, setCurrent] = useState(gradeQuery.listView);
 
     const handleChange = (event, newValue) => {
         setCurrent(newValue);

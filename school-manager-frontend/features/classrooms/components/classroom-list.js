@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
     IconButton,
     LinearProgress,
@@ -12,23 +12,31 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
+import {useRecoilState} from "recoil";
 import {useRouter} from "next/navigation";
-import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
-import {useFindClassrooms} from "@/features/classrooms/classroom-services";
-import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
-import {classroomConfig} from "@/features/classrooms/classroom-config";
 import ListToolBar from "@/shared/components/list-tool-bar";
 import {studentConfig} from "@/features/students/student-config";
+import {studentQueryState} from "@/features/students/student-services";
+import {classroomConfig} from "@/features/classrooms/classroomConfig";
+import {useFindClassrooms} from "@/features/classrooms/classroom-services";
+import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
 
 export default function ClassroomList() {
 
-    const [query, setQuery] = useState("");
-    const {data: currentValue, isLoading, refetch} = useFindClassrooms({query});
-
     const router = useRouter();
-    const handleClick = (value) => {
+    const [query, setQuery] = useState();
+    const {data: currentValue, isLoading, refetch} = useFindClassrooms({query});
+    const [studentQuery, setStudentQuery] = useRecoilState(studentQueryState);
+
+    const handleClick = (name) => {
+        setStudentQuery((prevState) => ({
+            ...prevState,
+            query: name,
+            listView: 1,
+        }));
         router.push(studentConfig.path.root);
     };
 
@@ -52,7 +60,7 @@ export default function ClassroomList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id} onClick={() => handleClick(value)}>
+                                    <TableRow key={value.id} onClick={() => handleClick(value.name)}>
                                         <TableCell>{value.name}</TableCell>
                                         <TableCell>{value.level}</TableCell>
                                         <TableCell>{value.headTeacherName}</TableCell>

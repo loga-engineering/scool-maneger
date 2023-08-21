@@ -17,17 +17,27 @@ import EditIcon from "@mui/icons-material/Edit";
 import {Add, Refresh} from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
+import {useRecoilState} from "recoil";
 import {examConfig} from "@/features/exams/exam-config";
 import ExamDelete from "@/features/exams/components/exam-delete";
 import {useFindAllExams} from "@/features/exams/exam-services";
 import {gradeConfig} from "@/features/grades/grade-config";
+import {gradeQueryState} from "@/features/grades/grade-services";
 
 export default function ExamList() {
 
     const {data: currentValue, isLoading, isError, error, refetch} = useFindAllExams();
 
+    const [gradeQuery, setGradeQuery] = useRecoilState(gradeQueryState);
+
     const router = useRouter();
-    const handleClick = (value) => {
+    const handleRowClick = (value) => {
+        setGradeQuery((prevState) => ({
+            ...prevState,
+            examDate: value.examDate,
+            subject: value.subject,
+            listView: 1,
+        }));
         router.push(gradeConfig.path.root);
     };
 
@@ -61,7 +71,7 @@ export default function ExamList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id} onClick={() => handleClick(value)}>
+                                    <TableRow key={value.id} onClick={() => handleRowClick(value)}>
                                         <TableCell>{value.id}</TableCell>
                                         <TableCell>{value.subject}</TableCell>
                                         <TableCell>{value.teacherName}</TableCell>

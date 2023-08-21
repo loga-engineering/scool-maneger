@@ -1,4 +1,5 @@
 import * as Yup from "yup";
+import {Box} from "@mui/material";
 import {useFormik} from "formik";
 import {useRouter} from "next/navigation";
 import {useCallback, useMemo} from "react";
@@ -37,15 +38,21 @@ export default function ExamNewEditForm({currentValue, isEdit}) {
 
     const onCancel = useCallback(() => {
         const href = isEdit ? examConfig.path.details(currentValue.id) : examConfig.path.root;
-
         router.push(href);
     }, []);
 
     return (
         <SimpleCardFormikForm formik={formik} isEdit={isEdit} onCancel={onCancel}>
-            <FormikTextField name={"subject"} label={"Matière"}/>
+            <Box display="flex" gap="16px">
+                <Box flex={1}>
+                    <FormikTextField name={"subject"} label={"Matière"}/>
+                </Box>
+                <Box flex={1}>
+                    <FormikTextField name={"teacherName"} label={"Nom prof."}/>
+                </Box>
+            </Box>
+
             <FormikTextField name={"examDate"} label={"Date d'examen"} type={"date"}/>
-            <FormikTextField name={"teacherName"} label={"Nom prof."}/>
 
         </SimpleCardFormikForm>
     );
