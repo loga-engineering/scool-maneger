@@ -93,6 +93,7 @@ export default function ClassroomTable() {
                     : undefined
             }
             enableRowActions
+            positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
                 <ActionMenuItems config={classroomConfig} id={row.original.id}>
                     <ClassroomDelete id={row.original.id} refetch={refetch}/>

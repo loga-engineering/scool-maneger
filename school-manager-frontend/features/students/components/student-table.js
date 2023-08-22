@@ -97,6 +97,7 @@ export default function StudentTable() {
                     : undefined
             }
             enableRowActions
+            positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
                 <ActionMenuItems config={studentConfig} id={row.original.id}>
                     <StudentDelete id={row.original.id} refetch={refetch}/>

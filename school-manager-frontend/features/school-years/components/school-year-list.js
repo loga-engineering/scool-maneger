@@ -18,7 +18,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import ListToolBar from "@/shared/components/list-tool-bar";
-import {useFindSchoolYears} from "../school-year-services";
+import {schoolYearQueryState, useFindSchoolYears} from "../school-year-services";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import {schoolYearConfig} from "@/features/school-years/school-year-config";
@@ -27,8 +27,8 @@ import SchoolYearDelete from "@/features/school-years/components/school-year-del
 export default function SchoolYearList() {
 
     const router = useRouter();
-    const [query, setQuery] = useState();
-    const {data: currentValue, isLoading, refetch} = useFindSchoolYears({query});
+    const [query, setQuery] = useRecoilState(schoolYearQueryState);
+    const {data: currentValue, isLoading, refetch} = useFindSchoolYears(query);
     const [classroomQuery, setClassroomQuery] = useRecoilState(classroomQueryState);
 
     const handleRowClick = (year) => {

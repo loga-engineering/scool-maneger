@@ -20,14 +20,15 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import {useRecoilState} from "recoil";
 import {gradeConfig} from "@/features/grades/grade-config";
 import {gradeQueryState} from "@/features/grades/grade-services";
-import { useSearchStudents} from "@/features/students/student-services";
+import {studentQueryState, studentSearchQueryState, useSearchStudents} from "@/features/students/student-services";
 import StudentDelete from "@/features/students/components/student-delete";
 import {studentConfig} from "@/features/students/student-config";
+import {schoolYearQueryState} from "@/features/school-years/school-year-services";
 
 export default function StudentList() {
 
-    const [query, setQuery] = useState();
-    const {data: currentValue, isLoading, isError, error, refetch} = useSearchStudents({query});
+    const [query, setQuery] = useRecoilState(studentSearchQueryState);
+    const {data: currentValue, isLoading, isError, error, refetch} = useSearchStudents(query);
     const [gradeQuery, setGradeQuery] = useRecoilState(gradeQueryState);
 
     const router = useRouter();

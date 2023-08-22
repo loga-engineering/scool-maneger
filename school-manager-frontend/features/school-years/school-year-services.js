@@ -1,16 +1,21 @@
 import axios from "axios";
 import {useMutation, useQuery} from "@tanstack/react-query";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
+import {atom} from "recoil";
 
 const urlBase = process.env.BACKEND_URL + "school-years";
 
+export const schoolYearQueryState = atom({
+    key: 'schoolYearQueryState',
+    default: "",
+});
 
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
-export const findAllSchoolYears = async ({query}) => {
+export const findAllSchoolYears = async () => {
     try {
-        const {data} = await axios.get(urlBase, {params: {query}});
+        const {data} = await axios.get(urlBase);
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -31,11 +36,11 @@ export const findSchoolYearsByYear = async (query) => {
 
 };
 
-export const useFindSchoolYears = ({query}) => {
+export const useFindSchoolYears = (query) => {
 
     if (!query) {
         const queryKey = ["school-years", "all", query];
-        const queryFn = () => findAllSchoolYears({query});
+        const queryFn = () => findAllSchoolYears();
 
         return useQuery({queryKey, queryFn});
     }

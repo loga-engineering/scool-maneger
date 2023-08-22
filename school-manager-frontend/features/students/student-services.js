@@ -12,10 +12,14 @@ export const studentQueryState = atom({
     },
 });
 
+export const studentSearchQueryState = atom({
+    key: 'studentSearchQueryState',
+    default: "",
+});
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-export const findAllStudents = async ({query}) => {
+export const findAllStudents = async () => {
     try {
-        const {data} = await axios.get(urlBase,{params: {query}});
+        const {data} = await axios.get(urlBase);
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -24,7 +28,7 @@ export const findAllStudents = async ({query}) => {
 
 };
 
-export const findByRegistrationNumber = async ({query}) => {
+export const findByRegistrationNumber = async (query) => {
     try {
         const url = urlBase + "/registration-number/"+query;
         console.log("=======+> url: ", url);
@@ -37,7 +41,7 @@ export const findByRegistrationNumber = async ({query}) => {
 
 };
 
-export const useSearchStudents = ({query}) => {
+export const useSearchStudents = (query) => {
     if (!query) {
         const queryKey = ["students", "all", query];
         const queryFn = () => findAllStudents({query});
@@ -48,7 +52,7 @@ export const useSearchStudents = ({query}) => {
     if (isValid) {
 
         const queryKey = ["student", "registration-number", query];
-        const queryFn = () => findByRegistrationNumber({query});
+        const queryFn = () => findByRegistrationNumber(query);
 
         return useQuery({queryKey, queryFn});
     }

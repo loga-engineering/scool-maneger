@@ -36,7 +36,7 @@ const useColumns = () => useMemo(() => [
 
 
 export default function SchoolYearTable() {
-    const [sort, setSort] = useState([]);
+    const [sort, setSort] = useState([{id: 'year', desc: true},]);
     const [globalFilter, setGlobalFilter] = useState("");
     const [columnFilters, setColumnFilters] = useState([]);
     const [pagination, setPagination] = useState(initialPagination);
@@ -88,6 +88,7 @@ export default function SchoolYearTable() {
                     : undefined
             }
             enableRowActions
+            positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
                 <ActionMenuItems config={schoolYearConfig} id={row.original.id}>
                     <SchoolYearDelete id={row.original.id} refetch={refetch}/>

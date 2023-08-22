@@ -11,6 +11,10 @@ export const classroomQueryState = atom({
         listView: 0,
     },
 });
+export const classroomSearchQueryState = atom({
+    key: "classroomSearchQueryState",
+    default: "",
+});
 
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllClassrooms = async () => {

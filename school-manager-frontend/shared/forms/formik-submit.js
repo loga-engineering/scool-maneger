@@ -4,7 +4,7 @@ export default function FormikSubmitButton({cancelLabel = "Annuler", validateLab
 
     return (
         <Stack direction={"row"} spacing={2} justifyContent={"end"}>
-            <Button type="reset" onClick={onCancel}>
+            <Button type="reset" onClick={onCancel} sx={{ color: "text.secondary" }} >
                 {cancelLabel}
             </Button>
 

@@ -3,13 +3,14 @@ import {useFormik} from "formik";
 import {useRouter} from "next/navigation";
 import {useCallback, useMemo} from "react";
 
+import {Box} from "@mui/material";
 import {schoolYearConfig} from "../school-year-config";
 import {generateValues} from "@/shared/forms/formik-hooks";
 import FormikTextField from "../../../shared/forms/formik-text-field";
 import {createSchoolYear, updateSchoolYearById} from "../school-year-services";
 import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
 import {formikSubmit} from "@/shared/forms/formik-submit";
-import {Box} from "@mui/material";
+import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
@@ -18,6 +19,14 @@ const useValidationSchema = ({currentValue}) => useMemo(() => {
         startDate: Yup.date().required("La date de debut est obligatoire"),
         endDate: Yup.date().required('La date de fin est obligatoire'),
     });
+
+    currentValue = {
+        ...currentValue,
+        starDate: currentValue?.starDate && new Date(currentValue.starDate),
+        endDate: currentValue?.endDate && new Date(currentValue.endDate),
+    }
+
+    console.log("=========>",currentValue);
 
     return generateValues({currentValue, validationSchema});
 }, [currentValue]);
@@ -44,13 +53,19 @@ export default function SchoolYearNewEditForm({currentValue, isEdit}) {
 
     return (
         <SimpleCardFormikForm formik={formik} isEdit={isEdit} onCancel={onCancel}>
-            <FormikTextField name={"year"} label={"Année"}/>
-            <Box display="flex" gap="16px">
-                <Box flex={1}>
-                    <FormikTextField name={"startDate"} label={"Date de debut"} type={"date"}/>
+            <Box display="flex" gap={"16px"} >
+                <Box flex={2}>
+                    <Box display="flex" gap={"16px"} >
+                        <Box flex={1}>
+                            <FormikTextField name={"year"} label={"Année"}/>
+                        </Box>
+                        <Box flex={1}>
+                            <FormikDatePicker name={"startDate"} label={"Date de debut"} />
+                        </Box>
+                    </Box>
                 </Box>
                 <Box flex={1}>
-                    <FormikTextField name={"endDate"} label={"Date de fin"} type={"date"}/>
+                    <FormikDatePicker name={"endDate"} label={"Date de fin"} />
                 </Box>
             </Box>
         </SimpleCardFormikForm>

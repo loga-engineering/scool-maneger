@@ -1,48 +1,77 @@
 "use client"
+import React, {useEffect, useState} from "react";
+import {Box, CssBaseline, FormControlLabel, styled, Switch} from "@mui/material";
 
-import './globals.css'
-import {green} from "@mui/material/colors";
-import {Box, ThemeProvider} from "@mui/material";
-import { createTheme } from '@mui/material/styles';
-
-import {LocalizationProvider} from "@mui/x-date-pickers";
+import ThemeProvider from "@/shared/context/theme-provider";
 import SideBar from "../features/@home/components/side-bar";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
-import {ModuleProvider} from "@/shared/context/module-context";
+import RecoilProvider from "@/shared/context/recoil-provider";
+import DatePickerProvider from "@/shared/forms/formik-date-picker";
 import ReactQueryProvider from "../shared/context/react-query-context";
-import {RecoilRoot} from "recoil";
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#00c853',
-        },
-        secondary: green,
-    },
+
+const FloatingSwitch = styled(FormControlLabel)({
+    position: 'fixed',
+    top: 8,
+    right: 8,
 });
-
 export default function RootLayout({children}) {
+
+    const [darkMode, setDarkMode] = useState(false);
+
+    //Persist mode in local storage
+    useEffect(() => {
+        const mode = localStorage.getItem('mode');
+        if (mode) {
+            setDarkMode(mode === 'dark');
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('mode', darkMode ? 'dark' : 'light');
+    }, [darkMode]);
+
+
+    const handleToggle = () => {
+        setDarkMode(!darkMode);
+        console.log("===> darkMode :", darkMode);
+    };
+
+    const handleThemeChange = (theme) => {
+        return theme.palette.mode === "dark" ? theme.palette.primary.dark :
+            theme.palette.primary.light;
+    };
+
     return (
         <html lang="en">
         <body>
-        <RecoilRoot>
-            <ReactQueryProvider>
-                <ModuleProvider>
-                    <ThemeProvider theme={theme}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <Box height={"100vh"} width={"100vw"} display={"flex"}>
+            <ThemeProvider darkMode={darkMode}>
+                <CssBaseline />
+                <RecoilProvider>
+                    <ReactQueryProvider>
+                        <DatePickerProvider>
+                            <Box height={"100vh"} width={"100vw"} display={"flex"} >
                                 <SideBar/>
 
-                                <Box flexGrow={1} pt={5}>
+                                <Box flexGrow={1} pt={4} sx={{
+                                    backgroundColor: theme => handleThemeChange(theme), }} >
                                     {children}
                                 </Box>
 
+                                <FloatingSwitch
+                                    control={
+                                        <Switch
+                                            checked={darkMode}
+                                            onChange={handleToggle}
+                                        />
+                                    }
+                                    label="Dark mode"
+                                />
+
                             </Box>
-                        </LocalizationProvider>
-                    </ThemeProvider>
-                </ModuleProvider>
-            </ReactQueryProvider>
-        </RecoilRoot>
+                        </DatePickerProvider>
+                    </ReactQueryProvider>
+                </RecoilProvider>
+            </ThemeProvider>
         </body>
         </html>
     )

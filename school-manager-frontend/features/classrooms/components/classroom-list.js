@@ -21,13 +21,17 @@ import ListToolBar from "@/shared/components/list-tool-bar";
 import {studentConfig} from "@/features/students/student-config";
 import {studentQueryState} from "@/features/students/student-services";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
-import {useFindClassrooms} from "@/features/classrooms/classroom-services";
+import {
+    classroomQueryState,
+    classroomSearchQueryState,
+    useFindClassrooms
+} from "@/features/classrooms/classroom-services";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
 
 export default function ClassroomList() {
 
     const router = useRouter();
-    const [query, setQuery] = useState();
+    const [query, setQuery] = useRecoilState(classroomSearchQueryState);
     const {data: currentValue, isLoading, refetch} = useFindClassrooms({query});
     const [studentQuery, setStudentQuery] = useRecoilState(studentQueryState);
 

@@ -1,7 +1,7 @@
-import {IconButton, Link, MenuItem, Stack, Tooltip} from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 import React from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import {IconButton, Link, MenuItem, Stack, Tooltip} from "@mui/material";
 
 export const initialPagination = {pageIndex: 0, pageSize: 10};
 

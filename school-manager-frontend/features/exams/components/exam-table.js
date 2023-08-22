@@ -89,6 +89,7 @@ export default function ExamTable() {
                     : undefined
             }
             enableRowActions
+            positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
                 <ActionMenuItems config={examConfig} id={row.original.id}>
                     <ExamDelete id={row.original.id} refetch={refetch}/>

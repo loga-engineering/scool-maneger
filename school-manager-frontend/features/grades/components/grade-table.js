@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, Link, Stack, Tooltip} from "@mui/material";
@@ -47,8 +47,9 @@ export default function GradeTable() {
 
     const gradeQuery = useRecoilValue(gradeQueryState);
     const [columnFilters, setColumnFilters] = useState([
-        {id: 'student.firstName', value: gradeQuery.firstName},{id: 'student.lastName', value: gradeQuery.lastName},
-        {id: 'exam.examDate', value: gradeQuery.examDate},{id: 'exam.subject', value: gradeQuery.subject}]);
+        {id: 'student.lastName', value: gradeQuery.lastName}, {id: 'student.firstName', value: gradeQuery.firstName},
+        {id: 'exam.examDate', value: gradeQuery.examDate}, {id: 'exam.subject', value: gradeQuery.subject}
+    ]);
 
 
     const {data: currentPage, isLoading, isError, error, refetch} = useSearch({
@@ -56,12 +57,23 @@ export default function GradeTable() {
             path: gradeConfig.path.search
     });
 
+
+    // useEffect(() => {
+    //     if(!isLoading){
+    //         setColumnFilters([
+    //             {id: 'student.firstName', value: gradeQuery.firstName},{id: 'student.lastName', value: gradeQuery.lastName},
+    //             {id: 'exam.examDate', value: gradeQuery.examDate},{id: 'exam.subject', value: gradeQuery.subject}])
+    //     }
+    // }, [isLoading]);
+
+    console.log("data ===> ", currentPage);
+
     const columns = useColumns();
 
     return (
         <MaterialReactTable
             columns={columns}
-            data={currentPage?.content ?? []} //data is undefined on first render
+            data={currentPage?.content ?? []}
             initialState={{showColumnFilters: true}}
             onSortingChange={setSort}
             onPaginationChange={setPagination}
@@ -87,6 +99,7 @@ export default function GradeTable() {
                     : undefined
             }
             enableRowActions
+            positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
                 <ActionMenuItems config={gradeConfig} id={row.original.id}>
                     <GradeDelete id={row.original.id} refetch={refetch}/>
