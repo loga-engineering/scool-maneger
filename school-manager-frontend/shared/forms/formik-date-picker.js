@@ -1,37 +1,67 @@
-import React from 'react';
-import {TextField} from "@mui/material";
-import {DatePicker, DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
-import {useField, useFormikContext} from "formik";
-import {RecoilRoot} from "recoil";
-import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+"use client"
 
-export function FormikDatePicker({name,label, ...others}) {
-    const [field, meta, form] = useField(name);
+import dayjs from "dayjs";
+import React, {useEffect, useState} from 'react';
+import {useField, useFormikContext} from "formik";
+import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
+import {DesktopDatePicker, LocalizationProvider} from "@mui/x-date-pickers";
+
+export function FormikDatePicker({ name, label, isEdit, ...others }) {
+    const { setFieldValue } = useFormikContext();
+    const [field, meta] = useField(name);
     const errorMessage = meta.touched && meta.error;
 
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [currentDate, setCurrentDate] = useState(null);
+
     const handleDateChange = (newValue) => {
-        const selectedDate = newValue instanceof Date ? newValue : new Date(newValue);
-        form.setFieldValue(name, selectedDate);
+        const selectedDate = dayjs(newValue).format("YYYY-MM-DD");
+        setSelectedDate(selectedDate);
     };
 
-    return (
-        <DesktopDatePicker
-            fullWidth
-            label={label}
-            value={field.value ? new Date(field.value) : null}
-            format={"YYYY-MM-DD"}
-            mask={"____-__-__"}
-            onChange={handleDateChange}
-            slots={{
-                TextField: (props) => (
-                    <TextField fullWidth {...props} helperText={errorMessage} error={Boolean(errorMessage)}/>
-                )
-            }}
-            {...others}
-        />
-    );
-}
+    useEffect(() => {
+        if(isEdit){
+            const value = dayjs(field.value);
+            setCurrentDate(value);
+        }
+    }, []);
 
+    useEffect(() => {
+        if(selectedDate) {
+            setFieldValue(name, selectedDate).then(r => console.log("selectedDate =====> ",selectedDate));
+        }
+    }, [selectedDate]);
+
+    if (!isEdit){
+        return (
+            <DesktopDatePicker
+                label={label}
+                value={selectedDate}
+                valueFormat="yyyy-MM-dd"
+                format={"YYYY-MM-DD"}
+                mask={"____-__-__"}
+                onChange={handleDateChange}
+                slotProps={{ textField: { variant: 'outlined' } }}
+                {...others}
+            />
+
+    ); } else {
+        return (
+            <DesktopDatePicker
+                label={label}
+                value={currentDate}
+                valueFormat="yyyy-MM-dd"
+                format={"YYYY-MM-DD"}
+                mask={"____-__-__"}
+                onChange={handleDateChange}
+                slotProps={{ textField: { variant: 'outlined' } }}
+                {...others}
+            />
+
+        );
+
+    }
+}
 
 export default function DatePickerProvider({children}) {
     return (
@@ -41,32 +71,3 @@ export default function DatePickerProvider({children}) {
     );
 }
 
-/*
-components={{
-                TextField: (props) => (
-                    <TextField fullWidth {...props} helperText={errorMessage} error={Boolean(errorMessage)}/>
-                )
-            }}
-
-renderInput={(params) => (
-                <TextField fullWidth {...params} helperText={errorMessage} error={Boolean(errorMessage)}/>
-            )}
-
-
-export function FormikTimePicker({name, ...others}) {
-    const {getFieldProps, setFieldValue, touched, errors} = useFormikContext();
-    const errorMessage = touched[name] && errors[name];
-    return (
-        <DesktopTimePicker
-            {...getFieldProps(name)}
-            inputFormat="HH:mm"
-            onChange={(newValue) => setFieldValue(name, newValue)}
-            renderInput={(params) => (
-                <TextField fullWidth {...params} helperText={errorMessage} error={Boolean(errorMessage)}/>
-            )}
-            {...others}
-        />
-    )
-}
-
- */

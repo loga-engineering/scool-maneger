@@ -1,3 +1,4 @@
+"use client"
 import SchoolYearListView from "../../features/school-years/view/school-year-list-view";
 
 

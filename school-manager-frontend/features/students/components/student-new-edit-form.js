@@ -9,8 +9,9 @@ import {createStudent, updateStudentById} from "../student-services";
 import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
 import {formikSubmit} from "@/shared/forms/formik-submit";
 import {studentConfig} from "@/features/students/student-config";
-import {InputLabel, MenuItem, Select} from "@mui/material";
+import {Box, InputLabel, MenuItem, Select, Stack} from "@mui/material";
 import {useFindAllClassrooms} from "@/features/classrooms/classroom-services";
+import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
@@ -22,12 +23,28 @@ const useValidationSchema = ({currentValue}) => useMemo(() => {
         motherName: Yup.string().default("").required('Le nom de la mère est requis'),
         contact: Yup.string().default(""),
         address: Yup.string().default("").required('L\'adresse est requise'),
-        dateOfBirth: Yup.date().required('La date de naissance est requise'),
-        enrollmentDate: Yup.date().required('La date d\'inscription est requise'),
+        dateOfBirth: Yup.string()
+            .required("Date requise")
+            .matches(
+                /^\d{4}-\d{2}-\d{2}$/,
+                "Veuillez saisir une date au format YYYY-MM-DD"
+            ).default(""),
+        enrollmentDate: Yup.string()
+            .required("Date requise")
+            .matches(
+                /^\d{4}-\d{2}-\d{2}$/,
+                "Veuillez saisir une date au format YYYY-MM-DD"
+            ).default(""),
         classroom: Yup.object().shape({
             id: Yup.number().required("Ce champ est obligatoire"),
         }),
     });
+
+    currentValue = {
+        ...currentValue,
+        enrollmentDate: currentValue?.enrollmentDate && new Date(currentValue.enrollmentDate).toISOString().substring(0, 10),
+        dateOfBirth: currentValue?.dateOfBirth && new Date(currentValue.dateOfBirth).toISOString().substring(0, 10),
+    }
 
     return generateValues({currentValue, validationSchema});
 }, [currentValue]);
@@ -58,22 +75,31 @@ export default function StudentNewEditForm({currentValue, isEdit}) {
         <SimpleCardFormikForm formik={formik} isEdit={isEdit} onCancel={onCancel}>
             <FormikTextField name={"registrationNumber"} label={"Matricule"}/>
 
-            <FormikTextField name={"lastName"} label={"Nom"}/>
+            <Box display="flex" gap="16px">
+                <Box flex={1}>
+                    <FormikTextField name={"lastName"} label={"Nom"}/>
+                </Box>
+                <Box flex={1}><FormikTextField name={"firstName"} label={"Prénom"}/>
+                </Box>
+            </Box>
 
-            <FormikTextField name={"firstName"} label={"Prénom"}/>
+            <FormikDatePicker name={"dateOfBirth"} label={"Date de naissance"} isEdit={isEdit} />
 
-            <FormikTextField name={"dateOfBirth"} label={"Date de naissance"} type={"date"} />
+            <Box display="flex" gap="16px">
+                <Box flex={1}> <FormikTextField name={"fatherName"} label={"Prénom du père"} />
+                </Box>
+                <Box flex={1}><FormikTextField name={"motherName"} label={"Nom de la mère"} />
+                </Box>
+            </Box>
 
-            <FormikTextField name={"fatherName"} label={"Prénom du père"} />
+            <Box display="flex" gap="16px">
+                <Box flex={1}><FormikTextField name={"contact"} label={"Contact"} />
+                </Box>
+                <Box flex={1}><FormikTextField name={"address"} label={"Adresse"} />
+                </Box>
+            </Box>
 
-            <FormikTextField name={"motherName"} label={"Nom de la mère"} />
-
-            <FormikTextField name={"contact"} label={"Contact"} />
-
-            <FormikTextField name={"address"} label={"Adresse"} />
-
-            <FormikTextField name={"enrollmentDate"} label={"Date d'inscription"} type={"date"}/>
-
+            <FormikDatePicker name={"enrollmentDate"} label={"Date d'inscription"} isEdit={isEdit} />
             <InputLabel id="select-filled-label">Classe</InputLabel>
             <Select
                 fullWidth
@@ -86,6 +112,7 @@ export default function StudentNewEditForm({currentValue, isEdit}) {
                     <MenuItem key={classroom.id} value={classroom.id}> {classroom.name}</MenuItem>
                 ))}
             </Select>
+
         </SimpleCardFormikForm>
     );
 }

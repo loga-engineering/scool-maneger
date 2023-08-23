@@ -1,22 +1,33 @@
-"use client";
+"use client"
 
-import {createContext, useContext, useState} from "react";
+import {CssBaseline} from "@mui/material";
+import RecoilProvider from "@/shared/context/recoil-provider";
+import ReactQueryProvider from "@/shared/context/react-query-context";
+import DatePickerProvider from "@/shared/forms/formik-date-picker";
+import ThemeProvider from "@/shared/context/theme-provider";
 
 
 
-export const ModuleContext = createContext();
-
-
-export const useModule = () => {
-  return useContext(ModuleContext);
-}
+// export const ModuleContext = createContext();
+//
+//
+// export const useModule = () => {
+//   return useContext(ModuleContext);
+// }
 
 export function ModuleProvider({ children }) {
-    const [parameter, setParameter] = useState("");
 
     return (
-        <ModuleContext.Provider value={{ parameter, setParameter }}>
-            {children}
-        </ModuleContext.Provider>
-    )
+            <ThemeProvider>
+                <CssBaseline />
+                <RecoilProvider>
+                    <ReactQueryProvider>
+                        <DatePickerProvider>
+                            {children}
+                        </DatePickerProvider>
+                    </ReactQueryProvider>
+                </RecoilProvider>
+            </ThemeProvider>
+    );
 }
+

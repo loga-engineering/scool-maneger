@@ -2,34 +2,45 @@ import * as Yup from "yup";
 import {useFormik} from "formik";
 import {useRouter} from "next/navigation";
 import {useCallback, useMemo} from "react";
-
-import {Box} from "@mui/material";
+import {Box, Stack} from "@mui/material";
 import {schoolYearConfig} from "../school-year-config";
 import {generateValues} from "@/shared/forms/formik-hooks";
-import FormikTextField from "../../../shared/forms/formik-text-field";
-import {createSchoolYear, updateSchoolYearById} from "../school-year-services";
-import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
 import {formikSubmit} from "@/shared/forms/formik-submit";
 import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
+import FormikTextField from "../../../shared/forms/formik-text-field";
+import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
+import {createSchoolYear, updateSchoolYearById} from "../school-year-services";
+
 
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
     const validationSchema = Yup.object({
         year: Yup.string().default("").required("L'année est obligatoire"),
-        startDate: Yup.date().required("La date de debut est obligatoire"),
-        endDate: Yup.date().required('La date de fin est obligatoire'),
-    });
+        startDate: Yup.string()
+            .required("Date requise")
+            .matches(
+                /^\d{4}-\d{2}-\d{2}$/,
+                "Veuillez saisir une date au format YYYY-MM-DD"
+            ).default(""),
+        endDate: Yup.string()
+            .required("Date requise")
+            .matches(
+                /^\d{4}-\d{2}-\d{2}$/,
+                "Veuillez saisir une date au format YYYY-MM-DD"
+            ).default(""),
+    })
 
     currentValue = {
-        ...currentValue,
-        starDate: currentValue?.starDate && new Date(currentValue.starDate),
-        endDate: currentValue?.endDate && new Date(currentValue.endDate),
+        id: currentValue?.id,
+        year: currentValue?.year,
+        startDate: currentValue?.startDate && new Date(currentValue.startDate).toISOString().substring(0, 10),
+        endDate: currentValue?.endDate && new Date(currentValue.endDate).toISOString().substring(0, 10),
     }
 
-    console.log("=========>",currentValue);
+    console.log("=========> currentValue ",currentValue);
 
     return generateValues({currentValue, validationSchema});
-}, [currentValue]);
+}, []);
 
 
 export default function SchoolYearNewEditForm({currentValue, isEdit}) {
@@ -53,21 +64,18 @@ export default function SchoolYearNewEditForm({currentValue, isEdit}) {
 
     return (
         <SimpleCardFormikForm formik={formik} isEdit={isEdit} onCancel={onCancel}>
-            <Box display="flex" gap={"16px"} >
-                <Box flex={2}>
-                    <Box display="flex" gap={"16px"} >
-                        <Box flex={1}>
-                            <FormikTextField name={"year"} label={"Année"}/>
-                        </Box>
-                        <Box flex={1}>
-                            <FormikDatePicker name={"startDate"} label={"Date de debut"} />
-                        </Box>
-                    </Box>
+            <Stack flexDirection={"row"} alignItems={"center"}>
+            <Box display="flex" gap={"30px"} >
+                <Box flex={1}>
+                    <FormikTextField name={"year"} label={"Année"}/>
                 </Box>
                 <Box flex={1}>
-                    <FormikDatePicker name={"endDate"} label={"Date de fin"} />
+                    <FormikDatePicker name={"startDate"} label={"Date de debut"} isEdit={isEdit} />
                 </Box>
-            </Box>
+                <Box flex={1}>
+                    <FormikDatePicker name={"endDate"} label={"Date de fin"} isEdit={isEdit} />
+                </Box>
+            </Box></Stack>
         </SimpleCardFormikForm>
     );
 }

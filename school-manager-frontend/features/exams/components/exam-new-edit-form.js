@@ -10,14 +10,25 @@ import {examConfig} from "@/features/exams/exam-config";
 import FormikTextField from "../../../shared/forms/formik-text-field";
 import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
 import {createExam, updateExamById} from "@/features/exams/exam-services";
+import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
     const validationSchema = Yup.object({
-        examDate: Yup.date().required("La date d'examen est obligatoire"),
+        examDate: Yup.string()
+            .required("Date requise")
+            .matches(
+                /^\d{4}-\d{2}-\d{2}$/,
+                "Veuillez saisir une date au format YYYY-MM-DD"
+            ).default(""),
         subject: Yup.string().default("").required("La matière est obligatoire"),
         teacherName: Yup.string().default("").required('Le nom du prof est obligatoire'),
 
     });
+
+    currentValue = {
+        ...currentValue,
+        examDate: currentValue?.examDate && new Date(currentValue.examDate).toISOString().substring(0, 10),
+    }
 
     return generateValues({currentValue, validationSchema});
 }, [currentValue]);
@@ -52,7 +63,7 @@ export default function ExamNewEditForm({currentValue, isEdit}) {
                 </Box>
             </Box>
 
-            <FormikTextField name={"examDate"} label={"Date d'examen"} type={"date"}/>
+            <FormikDatePicker name={"examDate"} label={"Date d'examen"} isEdit={isEdit} />
 
         </SimpleCardFormikForm>
     );

@@ -1,15 +1,43 @@
 "use client";
 import {atom} from "recoil";
-import {useMemo} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {createTheme} from "@mui/material/styles";
-import {ThemeProvider as MuiThemeProvider} from "@mui/material";
+import {Box, FormControlLabel, styled, Switch, ThemeProvider as MuiThemeProvider} from "@mui/material";
 
 // export const themeQueryState = atom({
 //     key: 'themeQueryState',
 //     default: "",
 // });
-export default function ThemeProvider({darkMode, children}) {
 
+const FloatingSwitch = styled(FormControlLabel)({
+    position: 'fixed',
+    top: 8,
+    right: 8,
+});
+export default function ThemeProvider({children}) {
+
+    const [darkMode, setDarkMode] = useState(null);
+
+    //Persist mode in local storage
+    useEffect(() => {
+        const mode = localStorage.getItem('mode');
+        if (mode) {
+            setDarkMode(mode === 'dark');
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('mode', darkMode ? 'dark' : 'light');
+    }, [darkMode]);
+
+
+    const handleToggle = () => {
+        setDarkMode(!darkMode);
+        console.log("===> darkMode :", darkMode);
+    };
+
+
+    /////
 
     const theme = useMemo(
         () =>
@@ -34,6 +62,18 @@ export default function ThemeProvider({darkMode, children}) {
     return (
         <MuiThemeProvider theme={theme} >
             {children}
+
+            <Box>
+                <FloatingSwitch
+                    control={
+                        <Switch
+                            checked={darkMode}
+                            onChange={(handleToggle)}
+                        />
+                    }
+                    label="Dark mode"
+                />
+            </Box>
         </MuiThemeProvider>
     );
 }
