@@ -10,8 +10,7 @@ import {studentQueryState} from "@/features/students/student-services";
 
 export default function StudentListView() {
 
-    const studentQuery = useRecoilValue(studentQueryState);
-    const [current, setCurrent] = useState(studentQuery.listView);
+    const [current, setCurrent] = useState(0);
 
     const handleChange = (event, newValue) => {
         setCurrent(newValue);
@@ -30,13 +29,12 @@ export default function StudentListView() {
             <Box>
                 <Stack direction={"row"} justifyContent={"normal"} pl={3}>
                     <Tabs value={current} onChange={handleChange}>
-                        <Tab label="LISTE" />
                         <Tab label="TABLE" />
+                        <Tab label="LISTE" />
                     </Tabs>
                 </Stack>
-
-                {current === 0 && <StudentList />}
-                {current === 1 && <StudentTable />}
+                {current === 0 && <StudentTable />}
+                {current === 1 && <StudentList />}
             </Box>
 
         </Box>

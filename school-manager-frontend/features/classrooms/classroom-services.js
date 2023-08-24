@@ -8,7 +8,6 @@ export const classroomQueryState = atom({
     key: 'classroomQueryState',
     default: {
         query: '',
-        listView: 0,
     },
 });
 export const classroomSearchQueryState = atom({

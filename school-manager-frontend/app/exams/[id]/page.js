@@ -1,4 +1,3 @@
-import React from 'react';
 import ExamDetailsView from "@/features/exams/view/exam-details-view";
 
 export const metadata = {

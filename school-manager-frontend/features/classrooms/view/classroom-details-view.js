@@ -1,6 +1,4 @@
-"use client";
-
-import React, {useState} from "react";
+"use client"
 import {Box, LinearProgress, Stack, Typography} from "@mui/material";
 import ClassroomDetails from "../components/classroom-details";
 import {useFindClassroomById} from "@/features/classrooms/classroom-services";

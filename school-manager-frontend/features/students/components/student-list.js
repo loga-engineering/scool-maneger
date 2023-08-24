@@ -1,8 +1,6 @@
-import React, { useState} from 'react';
 import {
     IconButton,
     LinearProgress,
-    Link,
     Stack,
     Table,
     TableBody,
@@ -12,6 +10,7 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
+import Link from 'next/link';
 import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
 import ListToolBar from "@/shared/components/list-tool-bar";
@@ -20,10 +19,9 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import {useRecoilState} from "recoil";
 import {gradeConfig} from "@/features/grades/grade-config";
 import {gradeQueryState} from "@/features/grades/grade-services";
-import {studentQueryState, studentSearchQueryState, useSearchStudents} from "@/features/students/student-services";
+import {studentSearchQueryState, useSearchStudents} from "@/features/students/student-services";
 import StudentDelete from "@/features/students/components/student-delete";
 import {studentConfig} from "@/features/students/student-config";
-import {schoolYearQueryState} from "@/features/school-years/school-year-services";
 
 export default function StudentList() {
 
@@ -37,7 +35,6 @@ export default function StudentList() {
             ...prevState,
             firstName: value.firstName,
             lastName: value.lastName,
-            listView: 1,
         }));
         router.push(gradeConfig.path.root);
     };

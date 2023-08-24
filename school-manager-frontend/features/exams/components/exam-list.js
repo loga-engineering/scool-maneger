@@ -2,7 +2,6 @@ import {
     Card,
     IconButton,
     LinearProgress,
-    Link,
     Stack,
     Table,
     TableBody,
@@ -12,6 +11,7 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
+import Link from 'next/link';
 import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
 import {Add, Refresh} from "@mui/icons-material";
@@ -36,7 +36,6 @@ export default function ExamList() {
             ...prevState,
             examDate: value.examDate,
             subject: value.subject,
-            listView: 1,
         }));
         router.push(gradeConfig.path.root);
     };
@@ -71,7 +70,7 @@ export default function ExamList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id} onClick={() => handleRowClick(value)}>
+                                    <TableRow key={value.id} onDoubleClick={() => handleRowClick(value)}>
                                         <TableCell>{value.id}</TableCell>
                                         <TableCell>{value.subject}</TableCell>
                                         <TableCell>{value.teacherName}</TableCell>
@@ -79,13 +78,13 @@ export default function ExamList() {
                                         <TableCell>
                                             <Stack direction={"row"} spacing={0}>
                                                 <Link href={examConfig.path.details(value.id)}>
-                                                    <Tooltip title="Détails">
+                                                    <Tooltip arrow title="Détails">
                                                         <IconButton><VisibilityIcon />
                                                         </IconButton>
                                                     </Tooltip>
                                                 </Link>
                                                 <Link href={examConfig.path.edit(value.id)}>
-                                                    <Tooltip title="Modifier">
+                                                    <Tooltip arrow title="Modifier">
                                                         <IconButton><EditIcon />
                                                         </IconButton>
                                                     </Tooltip>

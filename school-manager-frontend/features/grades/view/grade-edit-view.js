@@ -3,7 +3,7 @@
 import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
 import {useFindGradeById} from "@/features/grades/grade-services";
-import GradeNewEditForm from "@/features/grades/components/grades-new-edit-form";
+import GradeNewEditForm from "@/features/grades/components/grade-new-edit-form";
 
 
 export default function GradeEditView({id}) {

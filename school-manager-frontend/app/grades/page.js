@@ -1,4 +1,3 @@
-import React from "react";
 import GradeListView from "@/features/grades/view/grade-list-view";
 
 export const metadata = {

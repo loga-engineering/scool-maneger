@@ -1,3 +1,4 @@
+"use client";
 import * as Yup from "yup";
 import {Box} from "@mui/material";
 import {useFormik} from "formik";

@@ -1,3 +1,5 @@
+"use client";
+
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import {useRouter} from "next/navigation";
@@ -31,7 +33,7 @@ export default function ClassroomNewEditForm({currentValue, isEdit}) {
 
     const router = useRouter();
     const [query, setQuery] = useState();
-    const {data: schoolYears, isLoading, isError, error, refetch} = useFindSchoolYears({query});
+    const {data: schoolYears, isLoading, isError, error, refetch} = useFindSchoolYears(query);
     const {initialValues, validationSchema} = useValidationSchema({currentValue});
 
 

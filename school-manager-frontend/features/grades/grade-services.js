@@ -12,7 +12,6 @@ export const gradeQueryState = atom({
         lastName: "",
         examDate:"",
         subject: "",
-        listView: 0,
     },
 });
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\

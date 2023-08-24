@@ -26,13 +26,13 @@ export default function ExamListView() {
             <Box>
                 <Stack direction={"row"} justifyContent={"normal"} pl={3}>
                     <Tabs value={current} onChange={handleChange}>
-                        <Tab label="LISTE" />
                         <Tab label="TABLE" />
+                        <Tab label="LISTE" />
                     </Tabs>
                 </Stack>
 
-                {current === 0 && <ExamList />}
-                {current === 1 && <ExamTable />}
+                {current === 0 && <ExamTable />}
+                {current === 1 && <ExamList />}
 
             </Box>
 

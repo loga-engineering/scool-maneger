@@ -1,4 +1,3 @@
-"use client";
 
 import {Box, Stack, Typography} from "@mui/material";
 import SchoolYearNewEditForm from "../components/school-year-new-edit-form";

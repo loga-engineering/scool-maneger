@@ -1,19 +1,20 @@
-"use client";
-
+import Link from 'next/link';
 import React, {useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
-import {IconButton, Link, Stack, Tooltip} from "@mui/material";
+import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
+import {useRouter} from "next/navigation";
+import {gradeConfig} from "@/features/grades/grade-config";
+import {gradeQueryState} from "@/features/grades/grade-services";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {studentConfig} from "@/features/students/student-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {studentQueryState} from "@/features/students/student-services";
-import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
 import StudentDelete from "@/features/students/components/student-delete";
-import {useRouter} from "next/navigation";
-import {gradeConfig} from "@/features/grades/grade-config";
-import {gradeQueryState} from "@/features/grades/grade-services";
+import {initialPagination} from "../../../shared/components/tables/table-utils";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const useColumns = () => useMemo(() => [
     {
@@ -47,7 +48,10 @@ export default function StudentTable() {
     const [pagination, setPagination] = useState(initialPagination);
 
     const studentQuery = useRecoilValue(studentQueryState);
-    const [columnFilters, setColumnFilters] = useState([{id: 'classroom.name', value: studentQuery.query}]);
+    const gradeQueryValue = useRecoilValue(gradeQueryState);
+    const [columnFilters, setColumnFilters] = useState([
+        {id: 'classroom.name', value: studentQuery.query},{id: 'firstName', value: gradeQueryValue.firstName},
+        {id: 'lastName', value: gradeQueryValue.lastName}]);
 
     const {data: currentPage, isLoading, isError, error, refetch} = useSearch({
         query: globalFilter, page: pagination.pageIndex, size: pagination.pageSize, sort, filter: columnFilters,
@@ -61,7 +65,6 @@ export default function StudentTable() {
             ...prevState,
             firstName: firstName,
             lastName: lastName,
-            listView: 1,
         }));
         router.push(gradeConfig.path.root);
     };
@@ -99,12 +102,26 @@ export default function StudentTable() {
             enableRowActions
             positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
-                <ActionMenuItems config={studentConfig} id={row.original.id}>
+                <MenuItem key={row.original.id + "details"}>
+                    <Link href={studentConfig.path.details(row.original.id)}>
+                        <Tooltip arrow title="Détails">
+                            <IconButton><VisibilityIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"edit"}>
+                    <Link href={studentConfig.path.edit(row.original.id)}>
+                        <Tooltip arrow title="Modifier">
+                            <IconButton><EditIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"delete"}>
                     <StudentDelete id={row.original.id} refetch={refetch}/>
-                </ActionMenuItems>
+                </MenuItem>
             ]}
             muiTableBodyRowProps={({ row }) => ({
-                onClick: (event) => {
+                onDoubleClick: (event) => {
                     handleRowClick(row.original.firstName,row.original.lastName);
                 },
             })}

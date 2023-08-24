@@ -8,7 +8,6 @@ export const studentQueryState = atom({
     key: 'studentQueryState',
     default: {
         query: '',
-        listView: 0,
     },
 });
 

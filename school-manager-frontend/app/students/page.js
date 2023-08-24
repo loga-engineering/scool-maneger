@@ -1,4 +1,3 @@
-import {ModuleProvider} from "../../shared/context/module-context";
 import StudentListView from "@/features/students/view/student-list-view";
 
 export const metadata = {
@@ -7,8 +6,6 @@ export const metadata = {
 
 export default function StudentPage() {
     return (
-        <ModuleProvider name={"students"} urlBase={"/students"}>
             <StudentListView/>
-        </ModuleProvider>
     );
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import SchoolYearDetailsView from "../../../features/school-years/view/school-year-details-view";
 
 export const metadata = {

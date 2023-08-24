@@ -1,8 +1,6 @@
-"use client";
 
-import React from "react";
 import {Box, Stack, Typography} from "@mui/material";
-import GradeNewEditForm from "@/features/grades/components/grades-new-edit-form";
+import GradeNewEditForm from "@/features/grades/components/grade-new-edit-form";
 
 export default function GradeNewView() {
     return (

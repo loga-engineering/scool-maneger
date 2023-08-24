@@ -24,13 +24,14 @@ export default function SchoolYearListView() {
             <Box>
                 <Stack direction={"row"} justifyContent={"normal"} pl={3}>
                     <Tabs value={current} onChange={handleChange}>
-                        <Tab label="LISTE" />
                         <Tab label="TABLE" />
+                        <Tab label="LISTE" />
                     </Tabs>
                 </Stack>
 
-                {current === 0 && <SchoolYearList />}
-                {current === 1 && <SchoolYearTable />}
+                {current === 0 && <SchoolYearTable />}
+                {current === 1 && <SchoolYearList />}
+
             </Box>
 
         </Box>

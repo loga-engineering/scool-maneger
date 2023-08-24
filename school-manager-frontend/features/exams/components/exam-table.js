@@ -1,9 +1,8 @@
-"use client";
-
+import Link from 'next/link';
 import React, {useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
-import {IconButton, Link, Stack, Tooltip} from "@mui/material";
+import {IconButton,MenuItem, Stack, Tooltip} from "@mui/material";
 
 import {useRecoilState} from "recoil";
 import {useRouter} from "next/navigation";
@@ -12,7 +11,9 @@ import {useSearch} from "@/shared/components/tables/table-hooks";
 import ExamDelete from "@/features/exams/components/exam-delete";
 import {gradeConfig} from "@/features/grades/grade-config";
 import {gradeQueryState} from "@/features/grades/grade-services";
-import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
+import {initialPagination} from "../../../shared/components/tables/table-utils";
 
 const useColumns = () => useMemo(() => [
     {
@@ -53,7 +54,6 @@ export default function ExamTable() {
             ...prevState,
             examDate: examDate,
             subject: subject,
-            listView: 1,
         }));
         router.push(gradeConfig.path.root);
     };
@@ -91,12 +91,26 @@ export default function ExamTable() {
             enableRowActions
             positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
-                <ActionMenuItems config={examConfig} id={row.original.id}>
+                <MenuItem key={row.original.id + "details"}>
+                    <Link href={examConfig.path.details(row.original.id)}>
+                        <Tooltip arrow title="Détails">
+                            <IconButton><VisibilityIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"edit"}>
+                    <Link href={examConfig.path.edit(row.original.id)}>
+                        <Tooltip arrow title="Modifier">
+                            <IconButton><EditIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"delete"}>
                     <ExamDelete id={row.original.id} refetch={refetch}/>
-                </ActionMenuItems>
+                </MenuItem>
             ]}
             muiTableBodyRowProps={({ row }) => ({
-                onClick: (event) => {
+                onDoubleClick: (event) => {
                     handleRowClick(row.original.examDate,row.original.subject);
                 },
             })}

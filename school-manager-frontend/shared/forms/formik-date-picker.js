@@ -1,5 +1,4 @@
-"use client"
-
+"use client";
 import dayjs from "dayjs";
 import React, {useEffect, useState} from 'react';
 import {useField, useFormikContext} from "formik";
@@ -63,7 +62,7 @@ export function FormikDatePicker({ name, label, isEdit, ...others }) {
     }
 }
 
-export default function DatePickerProvider({children}) {
+export function DatePickerProvider({children}) {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             {children}

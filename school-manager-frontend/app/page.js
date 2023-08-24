@@ -1,7 +1,6 @@
-"use client"
-
-import * as React from 'react';
+"use client";
 import {Box, Card, CardActionArea, CardContent, Container, Grid, Typography} from "@mui/material";
+import {useRouter} from "next/navigation";
 
 
 const modules = [
@@ -32,6 +31,7 @@ const modules = [
 ]
 
 export default function Home() {
+    const router = useRouter();
     return (
 
             <Container component={"main"} maxWidth={"lg"}>
@@ -45,7 +45,7 @@ export default function Home() {
                     {modules.map(model => (
                         <Grid key={model.href} item xs={4}>
                                 <Card>
-                                    <CardActionArea href={model.href}>
+                                    <CardActionArea onClick={() => router.push(model.href)}>
                                         <CardContent>
                                             <Typography color={"primary.main"}>
                                                 {model.label}

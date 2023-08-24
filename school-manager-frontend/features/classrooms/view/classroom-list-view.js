@@ -1,17 +1,14 @@
 "use client";
 
-import {useRecoilValue} from "recoil";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Box, Stack, Tab, Tabs, Typography} from "@mui/material";
 
 import ClassroomList from "@/features/classrooms/components/classroom-list";
-import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import ClassroomTable from "@/features/classrooms/components/classroom-table";
 
 export default function ClassroomListView() {
 
-    const classroomQuery = useRecoilValue(classroomQueryState);
-    const [current, setCurrent] = useState(classroomQuery.listView);
+    const [current, setCurrent] = useState(0);
 
     const handleChange = (event, newValue) => {
         setCurrent(newValue);
@@ -31,13 +28,13 @@ export default function ClassroomListView() {
             <Box>
                 <Stack direction={"row"} justifyContent={"normal"} pl={3}>
                     <Tabs value={current} onChange={handleChange}>
-                        <Tab label="LISTE" />
                         <Tab label="TABLE" />
+                        <Tab label="LISTE" />
                     </Tabs>
                 </Stack>
+                {current === 0 && <ClassroomTable />}
+                {current === 1 && <ClassroomList />}
 
-                {current === 0 && <ClassroomList />}
-                {current === 1 && <ClassroomTable />}
 
             </Box>
 

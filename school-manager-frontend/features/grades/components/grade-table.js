@@ -1,16 +1,20 @@
-"use client";
 
-import React, {useEffect, useMemo, useState} from "react";
+import Link from 'next/link';
+import React, { useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
-import {IconButton, Link, Stack, Tooltip} from "@mui/material";
+import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
-import {useRecoilValue} from "recoil";
+import {useRecoilState, useRecoilValue} from "recoil";
 import {gradeConfig} from "@/features/grades/grade-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {gradeQueryState} from "@/features/grades/grade-services";
 import GradeDelete from "@/features/grades/components/grade-delete";
 import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
+import {useRouter} from "next/navigation";
+import {studentConfig} from "@/features/students/student-config";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const useColumns = () => useMemo(() => [
     {
@@ -66,7 +70,16 @@ export default function GradeTable() {
     //     }
     // }, [isLoading]);
 
-    console.log("data ===> ", currentPage);
+    const router = useRouter();
+    const [gradeQueryValue, setGradeQueryValue] = useRecoilState(gradeQueryState);
+    const handleRowClick = (firstName, lastName) => {
+        setGradeQueryValue((prevState) => ({
+            ...prevState,
+            firstName: firstName,
+            lastName: lastName,
+        }));
+        router.push(studentConfig.path.root);
+    };
 
     const columns = useColumns();
 
@@ -101,10 +114,29 @@ export default function GradeTable() {
             enableRowActions
             positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
-                <ActionMenuItems config={gradeConfig} id={row.original.id}>
+                <MenuItem key={row.original.id + "details"}>
+                    <Link href={gradeConfig.path.details(row.original.id)}>
+                        <Tooltip arrow title="Détails">
+                            <IconButton><VisibilityIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"edit"}>
+                    <Link href={gradeConfig.path.edit(row.original.id)}>
+                        <Tooltip arrow title="Modifier">
+                            <IconButton><EditIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"delete"}>
                     <GradeDelete id={row.original.id} refetch={refetch}/>
-                </ActionMenuItems>
+                </MenuItem>
             ]}
+            muiTableBodyRowProps={({ row }) => ({
+                onDoubleClick: (event) => {
+                    handleRowClick(row.original.firstName,row.original.lastName);
+                },
+            })}
             renderTopToolbarCustomActions={() => (
                 <Stack direction={"row"}>
                     <Tooltip arrow title="Actualiser">

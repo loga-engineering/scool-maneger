@@ -1,9 +1,8 @@
-"use client"
 
 import {CssBaseline} from "@mui/material";
 import RecoilProvider from "@/shared/context/recoil-provider";
 import ReactQueryProvider from "@/shared/context/react-query-context";
-import DatePickerProvider from "@/shared/forms/formik-date-picker";
+import {DatePickerProvider} from "@/shared/forms/formik-date-picker";
 import ThemeProvider from "@/shared/context/theme-provider";
 
 
@@ -15,7 +14,9 @@ import ThemeProvider from "@/shared/context/theme-provider";
 //   return useContext(ModuleContext);
 // }
 
-export function ModuleProvider({ children }) {
+
+
+export default function ModuleProvider({ children }) {
 
     return (
             <ThemeProvider>

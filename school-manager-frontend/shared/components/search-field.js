@@ -1,7 +1,5 @@
-import React, {useState} from 'react';
-import {FormControl, FormHelperText, InputAdornment, OutlinedInput, Stack, TextField} from "@mui/material";
+import {InputAdornment, OutlinedInput,} from "@mui/material";
 import {Search} from "@mui/icons-material";
-import Autocomplete from '@mui/material/Autocomplete';
 
 export default function SearchField({query, setQuery, label, length}) {
 
@@ -10,7 +8,6 @@ export default function SearchField({query, setQuery, label, length}) {
         if (value.length >= length) {
             setQuery(value);
         }
-        //else if(!value) setQuery("");
     };
 
     return (

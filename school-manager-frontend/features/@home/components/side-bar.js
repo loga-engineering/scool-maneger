@@ -1,6 +1,6 @@
 "use client";
 
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import GroupsIcon from '@mui/icons-material/Groups';
 import {CalendarMonth, Home} from "@mui/icons-material";
 import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
@@ -45,10 +45,17 @@ const menus = [
 export default function SideBar() {
 
     const pathname = usePathname();
-
-    const handleThemeChange = (theme) => {
-        return theme.palette.mode === "dark" ? theme.palette.primary.dark :
+    const router = useRouter();
+    const handleThemeChange = (theme, href) => {
+        if(href === "/" ) {
+            if (pathname === href)
+            return theme.palette.mode === "dark" ? theme.palette.primary.dark :
                 theme.palette.secondary.main;
+        } else if(pathname.includes(href)){
+            return theme.palette.mode === "dark" ? theme.palette.primary.dark :
+                theme.palette.secondary.main;
+        }
+        else return (theme.palette.mode ==="dark") ?( theme.palette.secondary.dark): theme.palette.secondary.light;
     };
 
     return (
@@ -64,8 +71,8 @@ export default function SideBar() {
 
                 {menus.map(({label, href, icon}) => (
                     <ListItem key={href} disablePadding>
-                            <ListItemButton href={href} sx={{
-                                backgroundColor: theme => pathname === href && handleThemeChange(theme),
+                            <ListItemButton onClick={() => router.push(href)} sx={{
+                                backgroundColor: theme => handleThemeChange(theme, href),
                             }}>
                                 <ListItemIcon>
                                     {icon}

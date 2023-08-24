@@ -1,4 +1,3 @@
-import React from 'react';
 import {Box, Card, Stack, TextField} from "@mui/material";
 
 export default function SchoolYearDetails({currentValue}) {

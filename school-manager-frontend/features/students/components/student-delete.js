@@ -28,7 +28,7 @@ export default function StudentDelete({id, refetch}) {
 
     return(
         <>
-            <Tooltip title="Supprimer">
+            <Tooltip arrow title="Supprimer">
                 <IconButton onClick={handleDelete}><DeleteIcon/>
                 </IconButton>
             </Tooltip>

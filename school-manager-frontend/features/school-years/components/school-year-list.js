@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
 import {
     IconButton,
     LinearProgress,
-    Link,
     Stack,
     Table,
     TableBody,
@@ -12,6 +10,7 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
+import Link from 'next/link';
 import {useRecoilState} from "recoil";
 import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
@@ -35,7 +34,6 @@ export default function SchoolYearList() {
         setClassroomQuery((prevState) => ({
             ...prevState,
             query: year,
-            listView: 1,
         }));
         router.push(classroomConfig.path.root);
     };
@@ -58,7 +56,7 @@ export default function SchoolYearList() {
                     {currentValue && (
                         <TableBody>
                             {currentValue.map(value => (
-                                <TableRow key={value.id} onClick={() => handleRowClick(value.year)}>
+                                <TableRow key={value.id} onDoubleClick={() => handleRowClick(value.year)}>
                                     <TableCell>{value.id}</TableCell>
                                     <TableCell>{value.year}</TableCell>
                                     <TableCell>{value.startDate}</TableCell>

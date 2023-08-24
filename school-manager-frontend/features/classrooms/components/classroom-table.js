@@ -1,19 +1,21 @@
-"use client";
 
+import Link from 'next/link';
+import {useRouter} from "next/navigation";
 import React, {useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
-import {Box, Button, IconButton, Link, MenuItem, Stack, Tooltip} from "@mui/material";
+import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
+import {useRecoilState, useRecoilValue} from "recoil";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {useSearch} from "@/shared/components/tables/table-hooks";
-import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
-import {useRecoilState, useRecoilValue} from "recoil";
 import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import {studentQueryState} from "@/features/students/student-services";
 import {studentConfig} from "@/features/students/student-config";
-import {useRouter} from "next/navigation";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
+import {initialPagination} from "../../../shared/components/tables/table-utils";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 const useColumns = () => useMemo(() => [
 
@@ -57,7 +59,6 @@ export default function ClassroomTable() {
         setStudentQuery((prevState) => ({
             ...prevState,
             query: name,
-            listView: 1,
         }));
         router.push(studentConfig.path.root);
     };
@@ -95,12 +96,26 @@ export default function ClassroomTable() {
             enableRowActions
             positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
-                <ActionMenuItems config={classroomConfig} id={row.original.id}>
+                <MenuItem key={row.original.id + "details"}>
+                    <Link href={classroomConfig.path.details(row.original.id)}>
+                        <Tooltip arrow title="Détails">
+                            <IconButton><VisibilityIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"edit"}>
+                    <Link href={classroomConfig.path.edit(row.original.id)}>
+                        <Tooltip arrow title="Modifier">
+                            <IconButton><EditIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"delete"}>
                     <ClassroomDelete id={row.original.id} refetch={refetch}/>
-                </ActionMenuItems>
+                </MenuItem>
             ]}
             muiTableBodyRowProps={({ row }) => ({
-                onClick: (event) => {
+                onDoubleClick: (event) => {
                     handleRowClick(row.original.name);
                 },
             })}

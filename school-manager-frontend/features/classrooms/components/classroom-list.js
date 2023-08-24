@@ -1,8 +1,6 @@
-import React, {useState} from 'react';
 import {
     IconButton,
     LinearProgress,
-    Link,
     Stack,
     Table,
     TableBody,
@@ -12,6 +10,7 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
+import Link from 'next/link';
 import {useRecoilState} from "recoil";
 import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
@@ -22,12 +21,10 @@ import {studentConfig} from "@/features/students/student-config";
 import {studentQueryState} from "@/features/students/student-services";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {
-    classroomQueryState,
     classroomSearchQueryState,
     useFindClassrooms
 } from "@/features/classrooms/classroom-services";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
-
 export default function ClassroomList() {
 
     const router = useRouter();
@@ -39,7 +36,6 @@ export default function ClassroomList() {
         setStudentQuery((prevState) => ({
             ...prevState,
             query: name,
-            listView: 1,
         }));
         router.push(studentConfig.path.root);
     };
@@ -64,7 +60,7 @@ export default function ClassroomList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id} onClick={() => handleClick(value.name)}>
+                                    <TableRow key={value.id} onDoubleClick={() => handleClick(value.name)}>
                                         <TableCell>{value.name}</TableCell>
                                         <TableCell>{value.level}</TableCell>
                                         <TableCell>{value.headTeacherName}</TableCell>

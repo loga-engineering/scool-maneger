@@ -1,4 +1,3 @@
-import React from 'react';
 import StudentDetailsView from "@/features/students/view/student-details-view";
 
 export const metadata = {

@@ -1,10 +1,9 @@
-"use client";
-
+import Link from 'next/link';
 import {useRouter} from "next/navigation";
 import React, {useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
-import {IconButton, Link, Stack, Tooltip} from "@mui/material";
+import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
 import {useRecoilState} from "recoil";
 import {schoolYearConfig} from "../school-year-config";
@@ -13,6 +12,8 @@ import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
 import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from "@mui/icons-material/Edit";
 
 
 const useColumns = () => useMemo(() => [
@@ -52,7 +53,6 @@ export default function SchoolYearTable() {
         setClassroomQuery((prevState) => ({
             ...prevState,
             query: year,
-            listView: 1,
         }));
         router.push(classroomConfig.path.root);
     };
@@ -90,12 +90,26 @@ export default function SchoolYearTable() {
             enableRowActions
             positionActionsColumn={"last"}
             renderRowActionMenuItems={({ row }) => [
-                <ActionMenuItems config={schoolYearConfig} id={row.original.id}>
+                <MenuItem key={row.original.id + "details"}>
+                    <Link href={schoolYearConfig.path.details(row.original.id)}>
+                        <Tooltip arrow title="Détails">
+                            <IconButton><VisibilityIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"edit"}>
+                    <Link href={schoolYearConfig.path.edit(row.original.id)}>
+                        <Tooltip arrow title="Modifier">
+                            <IconButton><EditIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"delete"}>
                     <SchoolYearDelete id={row.original.id} refetch={refetch}/>
-                </ActionMenuItems>
+                </MenuItem>
             ]}
             muiTableBodyRowProps={({ row }) => ({
-                onClick: (event) => {
+                onDoubleClick: (event) => {
                     handleRowClick(row.original.year);
                 },
             })}

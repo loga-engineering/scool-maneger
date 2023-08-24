@@ -1,10 +1,11 @@
+
+import Link from 'next/link';
 import React, { useState} from 'react';
 import {
     Card,
     CardHeader,
     IconButton,
     LinearProgress,
-    Link,
     Stack,
     Table,
     TableBody,
@@ -14,20 +15,33 @@ import {
     TableRow,
     Tooltip
 } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import {useRecoilState} from "recoil";
+import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
 import {Add, Refresh} from "@mui/icons-material";
-import {useSearchGrades} from "@/features/grades/grade-services";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import GradeDelete from "@/features/grades/components/grade-delete";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import {gradeConfig} from "@/features/grades/grade-config";
+import {studentConfig} from "@/features/students/student-config";
+import {gradeQueryState, useSearchGrades} from "@/features/grades/grade-services";
 
 export default function GradeList() {
 
+    const router = useRouter();
     const [query, setQuery] = useState(0);
     const {data: currentValue, isLoading, isError, error, refetch} = useSearchGrades({query});
+    const [gradeQuery, setGradeQuery] = useRecoilState(gradeQueryState);
 
+    const handleRowClick = (value) => {
+        setGradeQuery((prevState) => ({
+            ...prevState,
+            firstName: value.firstName,
+            lastName: value.lastName,
+        }));
+        router.push(studentConfig.path.root);
+    };
 
     return (
         <Card>
@@ -35,26 +49,26 @@ export default function GradeList() {
             <CardHeader
                 title={
                     <Stack direction={"row"} alignItems={"start"}>
-                        <Tooltip title="note croissant">
-                            <IconButton onClick={() => setQuery(1) }>
-                                <ArrowUpwardIcon />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="note décroissant">
-                            <IconButton onClick={() => setQuery(2)}>
-                                <ArrowDownwardIcon />
-                            </IconButton>
-                        </Tooltip>
                         <Link href={"grades/new"}>
-                            <Tooltip title="Ajouter">
+                            <Tooltip arrow title="Ajouter">
                                 <IconButton>
                                     <Add/>
                                 </IconButton>
                             </Tooltip>
                         </Link>
-                        <Tooltip title="actualiser">
+                        <Tooltip arrow title="actualiser">
                             <IconButton onClick={refetch}>
                                 <Refresh/>
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip arrow title="note croissant">
+                            <IconButton onClick={() => setQuery(1) }>
+                                <ArrowUpwardIcon />
+                            </IconButton>
+                        </Tooltip>
+                        <Tooltip arrow title="note décroissant">
+                            <IconButton onClick={() => setQuery(2)}>
+                                <ArrowDownwardIcon />
                             </IconButton>
                         </Tooltip>
                     </Stack>
@@ -85,7 +99,7 @@ export default function GradeList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id}>
+                                    <TableRow key={value.id} onDoubleClick={() => handleClick(value.name)}>
                                         <TableCell>{value.exam.examDate}</TableCell>
                                         <TableCell>{value.exam.subject}</TableCell>
                                         <TableCell>{value.value}</TableCell>
