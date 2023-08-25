@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useMemo, useState} from "react";
 import {createTheme} from "@mui/material/styles";
 import {Box, FormControlLabel, styled, Switch, ThemeProvider as MuiThemeProvider} from "@mui/material";
 
@@ -10,6 +10,7 @@ const FloatingSwitch = styled(FormControlLabel)({
     top: 8,
     right: 8,
 });
+
 export default function ThemeProvider({children}) {
 
     const value = () => {

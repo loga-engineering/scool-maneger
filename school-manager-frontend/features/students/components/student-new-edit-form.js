@@ -1,18 +1,19 @@
 "use client";
 import * as Yup from "yup";
 import {useFormik} from "formik";
+import {Box} from "@mui/material";
 import {useRouter} from "next/navigation";
-import React, {useCallback, useMemo, useState} from "react";
+import React, {useCallback, useMemo,} from "react";
 
+import {formikSubmit} from "@/shared/forms/formik-submit";
+import {studentConfig} from "@/features/students/student-config";
+import {FormikSelect} from "@/shared/forms/formik-select";
 import {generateValues} from "@/shared/forms/formik-hooks";
+import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 import FormikTextField from "../../../shared/forms/formik-text-field";
 import {createStudent, updateStudentById} from "../student-services";
 import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
-import {formikSubmit} from "@/shared/forms/formik-submit";
-import {studentConfig} from "@/features/students/student-config";
-import {Box, InputLabel, MenuItem, Select, Stack} from "@mui/material";
 import {useFindAllClassrooms} from "@/features/classrooms/classroom-services";
-import {FormikDatePicker} from "@/shared/forms/formik-date-picker";
 
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
@@ -101,18 +102,8 @@ export default function StudentNewEditForm({currentValue, isEdit}) {
             </Box>
 
             <FormikDatePicker name={"enrollmentDate"} label={"Date d'inscription"} isEdit={isEdit} />
-            <InputLabel id="select-filled-label">Classe</InputLabel>
-            <Select
-                fullWidth
-                labelId="select-filled-label"
-                {...formik.getFieldProps("classroom.id")}
-                error={!!formik.errors["classroom.id"]}
-                helperText={formik.errors["classroom.id"]}
-            >
-                {classrooms?.map((classroom) => (
-                    <MenuItem key={classroom.id} value={classroom.id}> {classroom.name}</MenuItem>
-                ))}
-            </Select>
+
+            <FormikSelect name={"classroom.id"} label={"Classe"} options={classrooms} />
 
         </SimpleCardFormikForm>
     );

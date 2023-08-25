@@ -17,10 +17,10 @@ import EditIcon from "@mui/icons-material/Edit";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import ListToolBar from "@/shared/components/list-tool-bar";
-import {schoolYearQueryState, useFindSchoolYears} from "../school-year-services";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import {schoolYearConfig} from "@/features/school-years/school-year-config";
+import {schoolYearQueryState, useFindSchoolYears} from "../school-year-services";
 import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
 
 export default function SchoolYearList() {

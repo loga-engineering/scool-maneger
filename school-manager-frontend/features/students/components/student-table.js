@@ -1,20 +1,21 @@
 import Link from 'next/link';
 import React, {useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
 import {useRouter} from "next/navigation";
+import {useRecoilState, useRecoilValue} from "recoil";
 import {gradeConfig} from "@/features/grades/grade-config";
 import {gradeQueryState} from "@/features/grades/grade-services";
-import {useRecoilState, useRecoilValue} from "recoil";
 import {studentConfig} from "@/features/students/student-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {studentQueryState} from "@/features/students/student-services";
 import StudentDelete from "@/features/students/components/student-delete";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 
 const useColumns = () => useMemo(() => [
     {
@@ -48,10 +49,9 @@ export default function StudentTable() {
     const [pagination, setPagination] = useState(initialPagination);
 
     const studentQuery = useRecoilValue(studentQueryState);
-    const gradeQueryValue = useRecoilValue(gradeQueryState);
     const [columnFilters, setColumnFilters] = useState([
-        {id: 'classroom.name', value: studentQuery.query},{id: 'firstName', value: gradeQueryValue.firstName},
-        {id: 'lastName', value: gradeQueryValue.lastName}]);
+        {id: 'classroom.name', value: studentQuery.query},{id: 'firstName', value: studentQuery.firstName},
+        {id: 'lastName', value: studentQuery.lastName}]);
 
     const {data: currentPage, isLoading, isError, error, refetch} = useSearch({
         query: globalFilter, page: pagination.pageIndex, size: pagination.pageSize, sort, filter: columnFilters,

@@ -2,10 +2,9 @@
 
 import {useState} from "react";
 import { Box, Stack, Tab, Tabs, Typography } from "@mui/material";
+
 import GradeList from "@/features/grades/components/grade-list";
 import GradeTable from "@/features/grades/components/grade-table";
-
-
 
 export default function GradeListView() {
 

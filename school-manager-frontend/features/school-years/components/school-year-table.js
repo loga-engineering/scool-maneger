@@ -5,15 +5,16 @@ import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import {useRecoilState} from "recoil";
 import {schoolYearConfig} from "../school-year-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {classroomQueryState} from "@/features/classrooms/classroom-services";
+import {initialPagination} from "../../../shared/components/tables/table-utils";
 import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
-import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 
 
 const useColumns = () => useMemo(() => [
@@ -37,7 +38,7 @@ const useColumns = () => useMemo(() => [
 
 
 export default function SchoolYearTable() {
-    const [sort, setSort] = useState([{id: 'year', desc: true},]);
+    const [sort, setSort] = useState([{id: 'year', desc: true}]);
     const [globalFilter, setGlobalFilter] = useState("");
     const [columnFilters, setColumnFilters] = useState([]);
     const [pagination, setPagination] = useState(initialPagination);

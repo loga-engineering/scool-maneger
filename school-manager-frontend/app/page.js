@@ -1,6 +1,6 @@
-"use client";
+
+import Link from "next/link";
 import {Box, Card, CardActionArea, CardContent, Container, Grid, Typography} from "@mui/material";
-import {useRouter} from "next/navigation";
 
 
 const modules = [
@@ -31,9 +31,8 @@ const modules = [
 ]
 
 export default function Home() {
-    const router = useRouter();
-    return (
 
+    return (
             <Container component={"main"} maxWidth={"lg"}>
                 <Box mt={5}>
                     <Typography variant={"h2"} gutterBottom>
@@ -45,16 +44,18 @@ export default function Home() {
                     {modules.map(model => (
                         <Grid key={model.href} item xs={4}>
                                 <Card>
-                                    <CardActionArea onClick={() => router.push(model.href)}>
-                                        <CardContent>
-                                            <Typography color={"primary.main"}>
-                                                {model.label}
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                {model.description}
-                                            </Typography>
-                                        </CardContent>
-                                    </CardActionArea>
+                                    <Link href={model.href} style={{textDecoration: 'none'}}>
+                                        <CardActionArea>
+                                            <CardContent>
+                                                <Typography color={"primary.main"}>
+                                                    {model.label}
+                                                </Typography>
+                                                <Typography variant="body2" color="text.secondary">
+                                                    {model.description}
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                    </Link>
                                 </Card>
                         </Grid>
                     ))}

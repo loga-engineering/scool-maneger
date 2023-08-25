@@ -1,7 +1,8 @@
 import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {useFormikContext} from "formik";
+import React from "react";
 
-export function FormikSelectField({name, label, options, children, onChange, ...others}) {
+export function FormikSelectField({name, label, options, children, ...others}) {
     const {getFieldProps, touched, errors} = useFormikContext();
     const errorMessage = touched[name] && errors[name];
 
@@ -14,9 +15,9 @@ export function FormikSelectField({name, label, options, children, onChange, ...
                 labelId={name}
                 placeholder={label}
                 error={Boolean(errorMessage)}
-                onChange={(event) => onChange(event.target.value)}
                 {...others}
             >
+                <MenuItem key={""} value={""}>No Selected // Or Empty</MenuItem>
                 {options?.map((option) => (
                     <MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
                 ))}
@@ -41,6 +42,7 @@ export function FormikSelect({name, label, options, children, ...others}) {
                 error={Boolean(errorMessage)}
                 {...others}
             >
+                <MenuItem key={""} value={""}>No Selected // Or Empty</MenuItem>
                 {options?.map((option) => (
                     <MenuItem key={option.id} value={option.id}>{option.name}</MenuItem>
                 ))}

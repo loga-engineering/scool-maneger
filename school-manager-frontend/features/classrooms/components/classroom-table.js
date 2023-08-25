@@ -3,19 +3,20 @@ import Link from 'next/link';
 import {useRouter} from "next/navigation";
 import React, {useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
+import {useRecoilState, useRecoilValue} from "recoil";
 import {MaterialReactTable} from "material-react-table";
+
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
-import {useRecoilState, useRecoilValue} from "recoil";
-import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {useSearch} from "@/shared/components/tables/table-hooks";
-import {classroomQueryState} from "@/features/classrooms/classroom-services";
-import {studentQueryState} from "@/features/students/student-services";
 import {studentConfig} from "@/features/students/student-config";
+import {classroomConfig} from "@/features/classrooms/classroomConfig";
+import {studentQueryState} from "@/features/students/student-services";
+import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
 
 const useColumns = () => useMemo(() => [
 
@@ -40,7 +41,7 @@ const useColumns = () => useMemo(() => [
 
 export default function ClassroomTable() {
 
-    const [sort, setSort] = useState([]);
+    const [sort, setSort] = useState([{id: 'name', desc: false}]);
     const [globalFilter, setGlobalFilter] = useState("");
     const [pagination, setPagination] = useState(initialPagination);
 

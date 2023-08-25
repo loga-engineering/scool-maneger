@@ -95,7 +95,6 @@ public class GradeService {
                 return searchData.comparisonQuery("g.value",filteringData.getValue());
             } else if (filteringData.getId().equals("student.lastName")) {
                 return searchData.comparisonQuery("st.last_name",filteringData.getValue());
-                //return " st.last_name like \"%" + filteringData.getValue() + "%\" or st.last_name = \"%"+filteringData.getValue()+"%\" ";
             } else if (filteringData.getId().equals("student.firstName")) {
                 return searchData.comparisonQuery("st.first_name",filteringData.getValue());
             }

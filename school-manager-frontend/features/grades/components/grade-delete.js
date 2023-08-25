@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Alert from "@mui/material/Alert";
-import {IconButton, Snackbar, Tooltip} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import {IconButton, Snackbar, Tooltip} from "@mui/material";
 import {useDeleteGrade} from "@/features/grades/grade-services";
 
 export default function GradeDelete({id, refetch}) {

@@ -1,7 +1,7 @@
+
 import {Box, Card, Stack, TextField, Typography} from "@mui/material";
 
 export default function GradeDetails({currentValue}) {
-
 
     return (
         <Card>

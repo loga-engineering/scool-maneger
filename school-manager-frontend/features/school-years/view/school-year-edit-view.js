@@ -8,7 +8,7 @@ import SchoolYearNewEditForm from "../components/school-year-new-edit-form";
 
 export default function SchoolYearEditView({id}) {
 
-    const {data: currentValue, isLoading, isError, error} = useFindSchoolYearById(id);
+    const {data: currentValue, isLoading} = useFindSchoolYearById(id);
 
 
     return (

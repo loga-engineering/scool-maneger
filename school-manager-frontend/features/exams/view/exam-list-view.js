@@ -20,7 +20,6 @@ export default function ExamListView() {
                 <Typography variant="h3" p={3}>
                     {"Liste des examens"}
                 </Typography>
-
             </Stack>
 
             <Box>

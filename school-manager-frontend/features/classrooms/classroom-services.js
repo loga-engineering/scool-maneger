@@ -4,6 +4,7 @@ import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/post
 import {atom} from "recoil";
 
 const urlBase = process.env.BACKEND_URL + "classrooms";
+
 export const classroomQueryState = atom({
     key: 'classroomQueryState',
     default: {

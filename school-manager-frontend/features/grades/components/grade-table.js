@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import React, { useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
 import {MaterialReactTable} from "material-react-table";
 import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
@@ -15,6 +15,7 @@ import {useRouter} from "next/navigation";
 import {studentConfig} from "@/features/students/student-config";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import EditIcon from "@mui/icons-material/Edit";
+import {studentFilterQuery, studentQueryState} from "@/features/students/student-services";
 
 const useColumns = () => useMemo(() => [
     {
@@ -51,8 +52,7 @@ export default function GradeTable() {
 
     const gradeQuery = useRecoilValue(gradeQueryState);
     const [columnFilters, setColumnFilters] = useState([
-        {id: 'student.lastName', value: gradeQuery.lastName}, {id: 'student.firstName', value: gradeQuery.firstName},
-        {id: 'exam.examDate', value: gradeQuery.examDate}, {id: 'exam.subject', value: gradeQuery.subject}
+        {id: 'student.firstName', value: gradeQuery.firstName},{id: 'student.lastName', value: gradeQuery.lastName}
     ]);
 
 
@@ -62,18 +62,18 @@ export default function GradeTable() {
     });
 
 
-    // useEffect(() => {
-    //     if(!isLoading){
-    //         setColumnFilters([
-    //             {id: 'student.firstName', value: gradeQuery.firstName},{id: 'student.lastName', value: gradeQuery.lastName},
-    //             {id: 'exam.examDate', value: gradeQuery.examDate},{id: 'exam.subject', value: gradeQuery.subject}])
-    //     }
-    // }, [isLoading]);
+    useEffect(() => {
+        if(!isLoading){
+            setColumnFilters([
+                {id: 'exam.examDate', value: gradeQuery.examDate},{id: 'exam.subject', value: gradeQuery.subject}]);
+        }
+        //console.log("current page ===> ", currentPage);
+    }, []);
 
     const router = useRouter();
-    const [gradeQueryValue, setGradeQueryValue] = useRecoilState(gradeQueryState);
+    const [studentQuery, setStudentQuery] = useRecoilState(studentQueryState);
     const handleRowClick = (firstName, lastName) => {
-        setGradeQueryValue((prevState) => ({
+        setStudentQuery((prevState) => ({
             ...prevState,
             firstName: firstName,
             lastName: lastName,
@@ -134,7 +134,7 @@ export default function GradeTable() {
             ]}
             muiTableBodyRowProps={({ row }) => ({
                 onDoubleClick: (event) => {
-                    handleRowClick(row.original.firstName,row.original.lastName);
+                    handleRowClick(row.original.student.firstName,row.original.student.lastName);
                 },
             })}
             renderTopToolbarCustomActions={() => (

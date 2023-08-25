@@ -12,7 +12,6 @@ export const schoolYearQueryState = atom({
 
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-
 export const findAllSchoolYears = async () => {
     try {
         const {data} = await axios.get(urlBase);

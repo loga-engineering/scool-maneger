@@ -48,7 +48,7 @@ export default function ClassroomDetails({currentValue}) {
                 <TextField
                     fullWidth
                     label="Nombre d'élèves"
-                    value={numberOfStudents?.toString()}
+                    defaultValue={numberOfStudents}
                     InputProps={{readOnly: true}}
                 />
 

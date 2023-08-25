@@ -12,6 +12,7 @@ export default function ExamNewView() {
                 </Typography>
 
                 <ExamNewEditForm isEdit={false}/>
+
             </Stack>
         </Box>
     );

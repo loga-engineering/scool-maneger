@@ -18,7 +18,6 @@ export default function SchoolYearListView() {
                 <Typography variant="h3" p={3}>
                     {"Liste des années scolaires"}
                 </Typography>
-
             </Stack>
 
             <Box>

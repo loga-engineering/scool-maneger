@@ -88,7 +88,6 @@ export default function StudentDetails({currentValue}) {
                     </Box>
                 </Stack>
 
-
             </Stack>
         </Card>
     );

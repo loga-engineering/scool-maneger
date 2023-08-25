@@ -20,25 +20,27 @@ import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
 import {Add, Refresh} from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import GradeDelete from "@/features/grades/components/grade-delete";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+
 import {gradeConfig} from "@/features/grades/grade-config";
 import {studentConfig} from "@/features/students/student-config";
-import {gradeQueryState, useSearchGrades} from "@/features/grades/grade-services";
+import GradeDelete from "@/features/grades/components/grade-delete";
+import {useSearchGrades} from "@/features/grades/grade-services";
+import {studentQueryState} from "@/features/students/student-services";
 
 export default function GradeList() {
 
     const router = useRouter();
     const [query, setQuery] = useState(0);
     const {data: currentValue, isLoading, isError, error, refetch} = useSearchGrades({query});
-    const [gradeQuery, setGradeQuery] = useRecoilState(gradeQueryState);
+    const [studentQuery, setStudentQuery] = useRecoilState(studentQueryState);
 
-    const handleRowClick = (value) => {
-        setGradeQuery((prevState) => ({
+    const handleRowClick = (lastName, firstName) => {
+        setStudentQuery((prevState) => ({
             ...prevState,
-            firstName: value.firstName,
-            lastName: value.lastName,
+            firstName: firstName,
+            lastName: lastName,
         }));
         router.push(studentConfig.path.root);
     };
@@ -99,7 +101,7 @@ export default function GradeList() {
 
                             <TableBody>
                                 {currentValue.map(value => (
-                                    <TableRow key={value.id} onDoubleClick={() => handleClick(value.name)}>
+                                    <TableRow key={value.id} onDoubleClick={() => handleRowClick(value.student.lastName,value.student.firstName)}>
                                         <TableCell>{value.exam.examDate}</TableCell>
                                         <TableCell>{value.exam.subject}</TableCell>
                                         <TableCell>{value.value}</TableCell>

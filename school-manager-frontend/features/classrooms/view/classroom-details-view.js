@@ -1,6 +1,6 @@
 "use client"
-import {Box, LinearProgress, Stack, Typography} from "@mui/material";
 import ClassroomDetails from "../components/classroom-details";
+import {Box, LinearProgress, Stack, Typography} from "@mui/material";
 import {useFindClassroomById} from "@/features/classrooms/classroom-services";
 
 export default function ClassroomDetailsView({id}) {

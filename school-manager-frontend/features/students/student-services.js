@@ -7,7 +7,9 @@ const urlBase = process.env.BACKEND_URL + "students";
 export const studentQueryState = atom({
     key: 'studentQueryState',
     default: {
-        query: '',
+        query: "",
+        firstName: "",
+        lastName: "",
     },
 });
 
@@ -15,6 +17,7 @@ export const studentSearchQueryState = atom({
     key: 'studentSearchQueryState',
     default: "",
 });
+
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllStudents = async () => {
     try {

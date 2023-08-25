@@ -1,12 +1,10 @@
 "use client";
 
 import {useState} from "react";
-import {useRecoilValue} from "recoil";
 import {Box, Stack, Tab, Tabs, Typography} from "@mui/material";
 
 import StudentList from "@/features/students/components/student-list";
 import StudentTable from "@/features/students/components/student-table";
-import {studentQueryState} from "@/features/students/student-services";
 
 export default function StudentListView() {
 

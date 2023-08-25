@@ -18,13 +18,11 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 
 import ListToolBar from "@/shared/components/list-tool-bar";
 import {studentConfig} from "@/features/students/student-config";
-import {studentQueryState} from "@/features/students/student-services";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
-import {
-    classroomSearchQueryState,
-    useFindClassrooms
-} from "@/features/classrooms/classroom-services";
+import {studentQueryState} from "@/features/students/student-services";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
+import {classroomSearchQueryState, useFindClassrooms} from "@/features/classrooms/classroom-services";
+
 export default function ClassroomList() {
 
     const router = useRouter();
@@ -42,7 +40,6 @@ export default function ClassroomList() {
 
     return (
             <ListToolBar refetch={refetch} label={"Nom"} length={1} query={query} setQuery={setQuery} config={classroomConfig}>
-
 
                 <TableContainer sx={{minWidth: 700}}>
                     {isLoading && <LinearProgress/>}
@@ -88,7 +85,6 @@ export default function ClassroomList() {
                         )}
                     </Table>
                 </TableContainer>
-
             </ListToolBar>
     );
 }

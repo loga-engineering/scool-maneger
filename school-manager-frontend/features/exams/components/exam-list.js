@@ -12,21 +12,21 @@ import {
     Tooltip
 } from "@mui/material";
 import Link from 'next/link';
+import {useRecoilState} from "recoil";
 import {useRouter} from "next/navigation";
 import EditIcon from "@mui/icons-material/Edit";
 import {Add, Refresh} from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 
-import {useRecoilState} from "recoil";
 import {examConfig} from "@/features/exams/exam-config";
-import ExamDelete from "@/features/exams/components/exam-delete";
-import {useFindAllExams} from "@/features/exams/exam-services";
 import {gradeConfig} from "@/features/grades/grade-config";
+import {useFindAllExams} from "@/features/exams/exam-services";
+import ExamDelete from "@/features/exams/components/exam-delete";
 import {gradeQueryState} from "@/features/grades/grade-services";
 
 export default function ExamList() {
 
-    const {data: currentValue, isLoading, isError, error, refetch} = useFindAllExams();
+    const {data: currentValue, isLoading, refetch} = useFindAllExams();
 
     const [gradeQuery, setGradeQuery] = useRecoilState(gradeQueryState);
 

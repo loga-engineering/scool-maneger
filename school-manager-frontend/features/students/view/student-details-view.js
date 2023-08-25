@@ -9,7 +9,6 @@ export default function StudentDetailsView({id}) {
 
     const {data: currentValue, isLoading, isError, error, refetch} = useFindStudentById(id);
 
-
     return (
         <Box p={3}>
             <Stack spacing={3}>

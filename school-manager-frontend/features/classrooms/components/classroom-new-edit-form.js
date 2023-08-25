@@ -3,16 +3,17 @@
 import * as Yup from "yup";
 import {useFormik} from "formik";
 import {useRouter} from "next/navigation";
+import {Box, MenuItem} from "@mui/material";
 import React, {useCallback, useMemo, useState} from "react";
 
+import {formikSubmit} from "@/shared/forms/formik-submit";
 import {generateValues} from "@/shared/forms/formik-hooks";
 import FormikTextField from "../../../shared/forms/formik-text-field";
 import {SimpleCardFormikForm} from "@/shared/forms/formik-form-provider";
-import {formikSubmit} from "@/shared/forms/formik-submit";
 import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {createClassroom, updateClassroomById} from "@/features/classrooms/classroom-services";
-import {Box, InputLabel, MenuItem, Select} from "@mui/material";
 import {useFindSchoolYears} from "@/features/school-years/school-year-services";
+import {FormikSelect} from "@/shared/forms/formik-select";
 
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
@@ -64,18 +65,11 @@ export default function ClassroomNewEditForm({currentValue, isEdit}) {
 
             <FormikTextField name={"headTeacherName"} label={"Prof. Titulaire"}/>
 
-            <InputLabel id="select-filled-label">Année scolaire</InputLabel>
-            <Select
-                fullWidth
-                labelId="select-filled-label"
-                {...formik.getFieldProps("schoolYear.id")}
-                error={!!formik.errors["schoolYear.id"]}
-                helperText={formik.errors["schoolYear.id"]}
-            >
-                {schoolYears?.map((schoolYear) => (
-                    <MenuItem key={schoolYear.id} value={schoolYear.id}> {schoolYear.year}</MenuItem>
-                ))}
-            </Select>
+            <FormikSelect name={"schoolYear.id"} label={"Année scolaire"}>
+            {schoolYears?.map((schoolYear) => (
+                <MenuItem key={schoolYear.id} value={schoolYear.id}> {schoolYear.year}</MenuItem>
+            ))}
+            </FormikSelect>
 
         </SimpleCardFormikForm>
     );
