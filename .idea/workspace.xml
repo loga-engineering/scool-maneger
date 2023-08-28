@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Introduce lodash, useValidationSchema, formikForm">
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Update ThemeProvider">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/loading.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,21 +52,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/HP 450 G6/Desktop/code/scool-maneger",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "spring.configuration.checksum": "ff00ba6fc6b0f62d4d028301868e209e",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP 450 G6/Desktop/code/scool-maneger&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ff00ba6fc6b0f62d4d028301868e209e&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents" />
@@ -163,7 +166,9 @@
       <workItem from="1691685807831" duration="6663000" />
       <workItem from="1692121396940" duration="3706000" />
       <workItem from="1692264173767" duration="4941000" />
-      <workItem from="1693137055402" duration="1223000" />
+      <workItem from="1693137055402" duration="1868000" />
+      <workItem from="1693150787023" duration="2308000" />
+      <workItem from="1693208144893" duration="8343000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -214,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692125081227</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Update ThemeProvider">
+      <option name="closed" value="true" />
+      <created>1693138648107</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693138648107</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +251,7 @@
     <MESSAGE value="RAS" />
     <MESSAGE value="Introduce context, react-query, formik-field" />
     <MESSAGE value="Introduce lodash, useValidationSchema, formikForm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Introduce lodash, useValidationSchema, formikForm" />
+    <MESSAGE value="Update ThemeProvider" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update ThemeProvider" />
   </component>
 </project>

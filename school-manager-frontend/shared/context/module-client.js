@@ -23,16 +23,16 @@ export default function ModuleClient({ children }) {
                     <ReactQueryProvider>
                         <DatePickerProvider>
 
-                            <Box height={"100vh"} width={"100vw"} display={"flex"} >
-                                <SideBar/>
-                                <Suspense fallback={<Loading />  }>
-                                    <Box flexGrow={1} pt={4} sx={{
-                                        backgroundColor: theme => handleThemeChange(theme), }} >
-                                        {children}
-                                    </Box>
-                                </Suspense>
-                            </Box>
+                                <Box height={"100vh"} width={"100vw"} display={"flex"} >
 
+                                    <SideBar/>
+                                    <Suspense fallback={<Loading />  }>
+                                        <Box flexGrow={1} pt={4} sx={{
+                                            backgroundColor: theme => handleThemeChange(theme), }} >
+                                            {children}
+                                        </Box>
+                                    </Suspense>
+                                </Box>
                         </DatePickerProvider>
                     </ReactQueryProvider>
                 </RecoilProvider>

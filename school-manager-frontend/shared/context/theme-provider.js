@@ -18,7 +18,7 @@ export default function ThemeProvider({children}) {
             return localStorage.getItem('mode') === 'dark';
         } catch (error) {
             console.log("ThemeProvider ===>",error);
-            //throw error;
+            throw error;
         }
     };
     const [darkMode, setDarkMode] = useState(value);
