@@ -1,21 +1,24 @@
 
 import Link from 'next/link';
+import {useRouter} from "next/navigation";
+
+import { ExportToCsv } from 'export-to-csv';
 import React, {useEffect, useMemo, useState} from "react";
 import {Add, Refresh} from "@mui/icons-material";
-import {MaterialReactTable} from "material-react-table";
+import EditIcon from "@mui/icons-material/Edit";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import {IconButton, MenuItem, Stack, Tooltip} from "@mui/material";
 
+import {MaterialReactTable} from "material-react-table";
 import {useRecoilState, useRecoilValue} from "recoil";
 import {gradeConfig} from "@/features/grades/grade-config";
 import {useSearch} from "@/shared/components/tables/table-hooks";
 import {gradeQueryState} from "@/features/grades/grade-services";
 import GradeDelete from "@/features/grades/components/grade-delete";
-import ActionMenuItems, {initialPagination} from "../../../shared/components/tables/table-utils";
-import {useRouter} from "next/navigation";
 import {studentConfig} from "@/features/students/student-config";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import EditIcon from "@mui/icons-material/Edit";
-import {studentFilterQuery, studentQueryState} from "@/features/students/student-services";
+import {studentQueryState} from "@/features/students/student-services";
+import {initialPagination} from "../../../shared/components/tables/table-utils";
 
 const useColumns = () => useMemo(() => [
     {
@@ -25,22 +28,27 @@ const useColumns = () => useMemo(() => [
     {
         accessorKey: 'exam.subject',
         header: 'Matière',
+        size: 40,
     },
     {
         accessorKey: 'value',
         header: 'Note',
+        size: 20,
     },
     {
         accessorKey: 'student.firstName',
         header: 'Prénom',
+        size: 40,
     },
     {
         accessorKey: 'student.lastName',
         header: 'Nom',
+        size: 40,
     },
     {
         accessorKey: 'student.classroom.name',
         header: 'Classe',
+        size: 20,
     },
 ], []);
 
@@ -81,7 +89,32 @@ export default function GradeTable() {
         router.push(studentConfig.path.root);
     };
 
+
     const columns = useColumns();
+    const csvOptions = {
+        fieldSeparator: ',',
+        quoteStrings: '"',
+        decimalSeparator: '.',
+        showLabels: true,
+        useBom: true,
+        useKeysAsHeaders: false,
+        headers: columns.map((c) => c.header),
+    };
+    const csvExporter = new ExportToCsv(csvOptions);
+
+    const handleExportRows = (rows) => {
+        const data = rows?.map((row) => ({
+            examDate: row.original.exam.examDate,
+            subject: row.original.exam.subject,
+            value: row.original.value,
+            firstName: row.original.student.firstName,
+            lastName: row.original.student.lastName,
+            classroom: row.original.student.classroom.name,
+        }));
+
+        csvExporter.generateCsv(data);
+    };
+
 
     return (
         <MaterialReactTable
@@ -137,7 +170,7 @@ export default function GradeTable() {
                     handleRowClick(row.original.student.firstName,row.original.student.lastName);
                 },
             })}
-            renderTopToolbarCustomActions={() => (
+            renderTopToolbarCustomActions={({ table }) => (
                 <Stack direction={"row"}>
                     <Tooltip arrow title="Actualiser">
                         <IconButton onClick={refetch}>
@@ -151,6 +184,14 @@ export default function GradeTable() {
                             </IconButton>
                         </Tooltip>
                     </Link>
+                    <Tooltip arrow title="Exporter">
+                        <IconButton  disabled={table.getPrePaginationRowModel().rows.length === 0}
+                                    onClick={() =>
+                            handleExportRows(table.getPrePaginationRowModel().rows)
+                        } >
+                            <FileDownloadIcon />
+                        </IconButton>
+                    </Tooltip>
                 </Stack>
             )}
         />

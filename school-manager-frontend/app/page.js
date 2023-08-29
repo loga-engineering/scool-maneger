@@ -5,6 +5,10 @@ import {Box, Card, CardActionArea, CardContent, Container, Grid, Typography} fro
 
 const modules = [
     {
+        label: "Gestion reporting",
+        href: "/reporting",
+        description : "analyser, rechercher, modifier..."
+    },{
         label: "Gestion années scolaire",
         href: "/school-years",
         description : "rechercher, modifier, ajouter, supprimer..."
