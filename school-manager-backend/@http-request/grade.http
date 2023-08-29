@@ -1,0 +1,21 @@
+###
+GET {{urlBase}}/grades
+Accept: application/json
+
+###
+GET {{urlBase}}/grades/2
+Accept: application/json
+
+###
+POST {{urlBase}}/grades
+Content-Type: application/json
+
+{
+  "value": 12.5,
+  "student": {
+    "id": 2
+  },
+  "exam": {
+    "id": 1
+  }
+}

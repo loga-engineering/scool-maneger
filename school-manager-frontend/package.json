@@ -1,0 +1,31 @@
+{
+  "name": "school-manager-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.3",
+    "@mui/material": "^5.14.4",
+    "@mui/x-charts": "^6.0.0-alpha.8",
+    "@mui/x-date-pickers": "^6.11.1",
+    "@tanstack/react-query": "^4.32.6",
+    "axios": "^1.4.0",
+    "dayjs": "^1.11.9",
+    "export-to-csv": "^0.2.1",
+    "formik": "^2.4.3",
+    "lodash": "^4.17.21",
+    "material-react-table": "^1.14.0",
+    "next": "13.4.13",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "recoil": "^0.7.7",
+    "yup": "^1.2.0"
+  }
+}

@@ -1,0 +1,23 @@
+###
+GET {{urlBase}}/classrooms
+Accept: application/json
+
+###
+GET {{urlBase}}/classrooms/2
+Accept: application/json
+
+###
+POST {{urlBase}}/classrooms
+Content-Type: application/json
+
+{
+  "name": "9A",
+  "level": "9eme Annee",
+  "headTeacherName": "Mr. Smith",
+  "schoolYear": {
+    "id": 1
+  }
+}
+
+###
+

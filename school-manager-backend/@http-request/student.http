@@ -1,0 +1,31 @@
+###
+GET {{urlBase}}/students
+Accept: application/json
+
+###
+GET {{urlBase}}/students
+Accept: application/json
+
+###
+POST {{urlBase}}/students
+Content-Type: application/json
+
+{
+  "registrationNumber": "AB130",
+  "lastName": "Messi",
+  "firstName": "Alex",
+  "fatherName": "Michael Doe",
+  "motherName": "Emily Doe",
+  "contact": "leoMessi@example.com",
+  "address": "123 Main Street, City",
+  "dateOfBirth": "1998-05-15",
+  "enrollmentDate": "2021-09-01",
+  "classroom" : {
+    "id": 2
+  }
+}
+
+
+###
+
+

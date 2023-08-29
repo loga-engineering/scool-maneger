@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Add grades printing &amp; reporting">
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/reporting/page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-bar-chart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-basic-pie.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-line-chart.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTTP Request" />
+        <option value="HTTP Public Environment File" />
+        <option value="Class" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="dcbacf0b-3ae7-403f-ac90-a6262f77d38d" />
+        <option name="url" value="https://github.com/loga-engineering/scool-maneger.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2TeXxYBz5j5LuRtYVevaAVcazpR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP 450 G6/Desktop/code/scool-maneger&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ff00ba6fc6b0f62d4d028301868e209e&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/view" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]/edit" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]" />
+      <recent name="$PROJECT_DIR$/school-manager-frontend/shared/context" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.logaengineering.schoolmanagementbackend.domains.dto" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.run dev">
+    <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="classroom#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" index="2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="school-year#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" index="2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="test01.js" type="NodeJSConfigurationType" temporary="true" path-to-node="/usr/local/bin/node" nameIsGenerated="true" path-to-js-file="test01.js" working-dir="$PROJECT_DIR$/school-manager-frontend/tests">
+      <method v="2" />
+    </configuration>
+    <configuration name="test.yup.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/school-manager-frontend/tests/test.yup.js" working-dir="$PROJECT_DIR$/school-manager-frontend/tests">
+      <method v="2" />
+    </configuration>
+    <configuration name="SchoolManagerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="scool-manager-backend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.logaengineering.schoolmanagementbackend.SchoolManagerApplication" />
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="run dev" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/school-manager-frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="HTTP Request.classroom#1" />
+      <item itemvalue="HTTP Request.classroom#2" />
+      <item itemvalue="HTTP Request.school-year#2" />
+      <item itemvalue="Node.js.test01.js" />
+      <item itemvalue="Node.js.test.yup.js" />
+      <item itemvalue="npm.run dev" />
+      <item itemvalue="Spring Boot.SchoolManagerApplication" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.test.yup.js" />
+        <item itemvalue="Node.js.test01.js" />
+        <item itemvalue="HTTP Request.school-year#2" />
+        <item itemvalue="HTTP Request.classroom#1" />
+        <item itemvalue="HTTP Request.classroom#2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="" />
+      <created>1691404769513</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1691404769513</updated>
+      <workItem from="1691404773768" duration="446000" />
+      <workItem from="1691405471296" duration="5081000" />
+      <workItem from="1691493907381" duration="4446000" />
+      <workItem from="1691685807831" duration="6663000" />
+      <workItem from="1692121396940" duration="3706000" />
+      <workItem from="1692264173767" duration="4941000" />
+      <workItem from="1693137055402" duration="1868000" />
+      <workItem from="1693150787023" duration="2308000" />
+      <workItem from="1693208144893" duration="13935000" />
+      <workItem from="1693298221904" duration="28237000" />
+    </task>
+    <task id="LOCAL-00001" summary="Organize project code">
+      <created>1691410397277</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1691410397277</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Organize project code">
+      <created>1691410465759</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1691410465759</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Fix relation bug between Classroom and School Year">
+      <created>1691494263687</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1691494263687</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Add School year page, view and form">
+      <created>1691498287400</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1691498287400</updated>
+    </task>
+    <task id="LOCAL-00005" summary="RAS">
+      <created>1691685829978</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1691685829978</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Introduce context, react-query, formik-field">
+      <created>1691691883998</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1691691883998</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Introduce lodash, useValidationSchema, formikForm">
+      <created>1692125081227</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692125081227</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update ThemeProvider">
+      <option name="closed" value="true" />
+      <created>1693138648107</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693138648107</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update loading.js">
+      <option name="closed" value="true" />
+      <created>1693217084549</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693217084549</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Organize project code" />
+    <MESSAGE value="Fix relation bug between Classroom and School Year" />
+    <MESSAGE value="Add School year page, view and form" />
+    <MESSAGE value="RAS" />
+    <MESSAGE value="Introduce context, react-query, formik-field" />
+    <MESSAGE value="Introduce lodash, useValidationSchema, formikForm" />
+    <MESSAGE value="Update ThemeProvider" />
+    <MESSAGE value="Update loading.js" />
+    <MESSAGE value="Add grades printing &amp; reporting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add grades printing &amp; reporting" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
