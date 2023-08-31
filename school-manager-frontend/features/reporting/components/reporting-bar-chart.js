@@ -8,8 +8,8 @@ export default function ReportingBarChart() {
         <BarChart
             xAxis={[{ scaleType: 'band', data: ['2018','2019','2020','2021','2022','2023'], valueFormatter: (value) => value.toString(), }]}
             series={[{ data: [120, 160, 250, 300, 370, 450] }]}
-            width={400}
-            height={200}
+            width={500}
+            height={300}
         />
 
     );

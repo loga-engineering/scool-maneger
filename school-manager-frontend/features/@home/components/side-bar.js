@@ -3,6 +3,8 @@
 import {usePathname, useRouter} from "next/navigation";
 import GroupsIcon from '@mui/icons-material/Groups';
 import {CalendarMonth, Home} from "@mui/icons-material";
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+
 import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import HistoryEduOutlinedIcon from '@mui/icons-material/HistoryEduOutlined';
@@ -39,6 +41,11 @@ const menus = [
         icon: <GradeOutlinedIcon/>,
         label: "Notes",
         href: "/grades"
+    },
+    {
+        icon: <TrendingUpIcon/>,
+        label: "Reporting",
+        href: "/reporting"
     },
 ]
 

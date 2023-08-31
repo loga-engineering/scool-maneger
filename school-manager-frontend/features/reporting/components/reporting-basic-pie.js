@@ -14,8 +14,8 @@ export default function ReportingBasicPie() {
                         ],
                     },
                 ]}
-                width={400}
-                height={200}
+                width={350}
+                height={300}
             />
 
     );
