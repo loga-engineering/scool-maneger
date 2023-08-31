@@ -13,16 +13,13 @@ const FloatingSwitch = styled(FormControlLabel)({
 
 export default function ThemeProvider({children}) {
 
-    const value = () => {
-        try {
-            return localStorage?.getItem('mode') === 'dark';
-        } catch (error) {
-            console.log("ThemeProvider ===>",error);
-            return false;
-        }
-    };
-    const [darkMode, setDarkMode] = useState(value());
+    const [darkMode, setDarkMode] = useState(false);
 
+    useEffect(() => {
+        const storedMode = localStorage.getItem('mode');
+        setDarkMode(storedMode === 'dark');
+    }, []);
+    
     const handleToggle = () => {
         const newDarkMode = !darkMode;
         setDarkMode(newDarkMode);
