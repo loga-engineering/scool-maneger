@@ -19,7 +19,7 @@ export default function ThemeProvider({children}) {
         const storedMode = localStorage.getItem('mode');
         setDarkMode(storedMode === 'dark');
     }, []);
-
+    
     const handleToggle = () => {
         const newDarkMode = !darkMode;
         setDarkMode(newDarkMode);
