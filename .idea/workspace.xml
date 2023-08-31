@@ -5,21 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Add grades printing &amp; reporting">
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/reporting/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-bar-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-basic-pie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-line-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/@home/components/side-bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/@home/components/side-bar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-bar-chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-bar-chart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-basic-pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-basic-pie.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DockerExecCommands">
+    <ExecCommand>
+      <option name="command" value="mysql -uroot -ppassword" />
+    </ExecCommand>
+    <ExecCommand>
+      <option name="command" value="mysql -uroot -p" />
+    </ExecCommand>
+    <ExecCommand>
+      <option name="command" value="mysql -uuser1 -ppassword" />
+    </ExecCommand>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -32,6 +40,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="c94f27e2026c07bc7743cc9de1a60f2bf5400950" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -54,6 +67,9 @@
         <option name="url" value="https://github.com/loga-engineering/scool-maneger.git" />
       </UrlAndAccount>
     </option>
+  </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="file://$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" environment="dev" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -115,7 +131,7 @@
       <recent name="com.logaengineering.schoolmanagementbackend.domains.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.run dev">
+  <component name="RunManager" selected="Spring Boot.SchoolManagerApplication">
     <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -272,7 +288,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -288,7 +316,8 @@
     <MESSAGE value="Update ThemeProvider" />
     <MESSAGE value="Update loading.js" />
     <MESSAGE value="Add grades printing &amp; reporting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add grades printing &amp; reporting" />
+    <MESSAGE value="Deployment with docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="Deployment with docker" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

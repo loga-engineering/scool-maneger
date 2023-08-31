@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {createTheme} from "@mui/material/styles";
 import {Box, FormControlLabel, styled, Switch, ThemeProvider as MuiThemeProvider} from "@mui/material";
 
@@ -13,15 +13,12 @@ const FloatingSwitch = styled(FormControlLabel)({
 
 export default function ThemeProvider({children}) {
 
-    const value = () => {
-        try {
-            return localStorage.getItem('mode') === 'dark';
-        } catch (error) {
-            console.log("ThemeProvider ===>",error);
-            throw error;
-        }
-    };
-    const [darkMode, setDarkMode] = useState(value);
+    const [darkMode, setDarkMode] = useState(false);
+
+    useEffect(() => {
+        const storedMode = localStorage.getItem('mode');
+        setDarkMode(storedMode === 'dark');
+    }, []);
 
     const handleToggle = () => {
         const newDarkMode = !darkMode;

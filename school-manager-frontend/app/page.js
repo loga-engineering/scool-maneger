@@ -2,7 +2,6 @@
 import Link from "next/link";
 import {Box, Card, CardActionArea, CardContent, Container, Grid, Typography} from "@mui/material";
 
-
 const modules = [
     {
         label: "Gestion reporting",

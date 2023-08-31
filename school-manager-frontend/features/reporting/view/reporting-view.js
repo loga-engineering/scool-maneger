@@ -1,7 +1,6 @@
 "use client";
 import ReportingBasicPie from "@/features/reporting/components/reporting-basic-pie";
 import ReportingBarChart from "@/features/reporting/components/reporting-bar-chart";
-import ReportingLineChart from "@/features/reporting/components/reporting-line-chart";
 import {Box, Card, CardContent, CardHeader, Grid, Stack, Typography} from "@mui/material";
 
 export default function ReportingView() {
@@ -16,7 +15,7 @@ export default function ReportingView() {
             </Stack>
 
             <Grid container display="flex" spacing={2} p={2}>
-                <Grid key={"ReportingBarChart1"} item xs={4} flex={1}>
+                <Grid key={"ReportingBarChart1"} item xs={6} flex={1}>
                     <Card>
                         <CardHeader title={"Nombre d'inscrits par année"}  />
                         <CardContent>
@@ -24,15 +23,7 @@ export default function ReportingView() {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid key={"BasicLineChart2"} item xs={4} flex={1}>
-                    <Card>
-                        <CardHeader title={"Chiffre d'affaire par année"}/>
-                        <CardContent>
-                            <ReportingLineChart />
-                        </CardContent>
-                    </Card>
-                </Grid>
-                <Grid key={"BasicPie3"} item xs={4} flex={1}>
+                <Grid key={"ReportingBasicPie"} item xs={6} flex={1}>
                     <Card>
                         <CardHeader title={"Nombre de diplomé"}/>
                         <CardContent>
