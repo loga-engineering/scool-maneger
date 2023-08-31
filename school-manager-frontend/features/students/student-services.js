@@ -3,7 +3,7 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {atom} from "recoil";
 
-const urlBase = process.env.BACKEND_URL + "students";
+const urlBase = process.env.BACKEND_URL + "/students";
 export const studentQueryState = atom({
     key: 'studentQueryState',
     default: {

@@ -5,8 +5,8 @@ import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/post
 export const searchData = async ({query, page, size, sort, filter, path}) => {
     try {
         console.log("======> ", {query, page, size, sort, filter});
-        const url = process.env.BACKEND_URL + path;
-        console.log("url ======> ",url);
+        const url = process.env.BACKEND_URL + '/' + path;
+        console.log("url2 ======> ",url);
         const {data} = await axios.post(url , {query, page, size, sort, filter});
         return data;
     } catch (error) {

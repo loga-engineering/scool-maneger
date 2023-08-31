@@ -5,21 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Add grades printing &amp; reporting">
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/app/reporting/page.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-bar-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-basic-pie.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-line-chart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nginx/default.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/classroom-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/classroom-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/exams/components/exam-new-edit-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/exams/components/exam-new-edit-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/exams/exam-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/exams/exam-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-new-edit-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-new-edit-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/grade-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/grade-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/students/student-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/students/student-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/components/tables/table-hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/components/tables/table-hooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DockerExecCommands">
+    <ExecCommand>
+      <option name="command" value="mysql -uroot -ppassword" />
+    </ExecCommand>
+    <ExecCommand>
+      <option name="command" value="mysql -uroot -p" />
+    </ExecCommand>
+    <ExecCommand>
+      <option name="command" value="mysql -uuser1 -ppassword" />
+    </ExecCommand>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -28,6 +44,7 @@
         <option value="HTTP Public Environment File" />
         <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -55,6 +72,9 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="HttpClientSelectedEnvironments">
+    <file url="file://$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" environment="dev" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -71,38 +91,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP 450 G6/Desktop/code/scool-maneger&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;ff00ba6fc6b0f62d4d028301868e209e&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/HP 450 G6/Desktop/code/scool-maneger/school-manager-frontend/app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "Docker",
+    "spring.configuration.checksum": "ff00ba6fc6b0f62d4d028301868e209e",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app" />
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\features\@home\components" />
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/view" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years" />
-      <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit" />
@@ -115,20 +136,21 @@
       <recent name="com.logaengineering.schoolmanagementbackend.domains.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.run dev">
-    <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="classroom#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" index="2" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="school-year#2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/school-year.http" index="2" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="test01.js" type="NodeJSConfigurationType" temporary="true" path-to-node="/usr/local/bin/node" nameIsGenerated="true" path-to-js-file="test01.js" working-dir="$PROJECT_DIR$/school-manager-frontend/tests">
-      <method v="2" />
-    </configuration>
-    <configuration name="test.yup.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/school-manager-frontend/tests/test.yup.js" working-dir="$PROJECT_DIR$/school-manager-frontend/tests">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn install" />
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="excludedTypes">
+      <set>
+        <option value="HttpClient.HttpRequestRunConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yml: Compose Deployment">
+    <configuration name="classroom | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" index="3" requestIdentifier="#3" runType="Run single request">
       <method v="2" />
     </configuration>
     <configuration name="SchoolManagerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
@@ -148,6 +170,69 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Backend Config" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="backend:1.0" />
+          <option name="containerName" value="backend" />
+          <option name="sourceFilePath" value="school-manager-backend/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Frontend Config" type="docker-deploy" factoryName="docker-image" temporary="true" server-name="Docker">
+      <deployment type="docker-image">
+        <settings>
+          <option name="imageTag" value="school-manager-frontend:1.0" />
+          <option name="containerName" value="school-manager-frontend" />
+          <option name="portBindings">
+            <list>
+              <DockerPortBindingImpl>
+                <option name="containerPort" value="3000" />
+                <option name="hostPort" value="3000" />
+              </DockerPortBindingImpl>
+            </list>
+          </option>
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="Frontend Config" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
+      <deployment type="dockerfile">
+        <settings>
+          <option name="imageTag" value="frontend:1.0" />
+          <option name="containerName" value="frontend" />
+          <option name="sourceFilePath" value="school-manager-frontend/Dockerfile" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-image" temporary="true">
+      <deployment type="docker-image">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
+      <deployment type="dockerfile">
+        <settings />
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="envFilePath" value="" />
+          <option name="commandLineOptions" value="--build" />
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <configuration name="run dev" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/school-manager-frontend/package.json" />
       <command value="run" />
@@ -159,21 +244,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="HTTP Request.classroom#1" />
-      <item itemvalue="HTTP Request.classroom#2" />
-      <item itemvalue="HTTP Request.school-year#2" />
-      <item itemvalue="Node.js.test01.js" />
-      <item itemvalue="Node.js.test.yup.js" />
+      <item itemvalue="Docker.Backend Config" />
+      <item itemvalue="Docker.Frontend Config" />
+      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+      <item itemvalue="HTTP Request.classroom | #3" />
       <item itemvalue="npm.run dev" />
       <item itemvalue="Spring Boot.SchoolManagerApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.test.yup.js" />
-        <item itemvalue="Node.js.test01.js" />
-        <item itemvalue="HTTP Request.school-year#2" />
-        <item itemvalue="HTTP Request.classroom#1" />
-        <item itemvalue="HTTP Request.classroom#2" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Docker.Frontend Config" />
+        <item itemvalue="Docker.Backend Config" />
+        <item itemvalue="HTTP Request.classroom | #3" />
+        <item itemvalue="Docker.Frontend Config" />
       </list>
     </recent_temporary>
   </component>
@@ -194,7 +278,10 @@
       <workItem from="1693137055402" duration="1868000" />
       <workItem from="1693150787023" duration="2308000" />
       <workItem from="1693208144893" duration="13935000" />
-      <workItem from="1693298221904" duration="28237000" />
+      <workItem from="1693298221904" duration="30210000" />
+      <workItem from="1693384253690" duration="1058000" />
+      <workItem from="1693390469022" duration="26120000" />
+      <workItem from="1693469087257" duration="31566000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -261,7 +348,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693217084549</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add grades printing &amp; reporting">
+      <option name="closed" value="true" />
+      <created>1693330705019</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1693330705019</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

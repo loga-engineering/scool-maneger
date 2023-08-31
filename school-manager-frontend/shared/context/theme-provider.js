@@ -1,6 +1,6 @@
 "use client";
 
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {createTheme} from "@mui/material/styles";
 import {Box, FormControlLabel, styled, Switch, ThemeProvider as MuiThemeProvider} from "@mui/material";
 
@@ -15,13 +15,13 @@ export default function ThemeProvider({children}) {
 
     const value = () => {
         try {
-            return localStorage.getItem('mode') === 'dark';
+            return localStorage?.getItem('mode') === 'dark';
         } catch (error) {
             console.log("ThemeProvider ===>",error);
-            throw error;
+            return false;
         }
     };
-    const [darkMode, setDarkMode] = useState(value);
+    const [darkMode, setDarkMode] = useState(value());
 
     const handleToggle = () => {
         const newDarkMode = !darkMode;

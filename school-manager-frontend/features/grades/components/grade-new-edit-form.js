@@ -19,13 +19,13 @@ import {createGrade, updateGradeById} from "@/features/grades/grade-services";
 
 const useValidationSchema = ({currentValue}) => useMemo(() => {
     const validationSchema = Yup.object({
-        value: Yup.string().required("La note est obligatoire").default(""),
         student: Yup.object().shape({
             id: Yup.string().required("L'ID de l'étudiant est obligatoire").default(""),
         }),
         exam: Yup.object().shape({
             id: Yup.string().required("L'ID de l'examen est obligatoire").default(""),
         }),
+        value: Yup.string().required("La note est obligatoire").default(""),
     });
 
 
