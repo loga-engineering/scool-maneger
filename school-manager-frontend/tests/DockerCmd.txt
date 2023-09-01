@@ -1,0 +1,176 @@
+//////////// supprimer les images intermédiaires inutiles  \\\\\\\\\\\\\\\\\\\
+
+PS C:\Users\HP 450 G6\Desktop\code\scool-maneger> docker rmi $(docker images -f 'dangling=true' -q)
+
+/////  ctrl + shift + r pour vider le cache >> permet de résoudre les problemes d'affichage tq le favicon et autres ... //////
+
+Microsoft Windows [version 10.0.22000.2295]
+(c) Microsoft Corporation. Tous droits réservés.
+
+C:\Users\HP 450 G6>node --version
+v18.15.0
+
+C:\Users\HP 450 G6>cd C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker build -t school-manager-frontend:1.0 .
+[+] Building 0.0s (0/0)                                                                                  docker:default
+2023/08/30 18:52:16 http2: server: error reading preface from client //./pipe/docker_engine: file has already been close[+] Building 3.8s (14/18)                       [+] Building 81.1s (17/18)                                                                                                                               docker:default
+ => [internal] load .dockerignore                                                                                                                                  0.5s
+ => => transferring context: 118B                                                                                                                                  0.0s
+ => [internal] load build definition from Dockerfile                                                                                                               0.3s
+ => => transferring dockerfile: 1.99kB                                                                                                                             0.1s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                                                                                  0.0s
+ => [internal] load build context                                                                                                                                  0.5s
+ => => transferring context: 10.37kB                                                                                                                               0.1s
+ => [base 1/1] FROM docker.io/library/node:18-alpine                                                                                                               0.0s
+ => CACHED [builder 1/4] WORKDIR /app                                                                                                                              0.0s
+ => CACHED [runner 2/6] RUN addgroup --system --gid 1001 nodejs                                                                                                    0.0s
+ => CACHED [runner 3/6] RUN adduser --system --uid 1001 nextjs                                                                                                     0.3s
+ => CACHED [deps 1/4] RUN apk add --no-cache libc6-compat                                                                                                          0.0s
+ => CACHED [deps 2/4] WORKDIR /app                                                                                                                                 0.0s
+ => CACHED [deps 3/4] COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./                                                                           0.0s
+ => CACHED [deps 4/4] RUN   if [ -f yarn.lock ]; then yarn --frozen-lockfile;   elif [ -f package-lock.json ]; then npm ci && npm i sharp;   elif [ -f pnpm-lock.  0.0s
+ => CACHED [builder 2/4] COPY --from=deps /app/node_modules ./node_modules                                                                                         0.0s
+ => [builder 3/4] COPY . .                                                                                                                                         0.6s
+ => [builder 4/4] RUN npm run build                                                                                                                               75.8s
+ => CACHED [runner 4/6] COPY --from=builder /app/public ./public                                                                                                   0.0s
+ => ERROR [runner 5/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./                                                                          0.0s
+------
+ > [runner 5/6] COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./:
+------
+Dockerfile:50
+--------------------
+  48 |     # Automatically leverage output traces to reduce image size
+  49 |     # https://nextjs.org/docs/advanced-features/output-file-tracing
+  50 | >>> COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+  51 |     COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+  52 |
+--------------------
+ERROR: failed to solve: failed to compute cache key: failed to calculate checksum of ref dfbb89a9-7fb1-4dae-bfb3-387eff62088f::b77bsxjv9vtva9051ngvml838: "/app/.next/standalone": not found
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker build -t school-manager-frontend:1.0 .
+[+] Building 0.0s (0/0)                                                                                                                                  docker:default
+[+] Building 13.1s (18/18) FINISHED                                                                                                                      docker:default
+ => [internal] load build definition from Dockerfile                                                                                                               0.3s
+ => => transferring dockerfile: 1.98kB                                                                                                                             0.0s
+ => [internal] load .dockerignore                                                                                                                                  0.5s
+ => => transferring context: 118B                                                                                                                                  0.0s
+ => [internal] load metadata for docker.io/library/node:18-alpine                                                                                                  0.0s
+ => [base 1/1] FROM docker.io/library/node:18-alpine                                                                                                               0.0s
+ => [internal] load build context                                                                                                                                  0.4s
+ => => transferring context: 8.38kB                                                                                                                                0.1s
+ => CACHED [builder 1/4] WORKDIR /app                                                                                                                              0.0s
+ => CACHED [runner 2/5] RUN addgroup --system --gid 1001 nodejs                                                                                                    0.0s
+ => CACHED [runner 3/5] RUN adduser --system --uid 1001 nextjs                                                                                                     0.0s
+ => CACHED [deps 1/4] RUN apk add --no-cache libc6-compat                                                                                                          0.0s
+ => CACHED [deps 2/4] WORKDIR /app                                                                                                                                 0.0s
+ => CACHED [deps 3/4] COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./                                                                           0.0s
+ => CACHED [deps 4/4] RUN   if [ -f yarn.lock ]; then yarn --frozen-lockfile;   elif [ -f package-lock.json ]; then npm ci && npm i sharp;   elif [ -f pnpm-lock.  0.0s
+ => CACHED [builder 2/4] COPY --from=deps /app/node_modules ./node_modules                                                                                         0.0s
+ => CACHED [builder 3/4] COPY . .                                                                                                                                  0.0s
+ => CACHED [builder 4/4] RUN npm run build                                                                                                                         0.0s
+ => [runner 4/5] COPY --from=builder /app/public ./public                                                                                                          1.3s
+ => [runner 5/5] COPY --from=builder --chown=nextjs:nodejs /app/.next/ ./.next                                                                                     4.4s
+ => exporting to image                                                                                                                                             2.3s
+ => => exporting layers                                                                                                                                            2.1s
+ => => writing image sha256:39740ca5c6ac0a8f9d1ca46234071e50ea4e8925a9d568be47e421f48a4b7144                                                                       0.1s
+ => => naming to docker.io/library/school-manager-frontend:1.0                                                                                                     0.1s
+
+What's Next?
+  View summary of image vulnerabilities and recommendations → docker scout quickview
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker images
+REPOSITORY                TAG             IMAGE ID       CREATED          SIZE
+school-manager-frontend   1.0             39740ca5c6ac   14 seconds ago   397MB
+school-manager-backend    1.0             f2145e6777fa   30 minutes ago   359MB
+<none>                    <none>          71344ecf5960   37 minutes ago   584MB
+<none>                    <none>          cfa617592f52   38 minutes ago   700MB
+mysql                     latest          99afc808f15b   2 weeks ago      577MB
+node                      18-alpine       50c7e33a9de1   2 weeks ago      176MB
+adoptopenjdk              8-jdk-hotspot   0a555fb3a3f6   23 months ago    320MB
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker images
+REPOSITORY                TAG             IMAGE ID       CREATED          SIZE
+school-manager-frontend   1.0             39740ca5c6ac   57 seconds ago   397MB
+school-manager-backend    1.0             f2145e6777fa   30 minutes ago   359MB
+<none>                    <none>          71344ecf5960   38 minutes ago   584MB
+mysql                     latest          99afc808f15b   2 weeks ago      577MB
+node                      18-alpine       50c7e33a9de1   2 weeks ago      176MB
+adoptopenjdk              8-jdk-hotspot   0a555fb3a3f6   23 months ago    320MB
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+a4ac4c4a38e8   f2145e6777fa   "java -jar /school-m…"   31 minutes ago   Exited (1) 30 minutes ago             school-manager-backend
+dd5f264fcaa7   71344ecf5960   "/bin/sh -c 'npm run…"   38 minutes ago   Exited (1) 34 minutes ago             inspiring_knuth
+a8d60396c161   99afc808f15b   "docker-entrypoint.s…"   4 hours ago      Exited (0) 2 hours ago                mysqldb
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker rm $(docker ps -a -q) --force
+unknown shorthand flag: 'a' in -a
+See 'docker rm --help'.
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker rm $(docker ps -a -q) --force
+unknown shorthand flag: 'a' in -a
+See 'docker rm --help'.
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker ps -a -q
+a4ac4c4a38e8
+dd5f264fcaa7
+a8d60396c161
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker rm a4ac4c4a38e8 dd5f264fcaa7 dd5f264fcaa7
+a4ac4c4a38e8
+dd5f264fcaa7
+Error response from daemon: removal of container dd5f264fcaa7 is already in progress
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED       STATUS                   PORTS     NAMES
+a8d60396c161   99afc808f15b   "docker-entrypoint.s…"   4 hours ago   Exited (0) 2 hours ago             mysqldb
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker rm a8d60396c161 --force
+a8d60396c161
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker image
+
+Usage:  docker image COMMAND
+
+Manage images
+
+Commands:
+  build       Build an image from a Dockerfile
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Display detailed information on one or more images
+  load        Load an image from a tar archive or STDIN
+  ls          List images
+  prune       Remove unused images
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  rm          Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+
+Run 'docker image COMMAND --help' for more information on a command.
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker images
+REPOSITORY                TAG             IMAGE ID       CREATED          SIZE
+school-manager-frontend   1.0             39740ca5c6ac   4 minutes ago    397MB
+school-manager-backend    1.0             f2145e6777fa   34 minutes ago   359MB
+<none>                    <none>          71344ecf5960   42 minutes ago   584MB
+mysql                     latest          99afc808f15b   2 weeks ago      577MB
+node                      18-alpine       50c7e33a9de1   2 weeks ago      176MB
+adoptopenjdk              8-jdk-hotspot   0a555fb3a3f6   23 months ago    320MB
+
+C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend>docker images
+
