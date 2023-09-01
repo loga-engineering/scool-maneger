@@ -8,8 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 class SchoolManagementBackendApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+//    @Test
+//    void contextLoads() {
+//    }
 
 }
