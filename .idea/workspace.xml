@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Add home directory" />
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Update sign-in-form.js">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/controllers/TestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/usersAuth/UserDetailsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/services/usersAuth/UserDetailsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/auth/user/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/auth/user/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/home/layout.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/home/page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/auth/AdminRouteProtection.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/auth/AuthProvider.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/auth-service.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/authentication/auth-service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/components/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/authentication/components/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/components/sign-in-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/authentication/components/sign-in-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/components/sign-up-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/authentication/components/sign-up-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/view/FloatingMenuButton.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/view/sign-up-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/authentication/view/sign-up-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/view/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/authentication/components/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -114,11 +133,11 @@
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\features\authentication\components" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\features\authentication\components" />
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\home" />
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\tests" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]/edit" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.logaengineering.schoolmanagementbackend.controllers" />
@@ -205,7 +224,7 @@
       <workItem from="1693150787023" duration="2308000" />
       <workItem from="1693208144893" duration="13935000" />
       <workItem from="1693298221904" duration="28237000" />
-      <workItem from="1693831654290" duration="53313000" />
+      <workItem from="1693831654290" duration="70828000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -288,7 +307,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693993662725</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Update sign-in-form.js">
+      <option name="closed" value="true" />
+      <created>1693994907387</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1693994907387</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +357,8 @@
     <MESSAGE value="Deployment with docker" />
     <MESSAGE value="Add auth &amp; spring security config" />
     <MESSAGE value="Add home directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add home directory" />
+    <MESSAGE value="Update sign-in-form.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update sign-in-form.js" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

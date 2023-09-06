@@ -32,7 +32,6 @@ export default function SignUpForm() {
     initialValues, validationSchema,
     onSubmit: async (values, {resetForm}) => {
       try {
-        console.log("===>: ", values);
 
         const response = await signUp(values);
 
@@ -57,10 +56,10 @@ export default function SignUpForm() {
               <Typography variant={"body1"}>Sign Up</Typography>
               <FormikTextField name={"username"} label={"Nom d'utilisateur"}/>
               <FormikTextField name={"email"} label={"Email"}/>
-              <FormikTextField name={"password"} label={"Mot de passe"}/>
+              <FormikTextField name={"password"} label={"Mot de passe"} type={"password"}/>
 
               <Stack direction={"row"} spacing={2} justifyContent={"end"}>
-                <Button type="reset">
+                <Button type="reset" sx={{ color: "text.secondary" }}>
                   {"Annuler"}
                 </Button>
                 <Button type={"submit"} variant={"outlined"}>

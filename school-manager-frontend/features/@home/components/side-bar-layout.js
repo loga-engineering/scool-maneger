@@ -1,12 +1,24 @@
 "use client";
 
 import SideBar from "@/features/@home/components/side-bar";
-import React, {Suspense} from "react";
+import React, {Suspense, useEffect} from "react";
 import Loading from "@/app/loading";
 import {Box} from "@mui/material";
+import {isAuthenticated} from "@/features/authentication/auth-service";
+import {useRecoilValue} from "recoil";
+import {usePathname, useRouter} from "next/navigation";
 
-export default function Layout({children}) {
+export default function SideBarLayout({children}) {
 
+    const router = useRouter();
+    const pathname = usePathname();
+
+    useEffect(() => {
+        const isValid = localStorage.getItem('token');
+        if(isValid === null || !isValid) {
+            router.push('/auth/signin');
+        }
+    }, [pathname]);
     const handleThemeChange = (theme) => {
         return theme.palette.mode === "dark" ? theme.palette.primary.dark :
             theme.palette.primary.light;

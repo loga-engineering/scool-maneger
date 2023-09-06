@@ -33,7 +33,6 @@ export default function SignInForm() {
     initialValues, validationSchema,
     onSubmit: async (values, {resetForm}) => {
       try {
-        console.log("===>: ", values);
 
         const response = await signIn(values);
 
@@ -61,16 +60,16 @@ export default function SignInForm() {
             <Stack spacing={3} p={3} alignItems={"center"}>
               <Typography variant={"body1"}>Sign In</Typography>
               <FormikTextField name={"username"} label={"Nom d'utilisateur"}/>
-              <FormikTextField name={"password"} label={"Mot de passe"}/>
+              <FormikTextField name={"password"} label={"Mot de passe"} type={"password"}/>
 
               <Stack direction={"row"} spacing={2} justifyContent={"end"}>
                 <Button type="reset" sx={{ color: "text.secondary" }}>
                   {"Annuler"}
                 </Button>
-                <Button onClick={() => router.push(authConfig.path.signup) } variant={"contained"}>
+                <Button onClick={() => router.push(authConfig.path.signup) } variant={"outlined"}>
                   {"Sign Up"}
                 </Button>
-                <Button type={"submit"} variant={"outlined"}>
+                <Button type={"submit"} variant={"contained"}>
                   {"Valider"}
                 </Button>
               </Stack>

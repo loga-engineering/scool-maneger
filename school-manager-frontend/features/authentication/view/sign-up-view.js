@@ -5,7 +5,6 @@ import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/post
 import {Box, Button, Typography} from "@mui/material";
 import SignUpForm from "@/features/authentication/components/sign-up-form";
 
-const urlBase = process.env.BACKEND_URL;
 
 
 

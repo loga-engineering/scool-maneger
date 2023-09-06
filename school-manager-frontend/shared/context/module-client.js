@@ -8,15 +8,14 @@ import ThemeProvider from "@/shared/context/theme-provider";
 import RecoilProvider from "@/shared/context/recoil-provider";
 import ReactQueryProvider from "@/shared/context/react-query-context";
 import {DatePickerProvider} from "@/shared/forms/formik-date-picker";
-import FloatingMenuButton from "@/features/authentication/view/FloatingMenuButton";
 
 export default function ModuleClient({ children }) {
 
 
-    const handleThemeChange = (theme) => {
-        return theme.palette.mode === "dark" ? theme.palette.primary.dark :
-            theme.palette.primary.light;
-    };
+    // const handleThemeChange = (theme) => {
+    //     return theme.palette.mode === "dark" ? theme.palette.primary.dark :
+    //         theme.palette.primary.light;
+    // };
 
     return (
 
@@ -25,7 +24,7 @@ export default function ModuleClient({ children }) {
                 <RecoilProvider>
                     <ReactQueryProvider>
                         <DatePickerProvider>
-                            <Box height={"100vh"} width={"100vw"} display={"flex"} >
+                            {/*<Box height={"100vh"} width={"100vw"} display={"flex"} >
 
                                 <SideBar/>
                                 <Suspense fallback={<Loading />  }>
@@ -34,8 +33,8 @@ export default function ModuleClient({ children }) {
                                         {children}
                                     </Box>
                                 </Suspense>
-                            </Box>
-
+                            </Box>*/}
+                            {children}
                         </DatePickerProvider>
                     </ReactQueryProvider>
                 </RecoilProvider>

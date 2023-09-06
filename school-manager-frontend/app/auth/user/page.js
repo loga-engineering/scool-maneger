@@ -1,12 +1,12 @@
-import User from "@/features/authentication/view/user";
+import UserView from "@/features/authentication/view/user-view";
 
 
 export const metadata = {
-    title: "Gestion authentification",
+    title: "Gestion profile",
 }
 
 export default function UserPage() {
     return (
-        <User/>
+        <UserView/>
     );
 }
