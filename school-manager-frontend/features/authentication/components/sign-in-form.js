@@ -41,7 +41,7 @@ export default function SignInForm() {
           const { token } = response.data;
           localStorage.setItem('token', token);
           setAuthenticated(true);
-          router.push('/home');
+          router.push('/');
         } else {
           alert('Bad credentials');
         }

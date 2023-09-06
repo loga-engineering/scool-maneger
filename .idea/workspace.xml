@@ -4,22 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="update DockerCmd.txt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/SchoolManagerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/SchoolManagerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/classroom-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/classroom-services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/exams/exam-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/exams/exam-services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/grade-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/grade-services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/students/student-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/students/student-services.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/components/tables/table-hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/components/tables/table-hooks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" afterDir="false" />
-    </list>
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Add home directory" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -104,7 +89,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/HP 450 G6/Desktop/code/scool-maneger/school-manager-frontend/app/(login)/signin",
+    "last_opened_file_path": "C:/Users/HP 450 G6/Desktop/code/scool-maneger/school-manager-frontend/app",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -122,25 +107,25 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app" />
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\(login)\signin" />
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\home" />
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-backend\src\main\resources" />
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\features\authentication\components" />
-      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\login\signin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\home" />
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\tests" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]/edit" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.logaengineering.schoolmanagementbackend.controllers" />
       <recent name="com.logaengineering.schoolmanagementbackend.domains.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.run dev">
+  <component name="RunManager" selected="Spring Boot.SchoolManagerApplication">
     <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -220,7 +205,7 @@
       <workItem from="1693150787023" duration="2308000" />
       <workItem from="1693208144893" duration="13935000" />
       <workItem from="1693298221904" duration="28237000" />
-      <workItem from="1693831654290" duration="47776000" />
+      <workItem from="1693831654290" duration="53313000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -287,7 +272,23 @@
       <option name="project" value="LOCAL" />
       <updated>1693217084549</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add auth &amp; spring security config">
+      <option name="closed" value="true" />
+      <created>1693993536608</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1693993536608</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add home directory">
+      <option name="closed" value="true" />
+      <created>1693993662725</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693993662725</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +328,9 @@
     <MESSAGE value="Update loading.js" />
     <MESSAGE value="Add grades printing &amp; reporting" />
     <MESSAGE value="Deployment with docker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Deployment with docker" />
+    <MESSAGE value="Add auth &amp; spring security config" />
+    <MESSAGE value="Add home directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add home directory" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
