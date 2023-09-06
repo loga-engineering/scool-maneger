@@ -17,7 +17,12 @@ export const gradeQueryState = atom({
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllGrades = async () => {
     try {
-        const {data} = await axios.get(urlBase);
+        const {data} = await axios.get(urlBase, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -28,7 +33,12 @@ export const findAllGrades = async () => {
 export const findByGradesAsc = async () => {
     try {
         const url = urlBase + "/value-asc/asc";
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -38,7 +48,12 @@ export const findByGradesAsc = async () => {
 export const findByGradesDesc = async () => {
     try {
         const url = urlBase + "/value-desc/desc";
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -71,7 +86,12 @@ export const findGradeById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -91,7 +111,12 @@ export const useFindGradeById = (query) => {
 }
 ////////////////////////////////// create fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const createGrade = async (Grade) => {
-    const {data} = await axios.post(urlBase, Grade);
+    const {data} = await axios.post(urlBase, Grade, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    });
 
     return data;
 }
@@ -103,7 +128,12 @@ export const deleteGradeById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const response = await axios.delete(url);
+        const response = await axios.delete(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
 
         // Vérifier si le statut de la réponse est "no_content" (204)
 
@@ -125,7 +155,12 @@ export const updateGradeById = async (id, Grade) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.put(url, Grade);
+        const {data} = await axios.put(url, Grade, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);

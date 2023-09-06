@@ -7,7 +7,12 @@ const urlBase = process.env.BACKEND_URL + "exams";
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllExams = async () => {
     try {
-        const {data} = await axios.get(urlBase);
+        const {data} = await axios.get(urlBase, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -30,7 +35,12 @@ export const findExamBySubject = async (subject) => {
     try {
         const url = urlBase + "/subjects/" + subject;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -51,7 +61,12 @@ export const findExamById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -70,7 +85,12 @@ export const useFindExamById = (id) => {
 }
 ////////////////////////////////// create fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const createExam = async (exam) => {
-    const {data} = await axios.post(urlBase, exam);
+    const {data} = await axios.post(urlBase, exam, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    });
 
     return data;
 }
@@ -82,7 +102,12 @@ export const deleteExamById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const response = await axios.delete(url);
+        const response = await axios.delete(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
 
         // Vérifier si le statut de la réponse est "no_content" (204)
 
@@ -105,7 +130,12 @@ export const updateExamById = async (id, exam) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.put(url, exam);
+        const {data} = await axios.put(url, exam, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);

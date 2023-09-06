@@ -14,7 +14,12 @@ export const schoolYearQueryState = atom({
 
 export const findAllSchoolYears = async () => {
     try {
-        const {data} = await axios.get(urlBase);
+        const {data} = await axios.get(urlBase, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -27,7 +32,12 @@ export const findSchoolYearsByYear = async (query) => {
     try {
         const url = urlBase + "/years/" + query;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         throw error;
@@ -61,7 +71,12 @@ export const findSchoolYearById = async (id) => {
 
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -82,7 +97,12 @@ export const useFindSchoolYearById = (id) => {
 
 
 export const createSchoolYear = async (schoolYear) => {
-    const {data} = await axios.post(urlBase, schoolYear);
+    const {data} = await axios.post(urlBase, schoolYear, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    });
 
     return data;
 }
@@ -90,7 +110,12 @@ export const createSchoolYear = async (schoolYear) => {
 export const updateSchoolYearById = async (id, schoolYear) => {
     try {
         const url = urlBase + "/" + id;
-        const {data} = await axios.put(url, schoolYear);
+        const {data} = await axios.put(url, schoolYear, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -105,7 +130,12 @@ export const deleteSchoolYearById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const response = await axios.delete(url);
+        const response = await axios.delete(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
 
         // Vérifier si le statut de la réponse est "no_content" (204)
 

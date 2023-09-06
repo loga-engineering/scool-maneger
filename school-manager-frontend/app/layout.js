@@ -1,7 +1,20 @@
+"use client";
 
 import ModuleClient from "@/shared/context/module-client";
+import {useRouter} from "next/navigation";
+import {useEffect} from "react";
+
 
 export default function RootLayout({children}) {
+
+    // const router = useRouter();
+    //
+    // useEffect(() => {
+    //
+    //     router.push('/auth/signin');
+    //
+    // }, []);
+
 
     return (
         <html lang="en">
@@ -11,8 +24,11 @@ export default function RootLayout({children}) {
         </head>
         <body>
             <ModuleClient>
+
                 {children}
+
             </ModuleClient>
+
         </body>
         </html>
     )

@@ -7,7 +7,12 @@ export const searchData = async ({query, page, size, sort, filter, path}) => {
         console.log("======> ", {query, page, size, sort, filter});
         const url = process.env.BACKEND_URL + path;
         console.log("url ======> ",url);
-        const {data} = await axios.post(url , {query, page, size, sort, filter});
+        const {data} = await axios.post(url , {query, page, size, sort, filter}, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);

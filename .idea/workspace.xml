@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="Add grades printing &amp; reporting">
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="update DockerCmd.txt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/@home/components/side-bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/@home/components/side-bar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-bar-chart.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-bar-chart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-basic-pie.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-basic-pie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/SchoolManagerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/java/com/logaengineering/schoolmanagementbackend/SchoolManagerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-backend/src/test/java/com/logaengineering/schoolmanagementbackend/SchoolManagementBackendApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/classroom-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/classroom-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/exams/exam-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/exams/exam-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/grade-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/grade-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/school-year-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/students/student-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/students/student-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/components/tables/table-hooks.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/components/tables/table-hooks.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/theme-provider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,7 +49,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="c94f27e2026c07bc7743cc9de1a60f2bf5400950" />
+        <entry key="$PROJECT_DIR$" value="dev1" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,51 +94,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP 450 G6/Desktop/code/scool-maneger&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;ff00ba6fc6b0f62d4d028301868e209e&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/HP 450 G6/Desktop/code/scool-maneger/school-manager-frontend/app/(login)/signin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "advanced.settings",
+    "spring.configuration.checksum": "ff00ba6fc6b0f62d4d028301868e209e",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/compoents" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years/view" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/features/school-years" />
-      <recent name="$PROJECT_DIR$" />
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\(login)\signin" />
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\home" />
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-backend\src\main\resources" />
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\features\authentication\components" />
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\app\login\signin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-frontend\tests" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]/edit" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/school-years/[id]" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]/edit" />
       <recent name="$PROJECT_DIR$/school-manager-frontend/app/classrooms/[id]" />
-      <recent name="$PROJECT_DIR$/school-manager-frontend/shared/context" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.logaengineering.schoolmanagementbackend.controllers" />
       <recent name="com.logaengineering.schoolmanagementbackend.domains.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.SchoolManagerApplication">
+  <component name="RunManager" selected="npm.run dev">
     <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -211,6 +220,7 @@
       <workItem from="1693150787023" duration="2308000" />
       <workItem from="1693208144893" duration="13935000" />
       <workItem from="1693298221904" duration="28237000" />
+      <workItem from="1693831654290" duration="47776000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
