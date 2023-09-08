@@ -2,7 +2,7 @@ import SignInView from "@/features/authentication/view/sign-in-view";
 
 
 export const metadata = {
-    title: "Gestion authentification",
+    title: "Login",
 }
 
 export default function SignInPage() {

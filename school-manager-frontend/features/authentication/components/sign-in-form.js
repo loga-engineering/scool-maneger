@@ -2,20 +2,20 @@
 
 import {useRouter} from "next/navigation";
 
-import {Box, Button, Card, Stack, Typography,} from "@mui/material";
+import {Button, Card, Stack, Typography,} from "@mui/material";
 import * as Yup from "yup";
-import {isAuthenticated, signIn} from "@/features/authentication/auth-service";
+import {signIn} from "@/features/authentication/auth-service";
 import FormikTextField from "@/shared/forms/formik-text-field";
 import {Form, FormikProvider, useFormik} from "formik";
-import {useRecoilState} from "recoil";
 import {authConfig} from "@/features/authentication/auth-config";
+import {useState} from "react";
+import MuiAlert from "@/shared/components/mui-alert";
 
 
 export default function SignInForm() {
 
   const router = useRouter();
-  const [authenticated, setAuthenticated] = useRecoilState(isAuthenticated);
-
+  const [alert, setAlert] = useState(null);
 
   const initialValues = {
     username: "",
@@ -23,7 +23,7 @@ export default function SignInForm() {
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Le nom est obligatoire"),
+    username: Yup.string().required("Le nom d'utilisateur est obligatoire"),
     password: Yup.string().required("Le mot de passe est obligatoire"),
   });
 
@@ -39,14 +39,14 @@ export default function SignInForm() {
         if (response.status === 200) {
           const { token } = response.data;
           localStorage.setItem('token', token);
-          setAuthenticated(true);
           router.push('/');
         } else {
-          alert('Bad credentials');
+          setAlert("Nom d'utilisateur ou mot de passe incorrecte !");
         }
 
       } catch (error) {
         console.error(error);
+        setAlert("Nom d'utilisateur ou mot de passe incorrecte !");
       }
     }
   });
@@ -57,26 +57,26 @@ export default function SignInForm() {
         <Form onSubmit={formik.handleSubmit}>
 
           <Card>
-            <Stack spacing={3} p={3} alignItems={"center"}>
-              <Typography variant={"body1"}>Sign In</Typography>
-              <FormikTextField name={"username"} label={"Nom d'utilisateur"}/>
-              <FormikTextField name={"password"} label={"Mot de passe"} type={"password"}/>
+            <Stack spacing={3} p={3} alignItems={"center"} minWidth={400}>
+              <Typography variant={"h6"}>Sign In</Typography>
+              <FormikTextField name={"username"} label={"Nom d'utilisateur"} />
+              <FormikTextField name={"password"} label={"Mot de passe"} type={"password"} autoComplete="off" />
 
               <Stack direction={"row"} spacing={2} justifyContent={"end"}>
-                <Button type="reset" sx={{ color: "text.secondary" }}>
-                  {"Annuler"}
-                </Button>
-                <Button onClick={() => router.push(authConfig.path.signup) } variant={"outlined"}>
+                <Button onClick={() => router.push(authConfig.path.signup) } variant={"text"}>
                   {"Sign Up"}
                 </Button>
-                <Button type={"submit"} variant={"contained"}>
+                <Button type={"submit"} variant={"outlined"}>
                   {"Valider"}
                 </Button>
               </Stack>
 
             </Stack>
-
           </Card>
+
+          {
+            alert && ( <MuiAlert message={alert} open={true} severity={"error"} setAlert={setAlert}/>)
+          }
         </Form>
       </FormikProvider>
   )

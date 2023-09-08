@@ -1,10 +1,10 @@
 "use client";
 
-import ModuleClient from "@/shared/context/module-client";
+import ModuleClient, {setInactivityTimeout} from "@/shared/context/module-client";
 import {usePathname, useRouter} from "next/navigation";
 import {useEffect} from "react";
 import SideBarLayout from "@/features/@home/components/side-bar-layout";
-import FloatingMenuButton from "@/features/authentication/view/FloatingMenuButton";
+import {Box} from "@mui/material";
 
 
 export default function RootLayout({children}) {
@@ -14,11 +14,17 @@ export default function RootLayout({children}) {
     const router = useRouter();
 
     useEffect(() => {
-        const isValid = localStorage.getItem('token');
-        if(isValid === null || !isValid) {
-            router.push('/auth/signin');
+        if(!pathname.includes("auth/sign")) {
+            const isValid = localStorage.getItem('token');
+            if (isValid === null || !isValid) {
+                router.push('/auth/signin');
+            }
         }
     }, [pathname]);
+
+    const handleThemeChange = (theme) => {
+        return theme.palette.mode === "dark" && theme.palette.primary.dark;
+    };
 
 
     return (
@@ -29,9 +35,14 @@ export default function RootLayout({children}) {
         </head>
         <body>
             <ModuleClient>
-                <FloatingMenuButton/>
+
                 {
-                    pathname.includes("auth/sign") ? (<>{children}</>) : (
+                    pathname.includes("auth/sign") ? (
+                        <Box flexGrow={1} pt={4} sx={{
+                        backgroundColor: theme => handleThemeChange(theme), }}>
+                            {children}
+                        </Box>
+                    ) : (
                         <SideBarLayout>
                             {children}
                         </SideBarLayout>

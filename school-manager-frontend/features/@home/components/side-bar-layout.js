@@ -13,6 +13,7 @@ export default function SideBarLayout({children}) {
     const router = useRouter();
     const pathname = usePathname();
 
+
     useEffect(() => {
         const isValid = localStorage.getItem('token');
         if(isValid === null || !isValid) {

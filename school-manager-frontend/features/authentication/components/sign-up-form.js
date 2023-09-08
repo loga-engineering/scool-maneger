@@ -8,11 +8,14 @@ import * as Yup from "yup";
 import {signUp} from "@/features/authentication/auth-service";
 import FormikTextField from "@/shared/forms/formik-text-field";
 import {Form, FormikProvider, useFormik} from "formik";
+import {useState} from "react";
+import MuiAlert from "@/shared/components/mui-alert";
 
 
 export default function SignUpForm() {
 
   const router = useRouter();
+  const [alert, setAlert] = useState(null);
 
   const initialValues = {
     username: "",
@@ -36,12 +39,13 @@ export default function SignUpForm() {
         const response = await signUp(values);
 
         if (response.status === 200) {
-          alert('User registered success');
+          setAlert("Utilisateur enregistré avec succès");
           await router.push(authConfig.path.signin);
         }
 
       } catch (error) {
         console.error(error);
+        setAlert("Utilisateur enregistré avec succès");
       }
     }
   });
@@ -52,8 +56,8 @@ export default function SignUpForm() {
         <Form onSubmit={formik.handleSubmit}>
 
           <Card>
-            <Stack spacing={3} p={3}>
-              <Typography variant={"body1"}>Sign Up</Typography>
+            <Stack spacing={3} p={3} alignItems={"center"} minWidth={400}>
+              <Typography variant={"h6"}>Sign Up</Typography>
               <FormikTextField name={"username"} label={"Nom d'utilisateur"}/>
               <FormikTextField name={"email"} label={"Email"}/>
               <FormikTextField name={"password"} label={"Mot de passe"} type={"password"}/>
@@ -70,6 +74,9 @@ export default function SignUpForm() {
             </Stack>
 
           </Card>
+          {
+              alert && ( <MuiAlert message={alert} open={true} severity={"succes"} setAlert={setAlert}/>)
+          }
         </Form>
       </FormikProvider>
   )

@@ -2,8 +2,27 @@
 import ReportingBasicPie from "@/features/reporting/components/reporting-basic-pie";
 import ReportingBarChart from "@/features/reporting/components/reporting-bar-chart";
 import {Box, Card, CardContent, CardHeader, Grid, Stack, Typography} from "@mui/material";
+import {useFindProfile} from "@/features/authentication/auth-service";
+import {useEffect, useLayoutEffect} from "react";
+import {useRouter} from "next/navigation";
 
 export default function ReportingView() {
+
+    const router = useRouter();
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindProfile();
+
+    useLayoutEffect(() => {
+        let admin = false;
+        currentValue.authorities.forEach((role) => {
+            if (role.authority === "ROLE_ADMIN") {
+                admin = true;
+            }
+        });
+        if(!admin) {
+            router.push('/');
+        }
+    }, []);
+
 
 
     return (

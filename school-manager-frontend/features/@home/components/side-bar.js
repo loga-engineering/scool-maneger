@@ -9,6 +9,8 @@ import GradeOutlinedIcon from '@mui/icons-material/GradeOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import HistoryEduOutlinedIcon from '@mui/icons-material/HistoryEduOutlined';
 import {Avatar, Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Stack} from "@mui/material";
+import {useFindProfile} from "@/features/authentication/auth-service";
+import {useEffect, useLayoutEffect} from "react";
 
 
 const menus = [
@@ -42,17 +44,26 @@ const menus = [
         label: "Notes",
         href: "/grades"
     },
-    {
-        icon: <TrendingUpIcon/>,
-        label: "Reporting",
-        href: "/reporting"
-    },
 ]
 
 export default function SideBar() {
 
     const pathname = usePathname();
     const router = useRouter();
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindProfile();
+
+    let updatedMenus = [...menus];
+    currentValue?.authorities.forEach((role) => {
+        if (role.authority === "ROLE_ADMIN") {
+            updatedMenus.push({
+                icon: <TrendingUpIcon/>,
+                label: "Reporting",
+                href: "/reporting"
+            });
+        }
+    });
+
+
     const handleThemeChange = (theme, href) => {
         if(href === "/" ) {
             if (pathname === href)
@@ -76,7 +87,7 @@ export default function SideBar() {
                 </Box>
                 <List>
 
-                {menus.map(({label, href, icon}) => (
+                {updatedMenus.map(({label, href, icon}) => (
                     <ListItem key={href} disablePadding>
                             <ListItemButton onClick={() => router.push(href)} sx={{
                                 backgroundColor: theme => handleThemeChange(theme, href),

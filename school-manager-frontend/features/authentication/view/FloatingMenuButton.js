@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {useState} from "react";
 import {authConfig} from "@/features/authentication/auth-config";
 import {useRouter} from "next/navigation";
-import {IconButton} from "@mui/material";
+import {Box, IconButton} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 
 export default function FloatingMenuButton() {
@@ -15,10 +15,10 @@ export default function FloatingMenuButton() {
             label: "Profil",
             href: authConfig.path.user,
         },{
-            label: "Sign In",
+            label: "Sign in",
             href: authConfig.path.signin,
         },{
-            label: "Sign Up",
+            label: "Sign up",
             href: authConfig.path.signup,
         }];
 
@@ -42,15 +42,15 @@ export default function FloatingMenuButton() {
     }
 
     return (
-        <div>
+        <Box>
             <Button
                 id="basic-button"
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
-                sx={{ color: "text.secondary", fontWeight: 600}}
-                style={{ position: 'fixed', top: 8, right: 180 }}
+                sx={{ color: "text.secondary", fontWeight: "bold"}}
+                style={{ position: 'fixed', top: 8, right: 140 }}
                 startIcon={<PersonIcon />}
             >
                 Compte
@@ -73,6 +73,6 @@ export default function FloatingMenuButton() {
                     {"Log out"}
                 </MenuItem>
             </Menu>
-        </div>
+        </Box>
     );
 }

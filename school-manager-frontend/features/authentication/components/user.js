@@ -1,35 +1,15 @@
 
 
-import { useEffect, useState } from "react"
-import process from "next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss";
 import {Box, Card, Stack, TextField, Typography} from "@mui/material";
-import axios from "axios";
-import {getProfile, useFindProfile} from "@/features/authentication/auth-service";
 
 
 export default function User({currentValue}) {
 
 
-//   const [content, setContent] = useState(null)
-// //  const router = useRouter()
-//
-//   useEffect(() => {
-//     fetchContent().then();
-//   }, [])
-//
-//
-//   const fetchContent = () => {
-//     try {
-//       const response = getProfile();
-//
-//       if (response.status === 200) {
-//         const data = response.data;
-//         setContent(text);
-//       }
-//     } catch (error) {
-//       console.error('Error fetching content:', error);
-//     }
-//   }
+    let authority = "| ";
+    currentValue?.authorities.forEach((role) => {
+        authority += role.authority +" | ";
+    });
 
   return (
       <Card>
@@ -55,7 +35,7 @@ export default function User({currentValue}) {
                   <TextField
                       fullWidth
                       label="Role"
-                      value={currentValue.authorities[0].authority}
+                      value={authority}
                       InputProps={{readOnly: true}}
                   />
               </Box>

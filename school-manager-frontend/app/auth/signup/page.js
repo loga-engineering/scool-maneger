@@ -2,7 +2,7 @@ import SignUpView from "@/features/authentication/view/sign-up-view";
 
 
 export const metadata = {
-    title: "Gestion authentification",
+    title: "Sign up",
 }
 
 export default function SignUpPage() {

@@ -2,7 +2,7 @@ import UserView from "@/features/authentication/view/user-view";
 
 
 export const metadata = {
-    title: "Gestion profile",
+    title: "Profile",
 }
 
 export default function UserPage() {
