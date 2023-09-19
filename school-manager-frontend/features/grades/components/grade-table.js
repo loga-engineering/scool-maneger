@@ -19,6 +19,8 @@ import GradeDelete from "@/features/grades/components/grade-delete";
 import {studentConfig} from "@/features/students/student-config";
 import {studentQueryState} from "@/features/students/student-services";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import {reportingConfig} from "@/features/reporting/reporting-config";
 
 const useColumns = () => useMemo(() => [
     {
@@ -163,6 +165,13 @@ export default function GradeTable() {
                 </MenuItem>,
                 <MenuItem key={row.original.id +"delete"}>
                     <GradeDelete id={row.original.id} refetch={refetch}/>
+                </MenuItem>,
+                <MenuItem key={row.original.id +"predict"}>
+                    <Link href={reportingConfig.path.predict(row.original.id)}>
+                        <Tooltip arrow title="Prédire">
+                            <IconButton><TrendingUpIcon /></IconButton>
+                        </Tooltip>
+                    </Link>
                 </MenuItem>
             ]}
             muiTableBodyRowProps={({ row }) => ({

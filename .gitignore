@@ -1,8 +1,9 @@
 /target/
 /kunpan-backend.iml
-#/src/main/resources/application.properties
+
 /.idea/
 /node_modules
 
 .DS_Store
 /file.upload-dir/
+

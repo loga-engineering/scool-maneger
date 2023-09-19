@@ -57,7 +57,7 @@ export default function SideBar() {
         if (role.authority === "ROLE_ADMIN") {
             updatedMenus.push({
                 icon: <TrendingUpIcon/>,
-                label: "Reporting",
+                label: "Statistiques",
                 href: "/reporting"
             });
         }
@@ -80,7 +80,7 @@ export default function SideBar() {
         <Box sx={{
         backgroundColor: theme => (theme.palette.mode ==="dark") ?( theme.palette.secondary.dark): theme.palette.secondary.light,
         }} >
-            <Stack height={"100%"} width={300} >
+            <Stack height={"100%"} width={260} >
 
                 <Box height={150} width={60} marginX={"auto"} p={1} pr={20} alignItems="center">
                         <Avatar alt="Loga School" src="/img.png" sx={{ width: 140, height: 140 }} />
