@@ -1,7 +1,6 @@
 # School Manager Project
 
-Welcome to the School Manager project! This application is designed to streamline and manage various aspects of a school, such as student enrollment, exams management, and more. 
-The project is built using a combination of Spring Boot for the backend, MySQL for the database, and Next.js for the frontend.
+Welcome to the School Manager project! This comprehensive application is designed to streamline and manage various aspects of a school, including student enrollment, exams management, and more. It combines the power of Next.js, Spring Boot, Flask, MySQL, and machine learning for an efficient and data-driven school management system.
 
 ## Technologies Used
 
@@ -11,4 +10,4 @@ The project is built using a combination of Spring Boot for the backend, MySQL f
 
 - **Frontend**: The user interface is built using Next.js, a React framework that provides server-side rendering and a great development experience. It offers a smooth and responsive user interface for managing school operations.
 
-
+- **Machine Learning**: The Flask API integrates a machine learning model for predicting student grades based on relevant data. This enhances decision-making and supports personalized educational strategies.
