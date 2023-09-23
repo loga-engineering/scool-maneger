@@ -18,8 +18,9 @@ export function SimpleFormikForm({formik, spacing = 3, p = 3, isEdit, onCancel, 
         <FormikForm formik={formik}>
             <Stack spacing={spacing} p={p}>
                 {children}
-
-                <FormikSubmitButton validateLabel={isEdit ? "Modifier" : "Créer"} onCancel={onCancel}/>
+                {isEdit !==null &&
+                    <FormikSubmitButton validateLabel={isEdit ? "Modifier" : "Créer"} onCancel={onCancel}/>
+                }
             </Stack>
         </FormikForm>
     )

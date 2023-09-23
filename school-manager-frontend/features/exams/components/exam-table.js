@@ -16,6 +16,7 @@ import {useSearch} from "@/shared/components/tables/table-hooks";
 import ExamDelete from "@/features/exams/components/exam-delete";
 import {gradeQueryState} from "@/features/grades/grade-services";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
+import {MRT_Localization_FR} from "material-react-table/locales/fr";
 
 const useColumns = () => useMemo(() => [
     {
@@ -72,6 +73,7 @@ export default function ExamTable() {
             rowCount={currentPage?.totalElements}
             onGlobalFilterChange={setGlobalFilter}
             onColumnFiltersChange={setColumnFilters}
+            localization={MRT_Localization_FR}
             manualFiltering manualPagination manualSorting
             state={{
                 isLoading,

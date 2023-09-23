@@ -19,7 +19,12 @@ export const classroomSearchQueryState = atom({
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllClassrooms = async () => {
     try {
-        const {data} = await axios.get(urlBase);
+        const {data} = await axios.get(urlBase, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -39,7 +44,12 @@ export const findClassroomsByName = async (name) => {
     try {
         const url = urlBase + "/names/" + name;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -71,7 +81,12 @@ export const findClassroomById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -91,7 +106,12 @@ export const useFindClassroomById = (id) => {
 
 ////////////////////////////////// create fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const createClassroom = async (Classroom) => {
-    const {data} = await axios.post(urlBase, Classroom);
+    const {data} = await axios.post(urlBase, Classroom, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    });
 
     return data;
 }
@@ -105,7 +125,12 @@ export const deleteClassroomById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const response = await axios.delete(url);
+        const response = await axios.delete(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
 
         // Vérifier si le statut de la réponse est "no_content" (204)
 
@@ -129,7 +154,12 @@ export const updateClassroomById = async (id, Classroom) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.put(url, Classroom);
+        const {data} = await axios.put(url, Classroom, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);

@@ -1,13 +1,11 @@
-
+"use client";
 import Link from "next/link";
 import {Box, Card, CardActionArea, CardContent, Container, Grid, Typography} from "@mui/material";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import {useFindProfile} from "@/features/authentication/auth-service";
 
 const modules = [
     {
-        label: "Gestion reporting",
-        href: "/reporting",
-        description : "analyser, rechercher, modifier..."
-    },{
         label: "Gestion années scolaire",
         href: "/school-years",
         description : "rechercher, modifier, ajouter, supprimer..."
@@ -35,6 +33,19 @@ const modules = [
 
 export default function Home() {
 
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindProfile();
+
+    let updatedModules = [...modules];
+    currentValue?.authorities.forEach((role) => {
+        if (role.authority === "ROLE_ADMIN") {
+            updatedModules.push({
+                label: "Gestion reporting",
+                href: "/reporting",
+                description : "analyser, rechercher, modifier..."
+            });
+        }
+    });
+
     return (
             <Container component={"main"} maxWidth={"lg"}>
                 <Box mt={5}>
@@ -44,7 +55,7 @@ export default function Home() {
                 </Box>
 
                 <Grid container spacing={3}>
-                    {modules.map(model => (
+                    {updatedModules.map(model => (
                         <Grid key={model.href} item xs={4}>
                                 <Card>
                                     <Link href={model.href} style={{textDecoration: 'none'}}>
@@ -65,6 +76,5 @@ export default function Home() {
 
                 </Grid>
             </Container>
-
     );
 }

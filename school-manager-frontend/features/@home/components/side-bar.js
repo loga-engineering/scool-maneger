@@ -41,18 +41,32 @@ const menus = [
         icon: <GradeOutlinedIcon/>,
         label: "Notes",
         href: "/grades"
-    },
-    {
+    },{
         icon: <TrendingUpIcon/>,
-        label: "Reporting",
+        label: "Statistiques",
         href: "/reporting"
-    },
+    }
 ]
 
 export default function SideBar() {
 
     const pathname = usePathname();
     const router = useRouter();
+
+/*    // Réservé l'acces à l'admin uniquement \\
+    const {data: currentValue, isLoading, isError, error, refetch} = useFindProfile();
+    let updatedMenus = [...menus];
+    currentValue?.authorities.forEach((role) => {
+        if (role.authority === "ROLE_ADMIN") {
+            updatedMenus.push({
+                icon: <TrendingUpIcon/>,
+                label: "Statistiques",
+                href: "/reporting"
+            });
+        }
+    });*/
+
+
     const handleThemeChange = (theme, href) => {
         if(href === "/" ) {
             if (pathname === href)
@@ -69,7 +83,7 @@ export default function SideBar() {
         <Box sx={{
         backgroundColor: theme => (theme.palette.mode ==="dark") ?( theme.palette.secondary.dark): theme.palette.secondary.light,
         }} >
-            <Stack height={"100%"} width={300} >
+            <Stack height={"100%"} width={260} >
 
                 <Box height={150} width={60} marginX={"auto"} p={1} pr={20} alignItems="center">
                         <Avatar alt="Loga School" src="/img.png" sx={{ width: 140, height: 140 }} />

@@ -21,7 +21,12 @@ export const studentSearchQueryState = atom({
 ////////////////////////////////// findAll fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const findAllStudents = async () => {
     try {
-        const {data} = await axios.get(urlBase);
+        const {data} = await axios.get(urlBase, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -34,7 +39,12 @@ export const findByRegistrationNumber = async (query) => {
     try {
         const url = urlBase + "/registration-number/"+query;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -65,7 +75,12 @@ export const findStudentById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -90,7 +105,12 @@ export const findByClassroomId = async (id) => {
         if(id){
             const url = urlBase + "/classroom/" + id;
             console.log("=======+> url: ", url);
-            const {data} = await axios.get(url);
+            const {data} = await axios.get(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
+                }
+            });
             return data;
         }
     } catch (error) {
@@ -110,7 +130,12 @@ export const useFindByClassroomId = (id) => {
 
 ////////////////////////////////// createStudent fct + hook  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export const createStudent = async (student) => {
-    const {data} = await axios.post(urlBase, student);
+    const {data} = await axios.post(urlBase, student, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    });
 
     return data;
 };
@@ -124,7 +149,12 @@ export const deleteStudentById = async (id) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const response = await axios.delete(url);
+        const response = await axios.delete(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
 
         // Vérifier si le statut de la réponse est "no_content" (204)
 
@@ -148,7 +178,12 @@ export const updateStudentById = async (id, student) => {
     try {
         const url = urlBase + "/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.put(url, student);
+        const {data} = await axios.put(url, student, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);
@@ -165,7 +200,12 @@ export const countStudentsByClassroomId = async (id) => {
     try {
         const url = urlBase + "/count/" + id;
         console.log("=======+> url: ", url);
-        const {data} = await axios.get(url);
+        const {data} = await axios.get(url, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        });
         return data;
     } catch (error) {
         console.error("===> ", error);

@@ -17,6 +17,7 @@ import {studentQueryState} from "@/features/students/student-services";
 import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import ClassroomDelete from "@/features/classrooms/components/classroom-delete";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
+import {MRT_Localization_FR} from "material-react-table/locales/fr";
 
 const useColumns = () => useMemo(() => [
 
@@ -76,6 +77,7 @@ export default function ClassroomTable() {
             rowCount={currentPage?.totalElements}
             onGlobalFilterChange={setGlobalFilter}
             onColumnFiltersChange={setColumnFilters}
+            localization={MRT_Localization_FR}
             manualFiltering manualPagination manualSorting
             state={{
                 isLoading,
