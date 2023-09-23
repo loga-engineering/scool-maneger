@@ -6,16 +6,26 @@ import {atom} from "recoil";
 const urlBase = process.env.MODEL_URL;
 
 export const predictionQueryState = atom({
-    key: 'predictionQueryState',
-    default: {
-        predicted_grade: "",
-    },
+    key: 'predictionQueryStateAtom',
+    default: "",
 });
 
 export const predict_grade = async (student) => {
-    const {data} = await axios.post(urlBase + "predict", student);
+    try {
+        const response = await axios.post(urlBase + "predict", student);
+        console.log("response ==> ", response);
+        console.log(response.data);
 
-    return data;
+         if (response.status === 200) {
+            const predictedGrade = response.data.predicted_grade;
+            console.log("predictedGrade >> ", predictedGrade);
+            return response.data;
+         } else {
+             throw new Error('Erreur lors de la récupération de la prédiction de note');
+         }
+    } catch (error) {
+        console.error(error);
+    }
 };
 
 export const usePredict = () => {

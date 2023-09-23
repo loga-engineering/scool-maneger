@@ -1,7 +1,9 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from predict_grade import grade_prediction
 
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 
 
 @app.route('/predict', methods=['POST'])
@@ -13,6 +15,5 @@ def predict_grade():
     predicted_grade = grade_prediction(student_data)
 
     # Renvoyer la prédiction sous forme de réponse JSON
-    response = {'predicted_grade': predicted_grade}
+    response = {"predicted_grade": predicted_grade}
     return jsonify(response)
-

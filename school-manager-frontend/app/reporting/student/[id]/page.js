@@ -4,9 +4,12 @@ export const metadata = {
     title: "Prédiction de moyenne",
 }
 
-export default function PredictResultPage() {
+export default function PredictResultPage({params}) {
+
+    const {id} = params;
+
     return (
-        <PredictResultView/>
+        <PredictResultView id={id}/>
     );
 }
 

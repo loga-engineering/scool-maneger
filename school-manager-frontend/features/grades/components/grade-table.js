@@ -21,6 +21,7 @@ import {studentQueryState} from "@/features/students/student-services";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import {reportingConfig} from "@/features/reporting/reporting-config";
+import {MRT_Localization_FR} from "material-react-table/locales/fr";
 
 const useColumns = () => useMemo(() => [
     {
@@ -128,6 +129,7 @@ export default function GradeTable() {
             rowCount={currentPage?.totalElements}
             onGlobalFilterChange={setGlobalFilter}
             onColumnFiltersChange={setColumnFilters}
+            localization={MRT_Localization_FR}
             manualFiltering manualPagination manualSorting
             state={{
                 isLoading,

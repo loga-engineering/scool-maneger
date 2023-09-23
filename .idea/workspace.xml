@@ -4,25 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="update authentication">
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/input/student-data.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/input/student.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/models/columns.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/models/performance_prediction.joblib" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/models/prediction_model.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/school-manager-ai/predict_grade.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="6e5e965f-d6fc-424f-bc78-78c73c31c622" name="Changes" comment="add school-manager-ai for grade prediction">
+      <change afterPath="$PROJECT_DIR$/school-manager-ai/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/reporting-spark-line.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-ai/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-ai/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-ai/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-ai/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-ai/models/prediction_model.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-ai/models/prediction_model.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/layout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/reporting/student/[id]/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/reporting/student/[id]/page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/app/reporting/student/[id]/predict/page.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/app/reporting/student/[id]/predict/page.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/@home/components/side-bar.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/@home/components/side-bar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/authentication/view/FloatingMenuButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/authentication/view/FloatingMenuButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/components/classroom-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/components/classroom-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/classrooms/view/classroom-list-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/exams/components/exam-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/exams/components/exam-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/exams/view/exam-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/exams/view/exam-list-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/components/grade-table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/grades/view/grade-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/grades/view/grade-list-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/predict-new-form.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/predict-new-form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/predict-result.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/components/predict-result.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/reporting-services.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/reporting-services.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/reporting/view/reporting-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/components/school-year-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/school-years/view/school-year-list-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/students/components/student-table.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/students/components/student-table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/school-manager-frontend/features/students/view/student-list-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/features/students/view/student-list-view.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/context/module-client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-form-provider.js" beforeDir="false" afterPath="$PROJECT_DIR$/school-manager-frontend/shared/forms/formik-form-provider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,33 +108,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/HP 450 G6/Desktop/code/scool-maneger/school-manager-ai",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "inlay.hints",
-    "spring.configuration.checksum": "ff00ba6fc6b0f62d4d028301868e209e",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/HP 450 G6/Desktop/code/scool-maneger/school-manager-ai&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;inlay.hints&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;ff00ba6fc6b0f62d4d028301868e209e&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\HP 450 G6\Desktop\code\scool-maneger\school-manager-ai" />
@@ -147,7 +155,7 @@
       <recent name="com.logaengineering.schoolmanagementbackend.domains.dto" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.run dev">
+  <component name="RunManager" selected="Spring Boot.SchoolManagerApplication">
     <configuration name="classroom#1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" path="$PROJECT_DIR$/school-manager-backend/@http-request/classroom.http" runType="Run single request">
       <method v="2" />
     </configuration>
@@ -230,7 +238,8 @@
       <workItem from="1693831654290" duration="95998000" />
       <workItem from="1694177925175" duration="628000" />
       <workItem from="1695050672374" duration="7699000" />
-      <workItem from="1695122573935" duration="18395000" />
+      <workItem from="1695122573935" duration="19443000" />
+      <workItem from="1695467815351" duration="22373000" />
     </task>
     <task id="LOCAL-00001" summary="Organize project code">
       <created>1691410397277</created>
@@ -337,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1694178309171</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="add school-manager-ai for grade prediction">
+      <option name="closed" value="true" />
+      <created>1695141553122</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1695141553122</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -383,7 +400,8 @@
     <MESSAGE value="Update sign-in-form.js" />
     <MESSAGE value="organize auth &amp; layout display" />
     <MESSAGE value="update authentication" />
-    <option name="LAST_COMMIT_MESSAGE" value="update authentication" />
+    <MESSAGE value="add school-manager-ai for grade prediction" />
+    <option name="LAST_COMMIT_MESSAGE" value="add school-manager-ai for grade prediction" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -2,19 +2,28 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {authConfig} from "@/features/authentication/auth-config";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {Box, IconButton} from "@mui/material";
 import PersonIcon from '@mui/icons-material/Person';
 
 export default function FloatingMenuButton() {
+
+    const pathname = usePathname();
     const router = useRouter();
+    const [authenticated, setAuthenticated] = useState(false);
+
+    useEffect(() => {
+
+        const isValid = localStorage.getItem('token');
+        if (isValid) {
+            setAuthenticated(true);
+        }
+    }, [pathname]);
+
     const options = [
         {
-            label: "Profil",
-            href: authConfig.path.user,
-        },{
             label: "Sign in",
             href: authConfig.path.signin,
         },{
@@ -64,14 +73,22 @@ export default function FloatingMenuButton() {
                     'aria-labelledby': 'basic-button',
                 }}
             >
+                { authenticated && (
+                    <MenuItem key={authConfig.path.user} onClick={() => handleSelect(authConfig.path.user)}>
+                        {"Profil"}
+                    </MenuItem>
+                )}
                 {options.map((option) => (
                     <MenuItem key={option.href} onClick={() => handleSelect(option.href)}>
                         {option.label}
                     </MenuItem>
                 ))}
-                <MenuItem key={"LogOut"} onClick={() => logout()}>
-                    {"Log out"}
-                </MenuItem>
+                { authenticated && (
+                    <MenuItem key={"LogOut"} onClick={() => logout()}>
+                        {"Log out"}
+                    </MenuItem>
+                )}
+
             </Menu>
         </Box>
     );

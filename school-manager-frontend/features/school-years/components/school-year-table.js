@@ -15,6 +15,7 @@ import {classroomConfig} from "@/features/classrooms/classroomConfig";
 import {classroomQueryState} from "@/features/classrooms/classroom-services";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
 import SchoolYearDelete from "@/features/school-years/components/school-year-delete";
+import {MRT_Localization_FR} from "material-react-table/locales/fr";
 
 
 const useColumns = () => useMemo(() => [
@@ -70,6 +71,7 @@ export default function SchoolYearTable() {
             rowCount={currentPage?.totalElements}
             onGlobalFilterChange={setGlobalFilter}
             onColumnFiltersChange={setColumnFilters}
+            localization={MRT_Localization_FR}
             manualFiltering manualPagination manualSorting
             state={{
                 isLoading,

@@ -2,6 +2,7 @@ import React from 'react';
 import {Box, Card, Stack, TextField, Typography} from "@mui/material";
 import {useRecoilValue} from "recoil";
 import {predictionQueryState} from "@/features/reporting/reporting-services";
+import ReportingSparkLine from "@/features/reporting/components/reporting-spark-line";
 
 
 export default function PredictResult({currentValue}) {
@@ -11,16 +12,16 @@ export default function PredictResult({currentValue}) {
     return (
         <Card>
             <Stack spacing={3} p={3}>
-
+                <ReportingSparkLine />
                 <Stack spacing={2} >
                     <Typography variant="body1" align={"center"}>
                         {"Prédiction de la moyenne de l'élève à partir des informations personnelles et des deux " +
-                            "dernières moyennes obtenue avec une Fiabilité 74%"}
+                            "dernières moyennes obtenue avec une Fiabilité de 74%"}
                     </Typography>
                     <Box display="flex" gap="16px">
                         <Box flex={1}>
                             <TextField fullWidth label="Resultat"
-                                       value={prediction.predicted_grade}
+                                       value={prediction}
                                        InputProps={{readOnly: true}}
                             />
                         </Box>

@@ -15,7 +15,7 @@ export default function ExamListView() {
     };
 
     return (
-        <Box>
+        <Box p={3}>
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
                 <Typography variant="h3" p={3}>
                     {"Liste des examens"}

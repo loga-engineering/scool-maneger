@@ -1,7 +1,7 @@
 from app import app
 
 
-# Données de l'élève à tester
+# Exemple d'élève à tester
 student = {
     'school': 'GP',
     'sex': 'F',
@@ -41,17 +41,6 @@ student = {
 if __name__ == '__main__':
     app.run(debug=True)
 
-    # try:
-    #     # Afficher les informations initiales de l'élève
-    #     print("Informations de l'élève : ")
-    #     print(student)
-    #
-    #     # Afficher la valeur prédite par le modèle
-    #     print("Note prédite par le modèle : ")
-    #     print(grade_prediction(student))
-    #
-    # except Exception as e:
-    #     print(e)
 
 
 

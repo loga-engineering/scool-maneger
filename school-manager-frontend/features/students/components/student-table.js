@@ -16,6 +16,7 @@ import {useSearch} from "@/shared/components/tables/table-hooks";
 import {studentQueryState} from "@/features/students/student-services";
 import StudentDelete from "@/features/students/components/student-delete";
 import {initialPagination} from "../../../shared/components/tables/table-utils";
+import {MRT_Localization_FR} from "material-react-table/locales/fr";
 
 const useColumns = () => useMemo(() => [
     {
@@ -81,6 +82,7 @@ export default function StudentTable() {
             rowCount={currentPage?.totalElements}
             onGlobalFilterChange={setGlobalFilter}
             onColumnFiltersChange={setColumnFilters}
+            localization={MRT_Localization_FR}
             manualFiltering manualPagination manualSorting
             state={{
                 isLoading,

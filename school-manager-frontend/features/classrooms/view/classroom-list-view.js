@@ -15,7 +15,7 @@ export default function ClassroomListView() {
     };
 
     return (
-        <Box>
+        <Box p={3}>
 
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
 

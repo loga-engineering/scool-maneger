@@ -31,6 +31,7 @@ export default function PredictNewForm({id}) {
         sex: Yup.string().required("Le champ 'Sexe' est obligatoire."),
         age: Yup.number().required("Le champ 'Âge' est obligatoire."),
         address: Yup.string().required("Le champ 'Adresse' est obligatoire."),
+        absences: Yup.number().required("Le champ 'Absences' est obligatoire."),
         famsize: Yup.string().required("Le champ 'Taille de la famille' est obligatoire."),
         Pstatus: Yup.string().required("Le champ 'Statut des parents' est obligatoire."),
         Medu: Yup.number().required("Le champ 'Éducation de la mère' est obligatoire."),
@@ -46,7 +47,6 @@ export default function PredictNewForm({id}) {
         freetime: Yup.number().required("Le champ 'Temps libre' est obligatoire."),
         goout: Yup.number().required("Le champ 'Sorties' est obligatoire."),
         health: Yup.number().required("Le champ 'Santé' est obligatoire."),
-        absences: Yup.number().required("Le champ 'Absences' est obligatoire."),
         G1: Yup.number().required("Le champ 'Moyenne 1' est obligatoire."),
         G2: Yup.number().required("Le champ 'Moyenne 2' est obligatoire.")
     });
@@ -55,6 +55,7 @@ export default function PredictNewForm({id}) {
         sex: "",
         age: "",
         address: "",
+        absences: "",
         famsize: "",
         Pstatus: "",
         Medu: "",
@@ -70,7 +71,6 @@ export default function PredictNewForm({id}) {
         freetime: "",
         goout: "",
         health: "",
-        absences: "",
         G1: "",
         G2: ""
     };
@@ -82,16 +82,13 @@ export default function PredictNewForm({id}) {
         onSubmit: async (values, {resetForm}) => {
             try {
                 console.log("Values ===> ", values);
-                const response = predict_grade(values);
-                console.log("response ===> ",response);
-                if (response.status === 200) {
-                    setPredictedGrade((prevState) => ({
-                        ...prevState,
-                        predicted_grade: response.predicted_grade,
-                    }));
-                    handleClose();
-                    router.push(reportingConfig.path.result(id));
-                }
+                const response = await predict_grade(values);
+
+                setPredictedGrade(response.predicted_grade);
+                handleClose();
+                console.log("Ok Ok Ok predictedGrade --- > ", predictedGrade);
+                console.log("Id ===> ", id);
+                router.push(reportingConfig.path.result(id.toString()));
 
             } catch (error) {
                 console.error(error);
@@ -117,7 +114,12 @@ export default function PredictNewForm({id}) {
                             </FormikSelect>
                         </Box>
                         <Box flex={1}>
-                            <FormikTextField name={"age"} label={"Age"}/>
+                            <FormikTextField name={"age"} label={"Age"}
+                                             type="number"
+                                             InputLabelProps={{
+                                                 shrink: true,
+                                             }}
+                            />
                         </Box>
                     </Box>
                     <Box display="flex" gap="16px">
@@ -128,7 +130,11 @@ export default function PredictNewForm({id}) {
                             </FormikSelect>
                         </Box>
                         <Box flex={1}>
-                            <FormikTextField name={"absences"} label={"Nombre d'abscence"}/>
+                            <FormikTextField name={"absences"} label={"Nombre d'abscence"}
+                                 type="number"
+                                 InputLabelProps={{
+                                     shrink: true,
+                                 }}/>
                         </Box>
                     </Box>
                     <Box display="flex" gap="16px">
@@ -148,20 +154,20 @@ export default function PredictNewForm({id}) {
                     <Box display="flex" gap="16px">
                         <Box flex={1}>
                             <FormikSelect name={"Medu"} label={"Niveau d'éucation de la mère"} >
-                                <MenuItem key={"0"} value={0}>Analphabet</MenuItem>
-                                <MenuItem key={"1"} value={1}>Primaire</MenuItem>
-                                <MenuItem key={"2"} value={2}>Collège</MenuItem>
-                                <MenuItem key={"3"} value={3}>Lycée</MenuItem>
-                                <MenuItem key={"4"} value={4}>Université</MenuItem>
+                                <MenuItem key={"Medu0"} value={0}>Analphabet</MenuItem>
+                                <MenuItem key={"Medu1"} value={1}>Primaire</MenuItem>
+                                <MenuItem key={"Medu2"} value={2}>Collège</MenuItem>
+                                <MenuItem key={"Medu3"} value={3}>Lycée</MenuItem>
+                                <MenuItem key={"Medu4"} value={4}>Université</MenuItem>
                             </FormikSelect>
                         </Box>
                         <Box flex={1}>
-                            <FormikSelect name={"Pedu"} label={"Niveau d'éducation du père"} >
-                                <MenuItem key={"0"} value={0}>Analphabet</MenuItem>
-                                <MenuItem key={"1"} value={1}>Primaire</MenuItem>
-                                <MenuItem key={"2"} value={2}>Collège</MenuItem>
-                                <MenuItem key={"3"} value={3}>Lycée</MenuItem>
-                                <MenuItem key={"4"} value={4}>Université</MenuItem>
+                            <FormikSelect name={"Fedu"} label={"Niveau d'éducation du père"} >
+                                <MenuItem key={"Fedu0"} value={0}>Analphabet</MenuItem>
+                                <MenuItem key={"Fedu1"} value={1}>Primaire</MenuItem>
+                                <MenuItem key={"Fedu2"} value={2}>Collège</MenuItem>
+                                <MenuItem key={"Fedu3"} value={3}>Lycée</MenuItem>
+                                <MenuItem key={"Fedu4"} value={4}>Université</MenuItem>
                             </FormikSelect>
                         </Box>
                     </Box>
@@ -262,10 +268,18 @@ export default function PredictNewForm({id}) {
                     </Box>
                     <Box display="flex" gap="16px">
                         <Box flex={1}>
-                            <FormikTextField name={"G1"} label={"Moyenne 1"}/>
+                            <FormikTextField name={"G1"} label={"Moyenne 1"}
+                                             type="number"
+                                             InputLabelProps={{
+                                                 shrink: true,
+                                             }} />
                         </Box>
                         <Box flex={1}>
-                            <FormikTextField name={"G2"} label={"Moyenne 2"}/>
+                            <FormikTextField name={"G2"} label={"Moyenne 2"}
+                                             type="number"
+                                             InputLabelProps={{
+                                                 shrink: true,
+                                             }}/>
                         </Box>
                     </Box>
 

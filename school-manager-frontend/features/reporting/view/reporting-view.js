@@ -1,13 +1,10 @@
-"use client";
 import ReportingBasicPie from "@/features/reporting/components/reporting-basic-pie";
 import ReportingBarChart from "@/features/reporting/components/reporting-bar-chart";
 import {Box, Card, CardContent, CardHeader, Grid, Stack, Typography} from "@mui/material";
-import {useFindProfile} from "@/features/authentication/auth-service";
-import {useEffect, useLayoutEffect} from "react";
-import {useRouter} from "next/navigation";
+
 
 export default function ReportingView() {
-
+/*  // Réservé l'acces à l'admin uniquement \\
     const router = useRouter();
     const {data: currentValue, isLoading, isError, error, refetch} = useFindProfile();
 
@@ -21,12 +18,12 @@ export default function ReportingView() {
         if(!admin) {
             router.push('/');
         }
-    }, []);
+    }, []);*/
 
 
 
     return (
-        <Box>
+        <Box p={3}>
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
                 <Typography variant="h3" p={3}>
                     {"Analyse & Reporting"}
