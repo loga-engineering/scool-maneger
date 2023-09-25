@@ -27,15 +27,15 @@ def grade_prediction(student):
     # Mapper la classe prédite à la plage de notes correspondante
     def class_to_grade(class_label):
         if class_label == 0:
-            return 'Fail (0-9)'
+            return 'Echec (0-9)'
         elif class_label == 1:
-            return 'Sufficient (10-11)'
+            return 'Passable (10-11)'
         elif class_label == 2:
-            return 'Satisfactory (12-13)'
+            return 'Assez Bien (12-13)'
         elif class_label == 3:
-            return 'Good (14-15)'
+            return 'Bien (14-15)'
         else:
-            return 'Excellent/Very Good (16-20)'
+            return 'Très Bien/Excellent (16-20)'
 
     # Retourner la valeur prédite par le modèle
     return class_to_grade(predicted_grade[0])
