@@ -1,3 +1,4 @@
+"use client";
 import ReportingBasicPie from "@/features/reporting/components/reporting-basic-pie";
 import ReportingBarChart from "@/features/reporting/components/reporting-bar-chart";
 import {Box, Card, CardContent, CardHeader, Grid, Stack, Typography} from "@mui/material";

@@ -10,15 +10,11 @@ import SideBarLayout from "@/features/@home/components/side-bar-layout";
 import {usePathname, useRouter} from "next/navigation";
 import Loading from "@/app/loading";
 
-export const setupBeforeUnloadListener = () => {
-    window.addEventListener('beforeunload', function() {
-        localStorage.removeItem('token');
-    });
-};
 
-export const setInactivityTimeout = () => {
 
-    let inactivityTime = 120000; // 2 mins of inactivity
+export const setInactivityTimeout = (time = 120000) => {
+
+    let inactivityTime = time; // 1 min 30s of inactivity
     let timeoutId;
     const resetTimer = () => {
         clearTimeout(timeoutId);
@@ -36,24 +32,33 @@ export const setInactivityTimeout = () => {
     }
 }
 
+export const setupBeforeUnloadListener = () => {
+    window.addEventListener('beforeunload', function() {
+        localStorage.removeItem('token');
+    });
+};
+
 export default function ModuleClient({ children }) {
 
     const pathname = usePathname();
 
     const router = useRouter();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         setupBeforeUnloadListener();
     }, []);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if(!pathname.includes("auth/sign")) {
             const isValid = localStorage.getItem('token');
             if (isValid === null || !isValid) {
                 router.push('/auth/signin');
-                setInactivityTimeout();
             }
         }
+    }, []);
+
+    useEffect(() => {
+        setInactivityTimeout();
     }, [pathname]);
 
     const handleThemeChange = (theme) => {

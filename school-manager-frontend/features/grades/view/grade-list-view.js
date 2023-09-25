@@ -15,7 +15,7 @@ export default function GradeListView() {
     };
 
     return (
-        <Box p={3}>
+        <Box p={2}>
             <Stack direction={"row"} justifyContent={"space-between"} alignItems={"end"}>
                 <Typography variant="h3" p={3}>
                     {"Liste des notes des élèves"}
